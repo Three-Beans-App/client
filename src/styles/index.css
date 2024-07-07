@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+  background-image: url(../../cafe-background.png);
+  height: 100%;
 }
 
 code {
@@ -19,5 +20,5 @@ code {
   min-height: 100vb;
   display: flex;
   flex-direction: column;
-  
+  overflow-x: hidden;
 }
