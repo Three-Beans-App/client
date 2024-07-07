@@ -5,8 +5,8 @@ import MenuPage from "./pages/MenuPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import HistoryPage from "./pages/HistoryPage";
-import FavouritePage from "./styles/FavouritePage.css"
-
+import FavouritePage from "./pages/FavouritePage"
+import CartPage from "./pages/CartPage"
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
             <Route path="signup" element={<SignUpPage />} />
             <Route path="history" element={<HistoryPage />} />
             <Route path="favourite" element={<FavouritePage />} />
+            <Route path="cart" element={<CartPage />} />
         </Route>
       </Routes>
   );
