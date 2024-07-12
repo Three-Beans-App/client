@@ -15,7 +15,9 @@ Home - first implemented
 
 ### Menu Page
 
-    - List of Items
+    - Menu Items
+        - Menu Item
+        - Menu Item model to display with options
     - View Items
     - Some add on like sugar, milk choice
     - Item that can add to Cart
@@ -55,3 +57,25 @@ Home - first implemented
         - Remove the save Favourite List Items
         - Add the Favourite List Items to the Cart
         - Button to direct to checkout page
+
+### Admin Login
+
+    - Admin login email:
+    - Password
+
+### Office
+
+    - Menu
+        - Create new category
+        - Update exsting category
+        - Delete exstine category
+    - Item
+        - Create New Item
+        - Update exsting item
+        - Delete new Item
+    - Order
+        - View all the orders
+        - View individual order
+            - Order status
+                - Update order status
+
