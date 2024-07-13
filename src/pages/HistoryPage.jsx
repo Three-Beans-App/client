@@ -1,4 +1,4 @@
-import "../styles/HistoryPage.css"
+import "../styles/pages/HistoryPage.css"
 
 export default function HistoryPage() {
 

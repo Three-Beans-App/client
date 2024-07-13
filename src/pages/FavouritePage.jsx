@@ -1,4 +1,4 @@
-import "../styles/FavouritePage.css"
+import "../styles/pages/FavouritePage.css"
 
 
 export default function FavouritePage(){
