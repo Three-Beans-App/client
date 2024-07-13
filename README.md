@@ -1,6 +1,7 @@
 Home - first implemented
 
 ![screenshot-homepage](screenshot-homepage.png)
+![screenshot-homepage-mobile](screenshot-homepage-mobile.png)
 
 ## Frontend page plannint
 
