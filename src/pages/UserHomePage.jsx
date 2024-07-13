@@ -10,7 +10,7 @@ export default function HomePage() {
             <div id="homeTitle">
                 <h1> Welcome to Three Beans Cafe</h1>
             </div>
-            <div className="homeContents">
+            <div>
                 <h2> Opening Hours</h2>
                 <h3>
                     Monday -Friday: 5am - 4pm
