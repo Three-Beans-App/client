@@ -1,4 +1,4 @@
-import "../styles/LoginPage.css"
+import "../styles/pages/LoginPage.css"
 
 export default function LoginPage(){
 

@@ -1,0 +1,28 @@
+#menuSideBarContainer{
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  
+    
+    
+    .catagory{
+        cursor: pointer;
+        
+    }
+}
+button{
+    width: 20%;
+    height:80px;
+    font-size:larger;
+    
+}
+
+@media screen and (max-width: 600px){
+    button{
+        width: auto;
+        height:80px;
+        font-size:medium;
+        
+    }
+}   

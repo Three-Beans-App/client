@@ -1,4 +1,4 @@
-import "../styles/CartPage.css"
+import "../styles/pages/CartPage.css"
 
 export default function CartPage(){
 
