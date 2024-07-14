@@ -13,7 +13,7 @@ export default function MenuSideBar(){
                 <button>Menu</button>
                 <button className="catagory">Coffee</button>
                 <button className="catagory">Tea</button>
-                <button className="catagory">Milkshaks</button>
+                <button className="catagory">Milkshakes</button>
                 <button className="catagory">Food</button>
             </div>
         </>
