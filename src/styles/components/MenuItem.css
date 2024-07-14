@@ -1,0 +1,46 @@
+#menuItemContainer{
+    color: black;
+    border: 2px solid gray;
+    width: 250px;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+#itemImage{
+    img{ 
+        width: 100%;
+        }
+}
+
+#itemDetail{
+    display: flex;
+    justify-content: space-between;
+}
+
+#description{
+    padding:0 0 0 4px;
+}
+
+#icon{
+    margin:3px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    padding:2px;
+
+}
+
+@media screen and (max-width: 600px){
+    #menuItemContainer{
+        border: 2px solid gray;
+        width: 200px;
+        flex-wrap: wrap;
+    }
+    #itemImage{
+        img{ 
+            width: 80%;
+            }
+    }
+}
