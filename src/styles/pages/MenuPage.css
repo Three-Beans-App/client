@@ -1,0 +1,69 @@
+#menuContainer{
+    display: flex;
+    border:2px solid red;
+    justify-items: start;
+    background-color: azure;
+
+    #itemBox{
+        border:2px solid rebeccapurple;
+
+
+        #titleAndSearchBox{
+            display: flex;
+            justify-content: space-between;
+
+            .title{
+                font-size: larger;
+                font-weight: bold;
+                background-color: azure;
+                height: 40px;
+                margin: 10px;
+            }
+            .searchBar{
+                padding: 10px;
+
+                input[type="text"]{
+                    font-size: 18px;
+                    border: none;
+                    padding:6px;
+                    margin: 5px;
+                }
+
+                button{
+                    cursor: pointer;
+                    width: 90px;
+                    height: 30px;
+                    margin: 5px;
+
+                }
+            }
+            
+        }
+
+        .items{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: auto;
+            gap: 10px;
+        }
+        
+    }
+}
+
+
+@media screen and (max-width: 600px){
+    
+    input[type=text]{
+        margin:0;
+        text-align: left;
+    }
+
+
+
+}
+
+
+
+
