@@ -1,0 +1,30 @@
+#loginContentContainer{
+    display:flex;
+    justify-content: center;
+
+    #loginContentBox{
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 20px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin: 5px;
+    }
+    
+    #space{
+        min-height: 20px;
+    }
+    button{
+        border-radius: 20px;
+    }
+    input{
+        height: 30px;
+    }
+}
