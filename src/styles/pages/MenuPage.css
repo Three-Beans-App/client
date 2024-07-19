@@ -2,7 +2,9 @@
     display: flex;
     border:2px solid red;
     justify-items: start;
-    background-color: azure;
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 20px;
 
     #itemBox{
         border:2px solid rebeccapurple;
@@ -15,7 +17,7 @@
             .title{
                 font-size: larger;
                 font-weight: bold;
-                background-color: azure;
+                color: black;
                 height: 40px;
                 margin: 10px;
             }
@@ -54,11 +56,18 @@
 
 
 @media screen and (max-width: 600px){
-    
-    input[type=text]{
+    #menuContainer{
+        display: flex;
+        flex-direction: column;
+        border:2px solid red;
+        border-radius: 20px;
+    }
+
+
+    /* input[type=text]{
         margin:0;
         text-align: left;
-    }
+    } */
 
 
 

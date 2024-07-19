@@ -1,0 +1,11 @@
+#profile-container{
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+    #dropdown-container{
+        display: flex;
+        justify-content:flex-end;
+        
+    }
+}

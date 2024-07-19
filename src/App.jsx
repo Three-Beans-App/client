@@ -8,6 +8,7 @@ import HistoryPage from "./pages/HistoryPage";
 import FavouritePage from "./pages/FavouritePage"
 import CartPage from "./pages/CartPage"
 import ViewItemDetailPage from "./pages/ViewItemDetailPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
             <Route path="item" element={<ViewItemDetailPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUpPage />} />
-            <Route path="history" element={<HistoryPage />} />
-            <Route path="favourite" element={<FavouritePage />} />
-            <Route path="cart" element={<CartPage />} />
-        </Route>
+            <Route path="profile" element={<UserProfilePage />} />
+              <Route path="favourite" element={<FavouritePage />} />
+              <Route path="history" element={<HistoryPage />} />
+              <Route path="cart" element={<CartPage />} /> 
+          </Route>        
       </Routes>
   );
 }

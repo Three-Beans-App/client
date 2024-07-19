@@ -1,0 +1,59 @@
+
+.drop-down{
+    color: white;
+    margin: 0 60px 10px 0;
+    padding: 10px;
+
+
+   .dropdown-items{
+    height: 70px;
+    width: 200px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245, 0.8);
+    cursor:pointer;
+    padding: 10px;
+
+    .options{
+        font-size: larger;
+        font-weight: bold;
+        color: red;
+    }
+
+   }
+
+   
+}
+
+
+@media screen and (max-width: 600px){
+    .drop-down{
+        margin: 0;
+        padding: 0 10px 5px 0;
+        white-space: nowrap;
+        overflow: hidden;
+    
+    
+       .dropdown-items{
+        height: 50px;
+        width: 150px;
+        font-size: 15px;
+        font-weight:bold;
+        border-radius: 10px;
+        background-color: rgb(245, 245, 245, 0.8);
+        cursor:pointer;
+        padding: 10px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        
+        .options{
+            font-size: larger;
+            font-weight: bold;
+            color: red;
+        }
+    
+       }
+    }
+
+}
