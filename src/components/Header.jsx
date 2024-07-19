@@ -1,5 +1,7 @@
 import "../styles/components/Header.css";
 import { NavLink } from "react-router-dom"
+import NavBar from "./Navbar";
+
 
 export default function Header(){
 
@@ -10,9 +12,7 @@ export default function Header(){
             </div>
         
             <nav>
-                <NavLink to="/" className="navLink">Home</NavLink>
-                <NavLink to="/menu" className="navLink">Menu</NavLink>
-                <NavLink to="/login" className="navLink">Login/Sign Up</NavLink>
+                <NavBar className="navLink"/>
             </nav>
            
         </header>

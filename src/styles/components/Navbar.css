@@ -1,0 +1,32 @@
+.navLink {
+    /* margin-left: 40px; */
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    font-size:x-large;
+    margin-right: 60px;
+
+    .icon{
+        
+        font-size: 60px;
+    }
+}
+
+#icon{
+    color: aqua;
+}
+
+@media screen and (max-width: 600px){
+    .navLink {
+        font-size:medium;
+        text-decoration: none;
+        cursor: pointer;
+        color: white;
+        margin: 10px; 
+        font-weight: bold;  
+
+        .userIcon{
+            width: 50px;
+        }
+    }
+}
