@@ -2,9 +2,6 @@ import DropDown from "../components/DropDown";
 import "../styles/pages/UserProfilePage.css";
 import MenuPage from "./MenuPage";
 
-// drop down menu
-// menu
-
 
 
 export default function UserProfilePage(){
