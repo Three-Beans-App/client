@@ -16,15 +16,17 @@ function App() {
       <Routes >
         <Route path="/" element={<Template />} >
           <Route index element={<HomePage />} />
-            <Route path="menu" element={<MenuPage />} />
-            <Route path="item" element={<ViewItemDetailPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<SignUpPage />} />
-            <Route path="profile" element={<UserProfilePage />} />
-              <Route path="favourite" element={<FavouritePage />} />
-              <Route path="history" element={<HistoryPage />} />
-              <Route path="cart" element={<CartPage />} /> 
-          </Route>        
+          <Route path="menu" element={<MenuPage />} />
+          <Route path="item" element={<ViewItemDetailPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignUpPage />} />
+          <Route path="profile">
+            <Route index element={<UserProfilePage />} />
+            <Route path="favourite" element={<FavouritePage />} />
+            <Route path="history" element={<HistoryPage />} />
+            <Route path="cart" element={<CartPage />} /> 
+          </Route> 
+        </Route>        
       </Routes>
   );
 }
