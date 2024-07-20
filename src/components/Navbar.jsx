@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import "../styles/components/Navbar.css";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import "../styles/components/NavBar.css";
+import UserDropdown from "../components/UserDropdown";
 
 export default function NavBar(){
 
@@ -21,14 +22,21 @@ export default function NavBar(){
     //     setUser(null)
     // }
 
+
+     // set avairable of useNavigate
+    //  const direct = useNavigate();
+
+     // set a function to handle the navigation
+    //  const handleDirect = (event) => {
+    //      direct(event.target.value)
+    //  }
+
     return(
         <nav>
             <NavLink to="/" className="navLink">Home</NavLink>
             <NavLink to="/menu" className="navLink">Menu</NavLink>
             {isUserLogin ? (
-                <NavLink to="/profile" className="navLink">
-                    <AccountBoxIcon className="icon"/>
-                </NavLink>
+                <UserDropdown />
             ) : (
                 <>
                     <NavLink to="/login" className="navLink">Login/Sign Up</NavLink>
@@ -36,8 +44,7 @@ export default function NavBar(){
             )}
             
         </nav>
-
-    )
+)
 
 
 

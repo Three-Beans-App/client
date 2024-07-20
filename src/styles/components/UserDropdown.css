@@ -1,0 +1,32 @@
+.drop-down{
+    margin: 30px;
+    position: relative;
+    display: inline-block;
+    .icon{
+        font-size: 70px;
+        cursor: pointer;
+    }
+
+    .dropdown-items{
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: none;
+        border: none;
+        border-radius: 5px;
+        width: 200px;   
+       
+    }
+
+    .dropdown-items button{
+        padding: 10px;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        font-weight: bolder;
+        
+    }
+}
