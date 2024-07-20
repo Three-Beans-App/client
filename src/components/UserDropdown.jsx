@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/components/UserDropdown.css";
@@ -7,25 +7,44 @@ import "../styles/components/UserDropdown.css";
 export default function UserDropdown(){
 
     // check whether is open
-    const [ isOpen, SetIsOpen ] = useState(false)
+    const [ isOpen, setIsOpen ] = useState(false)
 
     // set avairable of useNavigate
     const direct = useNavigate();
 
+    // set avairabel of useRef
+    const dropdownmenuRef = useRef(null);
+
     // set toggle to the icon, when toggle when set to true
     const handleToggle = () => {
-        SetIsOpen(!isOpen);
+        setIsOpen(!isOpen);
     };
 
     // set a function to handle the navigation
     const handleDirect = (path) => {
         direct(path);
-        SetIsOpen(false)
+        setIsOpen(false)
     }
 
 
+    // set a function when onclick outside of the dropdown will close the dropdown menu
+    const handleOnClickOutside = (event) => {
+        if (dropdownmenuRef.current && !dropdownmenuRef.current.contains(event.target)){
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleOnClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOnClickOutside);
+          };
+        }, []);
+
+
     return(
-        <div className="drop-down">
+        <div className="drop-down"  ref={dropdownmenuRef}>
             <div className="dropdown-icon" onClick={handleToggle}>
                 <AccountCircleIcon className="icon" />
             </div>
