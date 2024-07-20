@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/components/NavBar.css";
-import UserDropdown from "../components/UserDropdown";
+import UserDropdown from "./UserDropdown";
 
 export default function NavBar(){
 
