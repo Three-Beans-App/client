@@ -1,6 +1,5 @@
 import "../styles/components/Header.css";
-import { NavLink } from "react-router-dom"
-import NavBar from "./Navbar";
+import NavBar from "./NavBar";
 
 
 export default function Header(){
@@ -11,7 +10,8 @@ export default function Header(){
                 <img src="logo.png" alt="logoImage"/>
             </div>
         
-            <nav>
+            <nav id="navBox">
+                
                 <NavBar className="navLink"/>
             </nav>
            
