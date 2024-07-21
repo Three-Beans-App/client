@@ -50,10 +50,10 @@ export default function UserDropdown(){
             </div>
             {isOpen && (
                 <div className="dropdown-items" > 
-                    <button onClick={()=>handleDirect("/profile")}>Profile</button>
-                    <button onClick={()=>handleDirect("/profile/favourite")}>Favourite</button>
-                    <button onClick={()=>handleDirect("/profile/cart")}>Cart</button>
-                    <button onClick={()=>handleDirect("/profile/history")}>History</button>
+                    <button onClick={()=>handleDirect("/favourite")}>Favourite</button>
+                    <button onClick={()=>handleDirect("/cart")}>Cart</button>
+                    <button onClick={()=>handleDirect("/history")}>History</button>
+                    <button onClick={()=>handleDirect("/")}>Logout</button>
                 </div>
             )}
           

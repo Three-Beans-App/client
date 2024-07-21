@@ -1,7 +1,8 @@
 import "../styles/components/MenuItem.css";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarRateIcon from '@mui/icons-material/StarRate';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import { useState } from "react";
 // Show the item picture
 // Show the item name
 // Show the price
@@ -9,26 +10,30 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 // Show the favourite bar
 // Show the cart
 
-export default function MenuItem(){
+export default function MenuItem({ name, price, description, image }){
 
+    const [ isClick, setIsClick ] = useState(false)
+
+    const handleStarOnClick = () => {
+        setIsClick(!isClick);
+    }
 
     return (
         <div id="menuItemContainer">
     
             <div id="itemImage">
-                <img src="coffee.png" alt="Description" />
+                <img src={image} alt="Description" />
             </div>
             <div id="itemDetail">
-                <div id="description">
-                    <h3>cappacinno</h3>
-                    <h4>$ 6</h4>
-                    <h5>description</h5>
+                <div id="details">
+                    <h3 id="title">{name}</h3>
+                    <h4 id="price">${price}</h4>
+                    <h5 id="description">{description}</h5>
                 </div>
                 <div id="icon">
-                    <div className="star">
-                        <StarBorderIcon/>  
-                        {/* <StarRateIcon />  */}
-                    </div>
+                <div className="star" onClick={handleStarOnClick}>
+                        {isClick ? <StarOutlinedIcon /> :  <StarBorderIcon/>}
+                </div>
                     <div className="addToCart">
                         <AddShoppingCartIcon />
                     </div>

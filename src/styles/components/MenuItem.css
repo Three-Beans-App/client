@@ -2,16 +2,16 @@
     color: black;
     border: 2px solid gray;
     width: 250px;
+    height: 400px;
     background-color: azure;
     display: flex;
     flex-direction: column;
-    
-
 }
 #itemImage{
     img{ 
         width: 100%;
         }
+    cursor: pointer;
 }
 
 #itemDetail{
@@ -19,28 +19,53 @@
     justify-content: space-between;
 }
 
-#description{
+#details{
     padding:0 0 0 4px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+
+    #title, #description {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 #icon{
     margin:3px;
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
-    padding:2px;
+    justify-content:space-between;
+    padding: 16px 2px;
+   .star{
+        cursor: pointer;
+   }
+   .addToCart{
+        cursor: pointer;
+   }
 
 }
 
 @media screen and (max-width: 600px){
     #menuItemContainer{
         border: 2px solid gray;
-        width: 200px;
+        width: 250px;
         flex-wrap: wrap;
     }
     #itemImage{
         img{ 
-            width: 80%;
-            }
+            width: 100%;
+        }
+    }
+    #details{
+        padding:0 0 0 4px;
+        max-width: 150px;
+    
+        #title, #description {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
