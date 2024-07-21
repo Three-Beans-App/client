@@ -26,12 +26,12 @@ export default function LoginPage(){
                     value={email} onChange={(event) => setEmail(event.target.value)}
                     />
                     <label>Password: </label>
-                    <input type="loginPassword" name="loginPassword" id="loginPassword"
+                    <input type="password" name="loginPassword" id="loginPassword"
                     value={password} onChange={(event) => setPassword(event.target.value)} 
         
                     />
                     <div id="space" />
-                    <button onClick={handleLogin}>
+                    <button onClick={handleLogin} id="login-bnt">
                     Login
                     </button>
                     <label>Or if you not a member:</label>

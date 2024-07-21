@@ -1,7 +1,7 @@
 #signupContentContainer{
     display: flex;
     justify-content: center;
-
+}
     #signupContentBox{
         display: flex;
         flex-direction: column;
@@ -28,4 +28,18 @@
     input{
         height: 30px;
     }
+
+.confirmation {
+    text-align: center;
 }
+
+.confirmation h2 {
+    margin-bottom: 10px;
+}
+
+.confirmation a {
+    color: rgb(78, 73, 73);
+    text-decoration: none;
+    font-weight: bold;
+}
+

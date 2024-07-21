@@ -1,5 +1,5 @@
 import "../styles/components/Header.css";
-import NavBar from "./NavBar";
+import NavBar from "./Navbar";
 
 
 export default function Header(){
@@ -16,5 +16,5 @@ export default function Header(){
             </nav>
            
         </header>
-    )
+    );
 }

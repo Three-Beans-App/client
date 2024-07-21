@@ -31,6 +31,8 @@ export default function UserDropdown(){
             </div>
             {isOpen && (
                 <div className="dropdown-items" > 
+                    <button onCLick={()=>handleDirect("/login")}>Login</button>
+                    <button onClick={()=>handleDirect("/signup")}>Signup</button>
                     <button onClick={()=>handleDirect("/profile")}>Profile</button>
                     <button onClick={()=>handleDirect("/profile/favourite")}>Favourite</button>
                     <button onClick={()=>handleDirect("/profile/cart")}>Cart</button>

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import "../styles/components/NavBar.css";
+import "../styles/components/Navbar.css";
 import UserDropdown from "../components/UserDropdown";
 
 export default function NavBar(){
@@ -41,11 +41,7 @@ export default function NavBar(){
                 <>
                     <NavLink to="/login" className="navLink">Login/Sign Up</NavLink>
                 </>
-            )}
-            
+            )}           
         </nav>
-)
-
-
-
+    );
 }

@@ -19,36 +19,60 @@ export default function UserProvider({children}){
 	const [decodedUserJwt, setDecodedUserJwt] = useState({});
 
 
-    const makeSignupRequest = async (email, password) => {
+    const makeSignupRequest = async (name, email, password, birthday) => {
 
-        let bodyData = {email, password};
+        let bodyData = { name, email, password, birthday };
 		console.log("Body data to send is: ");
 		console.log(bodyData);
-		let signUpResult = await fetch("http://localhost:3000/users", {
-			method: "POST",
-			body: JSON.stringify(bodyData),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}).catch(error => console.error(error));
+
+        try {
+            let signUpResult = await fetch("http://localhost:3001/users/signup", {
+                method: "POST",
+                body: JSON.stringify(bodyData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(error => console.error(error));
+        
+            signUpResult = await signUpResult.json();
     
-        signUpResult = await signUpResult.json();
+            console.log ("Sign up result is: " + JSON.stringify(signUpResult));
+    
 
-        console.log ("Sign up result is: " + JSON.stringify(signUpResult));
+            setUserJwt(signUpResult.token);
+            setDecodedUserJwt(signUpResult.decodedJwt)
 
-        // Express route for POST /users/ returns object with JWT as a property
-        setUserJwt(signUpResult.jwt);
-        setDecodedUserJwt(signUpResult.decodedJwt)
+            return { 
+                success: true,
+                message: signUpResult.message 
+            };            
+        } catch (error) {
+            console.error("Error signing up: " + error);
+        }	
     }
 
     const makeLoginRequest = async (email, password) => {
-        let loginResult = await fetch("http://localhost:3000/users/jwt", {method: "POST", body: {email, password}});
-        
-        console.log ("Login result is: " + JSON.stringify(loginResult));
+        let bodyData = { email, password };
 
-        // Express route for POST /users/jwt returns object with JWT as a property
-        setUserJwt(loginResult.jwt);
-        setDecodedUserJwt(loginResult.decodedUserJwt)
+        try{
+            let loginResult = await fetch("http://localhost:3001/users/jwt", {
+                method: "POST", 
+                body: JSON.stringify(bodyData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            loginResult = await loginResult.json();
+        
+            console.log ("Login result is: " + JSON.stringify(loginResult));
+
+            // Express route for POST /users/jwt returns object with JWT as a property
+            setUserJwt(loginResult.token);
+            setDecodedUserJwt(loginResult.decodedUserJwt)
+        } catch (error) {
+            console.error("Error logging in:", error);
+        }
     }
 
 
