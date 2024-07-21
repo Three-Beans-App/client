@@ -1,22 +1,19 @@
 import "../styles/components/MenuSideBar.css"
-// Display Menu catagory
+// Display Menu category
 // Coffee
 // Tea
 // Milkshaks
 // Food
 
-export default function MenuSideBar(){
+export default function MenuSideBar({categories, onSelectedCategory}){
 
     return(
-        <>  
-            <div id="menuSideBarContainer">
-                <button>Menu</button>
-                <button className="catagory">Coffee</button>
-                <button className="catagory">Tea</button>
-                <button className="catagory">Milkshakes</button>
-                <button className="catagory">Food</button>
-            </div>
-        </>
-
+        <div id="menuSideBarContainer">
+            {categories.map(category => (
+                <button key={category.name} onClick={() => onSelectedCategory(category)}>
+                    {category.name}
+                </button>
+            ))}
+        </div>
     )
 }

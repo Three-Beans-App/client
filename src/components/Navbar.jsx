@@ -38,7 +38,7 @@ export default function NavBar(){
                 <UserDropdown />
             ) : (
                 <>
-                    <NavLink to="/login" className="navLink">Login/Sign Up</NavLink>
+                    <NavLink to="/login" className="navLink">Login</NavLink>
                 </>
             )}
             
