@@ -6,7 +6,7 @@ import UserDropdown from "./UserDropdown";
 export default function NavBar(){
 
     // create state to store the user login 
-    const [ isUserLogin, setIsUserLogin ] = useState(false)
+    const [ isUserLogin, setIsUserLogin ] = useState(true)
     // create state to store the user
     // const [ user, setUser ] = useState(null)
     

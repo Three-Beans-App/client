@@ -4,6 +4,8 @@ import MenuItem from "../components/MenuItem";
 import { useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
+import ItemDetail from "../components/ItemDetail";
+
 
 export default function MenuPage(){
     const menuItems = [
@@ -463,6 +465,8 @@ export default function MenuPage(){
 
     const [selectedCategory, setSelectedCategory] = useState(categories[0])
     const [searchTerm, setSearchTerm] = useState("")
+    const [isItemDetaillOpen, setIsItemDetaillOpen] = useState(false);
+    const [onClickItemDetail, setOnClickItemDetail] = useState(null);
 
     const setSearchValue = (event) => {
         setSearchTerm(event.target.value);
@@ -476,6 +480,17 @@ export default function MenuPage(){
     const handleDirect = (path) => {
         direct(path);
     }
+
+    const handleOpenItemDetail = (item) => {
+        setOnClickItemDetail(item);
+        setIsItemDetaillOpen(true);
+    };
+
+    const handleCloseItemDetail = () => {
+        setOnClickItemDetail(null);
+        setIsItemDetaillOpen(false);
+    } ;
+
 
     return(
         <div id="menuContainer">
@@ -507,19 +522,24 @@ export default function MenuPage(){
                 </div>
             
                 <div className="items">
-                    {selectedMenuItems.map((item) => (
-                        <MenuItem
+                    {selectedMenuItems.map((item, index) => (
+                        <div key={index} onClick={() => handleOpenItemDetail(item)}>
+                        <MenuItem 
                             key={item.name}
                             name={item.name}
                             price={item.price}
                             description={item.description}
                             image={item.image}
                         />
+                        </div>
                     ))}
-                </div>   
+                </div>  
             </div>
-            
-           
+            <div id="itemDetail-popup">
+                {isItemDetaillOpen && onClickItemDetail && (
+                    <ItemDetail item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail} />
+                )} 
+            </div>
         </div>
     )
 }
