@@ -21,7 +21,7 @@ export default function UserProvider({children}){
 
     const makeSignupRequest = async (name, email, password, birthday) => {
 
-        let bodyData = {email, password};
+        let bodyData = { name, email, password, birthday };
 		console.log("Body data to send is: ");
 		console.log(bodyData);
         try {
@@ -55,7 +55,7 @@ export default function UserProvider({children}){
         let bodyData = { email, password };
 
         try{
-            let loginResult = await fetch("http://localhost:3001/users/jwt", {
+            let loginResult = await fetch("http://localhost:3001/users/login", {
                 method: "POST", 
                 body: JSON.stringify(bodyData),
                 headers: {
@@ -75,12 +75,19 @@ export default function UserProvider({children}){
         }
     }
 
+    const logoutUser = () => {
+        setUserJwt("");
+        setDecodedUserJwt({});
+        console/log("Logout successful!");
+    }
+
 
     return <UserDataContext.Provider value={{userJwt, decodedUserJwt}}>
         <UserDispatchContext.Provider value={{
             // functions to make requests to sign up and log in and so on 
             makeSignupRequest,
-            makeLoginRequest
+            makeLoginRequest,
+            logoutUser
         }}>
             {children}
         </UserDispatchContext.Provider>
