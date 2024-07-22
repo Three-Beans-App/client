@@ -32,7 +32,7 @@ import CloseIcon from '@mui/icons-material/Close';
 // number - + 
 // add to cart
 
-export default function ItemDetail(){
+export default function ItemDetail({item, handleCloseItemDetail }){
 
 
     return(
@@ -40,16 +40,16 @@ export default function ItemDetail(){
         <div id="ItemBigBox" data-closable>
             
             <div id="imageCloseContainer">
-                <img src="coffee.png" alt="Description" className="image"/>
-                <IconButton aria-label="close" className="IconButton">
+                <img src={item.image} alt="Description" className="image"/>
+                <IconButton aria-label="close" className="IconButton" onClick={handleCloseItemDetail }>
                     <CloseIcon />
                 </IconButton>
             </div>
             <div id="detail-container">
                 <div id="detailBox">
-                    <h3>latte</h3>
-                    <label>$ 5</label>
-                    <p>description</p>
+                    <h3>{item.name}</h3>
+                    <label>{item.price}</label>
+                    <p>{item.description}</p>
                 </div>
                 <div> 
                     <label>Choose a milk type:</label>
