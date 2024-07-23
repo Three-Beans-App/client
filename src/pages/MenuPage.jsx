@@ -534,11 +534,12 @@ export default function MenuPage(){
                         </div>
                     ))}
                 </div>  
+                
             </div>
             <div id="itemDetail-popup">
-                {isItemDetaillOpen && onClickItemDetail && (
-                    <ItemDetail item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail} />
-                )} 
+                    {isItemDetaillOpen && onClickItemDetail && (
+                        <ItemDetail item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail}  className="item-popup"/>
+                    )} 
             </div>
         </div>
     )

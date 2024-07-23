@@ -78,7 +78,7 @@ export default function UserProvider({children}){
     const logoutUser = () => {
         setUserJwt("");
         setDecodedUserJwt({});
-        console/log("Logout successful!");
+        console.log("Logout successful!");
     }
 
 
