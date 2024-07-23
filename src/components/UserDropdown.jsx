@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/components/UserDropdown.css";
-
+import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
 
 export default function UserDropdown(){
 
@@ -27,20 +27,8 @@ export default function UserDropdown(){
     }
 
 
-    // set a function when onclick outside of the dropdown will close the dropdown menu
-    const handleOnClickOutside = (event) => {
-        if (dropdownmenuRef.current && !dropdownmenuRef.current.contains(event.target)){
-            setIsOpen(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleOnClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleOnClickOutside);
-          };
-        }, []);
+    // when on click outside of the contents close the dropdown menu
+    useOnClickOutsideClose(dropdownmenuRef, ()=>setIsOpen(false));
 
 
     return(
