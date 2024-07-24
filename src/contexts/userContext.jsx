@@ -15,9 +15,9 @@ export function useUserDispatch(){
 export default function UserProvider({children}){
 
 	const [userJwt, setUserJwt] = useState("");
-
 	const [decodedUserJwt, setDecodedUserJwt] = useState({});
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+   
 
     const makeSignupRequest = async (name, email, password, birthday) => {
 
@@ -39,6 +39,7 @@ export default function UserProvider({children}){
 
         setUserJwt(signUpResult.token);
         setDecodedUserJwt(signUpResult.decodedJwt)
+        setIsLoggedIn(true);
 
         return { 
             success: true,
@@ -69,7 +70,8 @@ export default function UserProvider({children}){
 
             // Express route for POST /users/jwt returns object with JWT as a property
             setUserJwt(loginResult.token);
-            setDecodedUserJwt(loginResult.decodedUserJwt)
+            setDecodedUserJwt(loginResult.decodedUserJwt);
+            setIsLoggedIn(true);
         } catch (error) {
             console.error("Error logging in:", error);
         }
@@ -78,11 +80,12 @@ export default function UserProvider({children}){
     const logoutUser = () => {
         setUserJwt("");
         setDecodedUserJwt({});
+        setIsLoggedIn(false);
         console.log("Logout successful!");
     }
 
 
-    return <UserDataContext.Provider value={{userJwt, decodedUserJwt}}>
+    return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn}}>
         <UserDispatchContext.Provider value={{
             // functions to make requests to sign up and log in and so on 
             makeSignupRequest,

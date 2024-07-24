@@ -1,15 +1,19 @@
-import "../styles/components/ItemDetail.css";
+import "../styles/components/Popup.css";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Star from "./Star";
 
-export default function ItemDetail({item, handleCloseItemDetail }){
 
+
+
+export default function Popup({item, handleCloseItemDetail}){
+   
+    
 
     return(
 
-        <div id="ItemBigBox" data-closable>
+        <div id="ItemBigBox" data-closable >
             
             <div id="imageCloseContainer">
                 <img src={item.image} alt="Description" className="image"/>

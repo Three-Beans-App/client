@@ -1,40 +1,22 @@
-import { useState } from "react"
+
 import { NavLink } from "react-router-dom"
 import "../styles/components/Navbar.css";
 import UserDropdown from "./UserDropdown";
+import { useUserData } from "../contexts/userContext";
 
 export default function NavBar(){
 
-    // create state to store the user login 
-    const [ isUserLogin, setIsUserLogin ] = useState(true)
-    // create state to store the user
-    // const [ user, setUser ] = useState(null)
+  
+    const {isLoggedIn} = useUserData();
+ 
     
 
-    // const handleUserLogin = ()=> {
-    //     setIsUserLogin(true);
-    //     setUser({username:"Jay" })
-    // }
-
-    // const handleLogout =() => {
-    //     setIsUserLogin(false);
-    //     setUser(null)
-    // }
-
-
-     // set avairable of useNavigate
-    //  const direct = useNavigate();
-
-     // set a function to handle the navigation
-    //  const handleDirect = (event) => {
-    //      direct(event.target.value)
-    //  }
 
     return(
         <nav>
             <NavLink to="/" className="navLink">Home</NavLink>
             <NavLink to="/menu" className="navLink">Menu</NavLink>
-            {isUserLogin ? (
+            {isLoggedIn ? (
                 <UserDropdown />
             ) : (
                 <>

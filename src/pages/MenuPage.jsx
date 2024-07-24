@@ -1,10 +1,11 @@
 import "../styles/pages/MenuPage.css"
 import MenuSideBar from "../components/MenuSideBar"
 import MenuItem from "../components/MenuItem";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
-import ItemDetail from "../components/ItemDetail";
+import Popup from "../components/Popup";
+import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
 
 
 export default function MenuPage(){
@@ -468,6 +469,8 @@ export default function MenuPage(){
     const [isItemDetaillOpen, setIsItemDetaillOpen] = useState(false);
     const [onClickItemDetail, setOnClickItemDetail] = useState(null);
 
+    const popupItemRef = useRef(null)
+
     const setSearchValue = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -490,6 +493,8 @@ export default function MenuPage(){
         setOnClickItemDetail(null);
         setIsItemDetaillOpen(false);
     } ;
+
+    useOnClickOutsideClose(popupItemRef, ()=>setIsItemDetaillOpen(false));
 
 
     return(
@@ -521,9 +526,9 @@ export default function MenuPage(){
                     </div>
                 </div>
             
-                <div className="items">
+                <div className="items" ref={popupItemRef}>
                     {selectedMenuItems.map((item, index) => (
-                        <div key={index} onClick={() => handleOpenItemDetail(item)}>
+                        <div key={index} onClick={() => handleOpenItemDetail(item)} >
                         <MenuItem 
                             key={item.name}
                             name={item.name}
@@ -536,9 +541,9 @@ export default function MenuPage(){
                 </div>  
                 
             </div>
-            <div id="itemDetail-popup">
+            <div id="itemDetail-popup" >
                     {isItemDetaillOpen && onClickItemDetail && (
-                        <ItemDetail item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail}  className="item-popup"/>
+                        <Popup item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail}  className="item-popup"/>
                     )} 
             </div>
         </div>
