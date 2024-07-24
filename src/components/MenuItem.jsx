@@ -27,6 +27,7 @@ export default function MenuItem({ name, price, description, image }){
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 }

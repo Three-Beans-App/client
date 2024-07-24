@@ -3,11 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/components/UserDropdown.css";
 import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
+import { useUserData, useUserDispatch } from "../contexts/userContext";
 
 export default function UserDropdown(){
 
     // check whether is open
-    const [ isOpen, setIsOpen ] = useState(false)
+    const [ isOpen, setIsOpen ] = useState(false);
+
+    // log out user
+    const {logoutUser} = useUserDispatch();
+
+
 
     // set avairable of useNavigate
     const direct = useNavigate();
@@ -31,6 +37,12 @@ export default function UserDropdown(){
     useOnClickOutsideClose(dropdownmenuRef, ()=>setIsOpen(false));
 
 
+    // handle logout 
+    const handleLogout = () => {
+        logoutUser();
+        handleDirect("/")
+    };
+
     return(
         <div className="drop-down"  ref={dropdownmenuRef}>
             <div className="dropdown-icon" onClick={handleToggle}>
@@ -41,7 +53,7 @@ export default function UserDropdown(){
                     <button onClick={()=>handleDirect("/favourite")}>Favourite</button>
                     <button onClick={()=>handleDirect("/cart")}>Cart</button>
                     <button onClick={()=>handleDirect("/history")}>History</button>
-                    <button onClick={()=>handleDirect("/")}>Logout</button>
+                    <button onClick={handleLogout}>Logout</button>
                 </div>
             )}
           
