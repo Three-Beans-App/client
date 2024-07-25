@@ -1,16 +1,16 @@
 import '../styles/pages/AddItemPage.css';
 import React, { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 
 
-export default function AddItem() {
+export default function AddItemPage() {
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-    const history = useHistory();
+    const history = useNavigate();
 
     const onDrop = useCallback((acceptedFiles) => {
         setImage(acceptedFiles[0]);
