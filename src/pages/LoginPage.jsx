@@ -1,25 +1,37 @@
 import { useState } from "react"
 import "../styles/pages/LoginPage.css"
 import { useUserDispatch } from "../contexts/userContext"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 export default function LoginPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const direct = useNavigate();
 
     const { makeLoginRequest } = useUserDispatch();
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        makeLoginRequest(email, password)
-    }
+        const LoginReq = await makeLoginRequest(email, password);
+        if (!LoginReq.success){
+            setError(LoginReq.message);
+            return;
+        } else {
+            setError("");
+        };
+        direct("/");
+        }
+        
+
 
     return(
       
         <div id="loginContentContainer">
             <div id="loginContentBox">
-                <form>
+                <form onSubmit={handleLogin}>
                     <label>Login email: </label>
                     <input 
                     type="text" name="email" id="email" 
@@ -31,7 +43,7 @@ export default function LoginPage(){
         
                     />
                     <div id="space" />
-                    <button onClick={handleLogin} id="login-bnt">
+                    <button  type="submit" id="login-bnt">
                     Login
                     </button>
                     <label>Or if you not a member:</label>
