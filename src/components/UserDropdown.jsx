@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/components/UserDropdown.css";
 import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
-import { useUserData, useUserDispatch } from "../contexts/userContext";
+import {  useUserDispatch } from "../contexts/userContext";
 
 export default function UserDropdown(){
 

@@ -8,7 +8,6 @@ export default function NavBar(){
 
   
     const {isLoggedIn} = useUserData();
- 
     
 
 
@@ -20,7 +19,7 @@ export default function NavBar(){
                 <UserDropdown />
             ) : (
                 <>
-                    <NavLink to="/login" className="navLink">Login</NavLink>
+                    <NavLink to="/login"  className="navLink">Login</NavLink>
                 </>
             )}
             
