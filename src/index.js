@@ -4,17 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import UserProvider from "./contexts/userContext.jsx"
+import UserProvider from "./contexts/userContext.jsx";
+import MenuItemProvider from './contexts/menuItemContext.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <BrowserRouter>
-      
-        <App />
-      
-      </BrowserRouter>
+      <MenuItemProvider>
+        <BrowserRouter>     
+          <App />   
+        </BrowserRouter>
+      </MenuItemProvider>     
     </UserProvider>
   </React.StrictMode>
 );
