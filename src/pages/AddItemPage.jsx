@@ -1,7 +1,8 @@
 import '../styles/pages/AddItemPage.css';
 import React, { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
+import { useMenuItemDispatch } from '../contexts/menuItemContext';
 
 
 export default function AddItemPage() {
@@ -10,7 +11,8 @@ export default function AddItemPage() {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-    const history = useNavigate();
+    const navigate = useNavigate();
+    const { addMenuItem } = useMenuItemDispatch();
 
     const onDrop = useCallback((acceptedFiles) => {
         setImage(acceptedFiles[0]);
@@ -20,32 +22,10 @@ export default function AddItemPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        if (image) {
-            const formData = new FormData();
-            formData.append('file', image);
-            formData.append('filename', name);
-
-            await fetch('/api/upload', {
-                method: 'POST',
-                body: formData
-            });
-        }
-
-        const response = await fetch('api/items', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, category, price, description })
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            alert(result.message);
-            history.push('/menu');
-        }
+        await addMenuItem(name, category, price, description, image);
+        navigate("/menu");
     };
+
 
     return (
         <form onSubmit={handleSubmit}>
