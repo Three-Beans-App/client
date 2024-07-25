@@ -1,3 +1,4 @@
+import '../styles/pages/AddItemPage.css';
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
