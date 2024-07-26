@@ -25,7 +25,7 @@ export default function AddItemPage() {
         await addMenuItem(name, category, price, description, image);
         navigate("/menu");
     };
-
+    // example code comments
 
     return (
         <form onSubmit={handleSubmit}>
