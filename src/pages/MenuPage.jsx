@@ -1,11 +1,10 @@
 import "../styles/pages/MenuPage.css"
 import MenuSideBar from "../components/MenuSideBar"
 import MenuItem from "../components/MenuItem";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
-import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
 
 
 export default function MenuPage(){
@@ -469,7 +468,9 @@ export default function MenuPage(){
     const [isItemDetaillOpen, setIsItemDetaillOpen] = useState(false);
     const [onClickItemDetail, setOnClickItemDetail] = useState(null);
 
-    const popupItemRef = useRef(null)
+    const [cartItems, setCartItems] = useState([])
+    
+    
 
     const setSearchValue = (event) => {
         setSearchTerm(event.target.value);
@@ -494,8 +495,26 @@ export default function MenuPage(){
         setIsItemDetaillOpen(false);
     } ;
 
-    useOnClickOutsideClose(popupItemRef, ()=>setIsItemDetaillOpen(false));
 
+    // function for add item to cart
+    const handleAddToCart = (item) => {
+        const newItem = {
+            ...item,
+            count: 1,
+        }
+        setCartItems([...cartItems, newItem])
+        
+        console.log("Added to cart:", item);
+    };
+
+    const handleStarClick = (item) => {
+        // Implement the logic for star click
+        console.log("Star clicked:", item);
+    };
+
+
+    
+ 
 
     return(
         <div id="menuContainer">
@@ -521,20 +540,24 @@ export default function MenuPage(){
                             </form>
                         </div>
                         <button onClick={()=>handleDirect("/cart")} id="cartIcon" hr>
+                        
                             <ShoppingCartIcon  />
                         </button>
                     </div>
                 </div>
             
-                <div className="items" ref={popupItemRef}>
+                <div className="items" >
                     {selectedMenuItems.map((item, index) => (
-                        <div key={index} onClick={() => handleOpenItemDetail(item)} >
+                        <div>
                         <MenuItem 
-                            key={item.name}
+                            key={index}
                             name={item.name}
                             price={item.price}
                             description={item.description}
                             image={item.image}
+                            onOpenItemDetail={() => handleOpenItemDetail(item)}
+                            onAddToCart={() => handleAddToCart(item)}
+                            onStarClick={() => handleStarClick(item)}
                         />
                         </div>
                     ))}
@@ -543,7 +566,12 @@ export default function MenuPage(){
             </div>
             <div id="itemDetail-popup" >
                     {isItemDetaillOpen && onClickItemDetail && (
-                        <Popup item={onClickItemDetail} handleCloseItemDetail={handleCloseItemDetail}  className="item-popup"/>
+                        <Popup 
+                        item={onClickItemDetail}
+                        handleCloseItemDetail={handleCloseItemDetail}  
+                        onAddToCart={() => handleAddToCart(onClickItemDetail)}
+                        onStarClick={() => handleStarClick(onClickItemDetail)}
+                        className="item-popup"/>
                     )} 
             </div>
         </div>

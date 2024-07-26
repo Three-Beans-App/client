@@ -1,19 +1,23 @@
 import "../styles/components/Popup.css";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
+import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
+import { useRef } from "react";
 
 
 
+export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarClick}){
 
-export default function Popup({item, handleCloseItemDetail}){
-   
+    const popupItemRef = useRef(null);
+
+    useOnClickOutsideClose(popupItemRef, handleCloseItemDetail);
     
 
     return(
 
-        <div id="ItemBigBox" data-closable >
+        <div id="ItemBigBox" data-closable ref={popupItemRef}>
             
             <div id="imageCloseContainer">
                 <img src={item.image} alt="Description" className="image"/>
@@ -96,10 +100,10 @@ export default function Popup({item, handleCloseItemDetail}){
                 {/* </div> */}
             </div>
             <div>
-                <Star />
+                <Star  onClick={(e) => { e.stopPropagation(); onStarClick(item); }}/>
             </div>
             <div>
-                <ShoppingCartIcon  />
+                <AddShoppingCartIcon  onClick={(e) => { e.stopPropagation(); onAddToCart(item); }} />
             </div>
 
         </div>
