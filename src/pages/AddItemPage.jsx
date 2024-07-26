@@ -10,9 +10,19 @@ export default function AddItemPage() {
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [previewImage, setPreviewImage] = useState(null);
+    const [image, setImage] = useState(null);
     const navigate = useNavigate();
     const { addMenuItem } = useMenuItemDispatch();
+
+    const onDrop = useCallback((acceptedFiles) => {
+        setImage(acceptedFiles[0]);
+
+        const previewUrl = URL.createObjectURL(acceptedFiles[0]);
+        setPreviewImage(previewUrl);
+    }, []);
+
+    const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
 
     const handlePriceChange = (value) => {
@@ -24,7 +34,7 @@ export default function AddItemPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await addMenuItem(name, category, price, description, imageUrl);
+        await addMenuItem(name, category, price, description, image);
         navigate("/menu");
     };
 
@@ -50,12 +60,16 @@ export default function AddItemPage() {
                         <textarea className="input-content" rows="6" value={description} onChange={(event) => setDescription(event.target.value)} />
                     </section>
                     <section>
-                        <label className="input-label"> Image url</label>
-                        <input className="input-content" type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} required />
-                    </section>
-                    <section>
-                        <div id="imageContainer">
-                            <img src={imageUrl === "" ? "https://via.placeholder.com/250?text=No+Image" : imageUrl} alt="Invalid URL" />
+                        <label className="input-label"> Image </label>
+                        <div {...getRootProps({ className: 'dropzone' })} id="imageContainer">
+                            <input {...getInputProps()} />
+                            <div>
+                                {previewImage ? (
+                                    <img src={previewImage} alt="Preview" />
+                                ) : (
+                                    <p>Drag image or click to select</p>
+                                )}
+                            </div>                        
                         </div>
                     </section>
                     <section>
