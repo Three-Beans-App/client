@@ -1,16 +1,34 @@
 import "../styles/pages/MenuPage.css"
 import MenuSideBar from "../components/MenuSideBar"
 import MenuItem from "../components/MenuItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
-// import useMenuItemData from "../contexts/menuItemContext"
+import {useMenuItemData, useMenuItemDispatch } from "../contexts/menuItemContext"
 
 export default function MenuPage(){
     
     // const { menuItems, categories } = useMenuItemData();
-  
+    // const { fetchMenuItems, fetchCategories } = useMenuItemDispatch();
+
+    // useEffect(() => {
+    //     fetchMenuItems();
+    //     fetchCategories();
+    // }, [fetchMenuItems, fetchCategories]);
+
+    const getRandomImageUrl = () => {
+        const randomIndex = Math.floor(Math.random() * imageUrls.length);
+        return imageUrls[randomIndex];
+    };
+
+    const imageUrls = [
+        "https://images.unsplash.com/photo-1496042399014-dc73c4f2bde1",
+        "https://images.unsplash.com/photo-1648999599232-fd999a6b1d91",
+        "https://images.unsplash.com/photo-1714799263245-4fc7cc21911e",
+        "https://images.unsplash.com/photo-1495774856032-8b90bbb32b32",
+        "https://images.unsplash.com/photo-1608070734668-e74dc3dda037",
+    ]
     // mock data
     const menuItems = [
         // Coffee
@@ -20,7 +38,7 @@ export default function MenuPage(){
             price: 5.50,
             quantity: 100,
             description: "Medium flat white coffee to go",
-            image: "coffee.png",
+            image: getRandomImageUrl(),
         },
         {
             name: "Cappuccino",
@@ -469,13 +487,12 @@ export default function MenuPage(){
 
     const direct = useNavigate();
 
-    const [selectedCategory, setSelectedCategory] = useState(categories[0])
-    const [searchTerm, setSearchTerm] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [searchTerm, setSearchTerm] = useState("");
     const [isItemDetaillOpen, setIsItemDetaillOpen] = useState(false);
     const [onClickItemDetail, setOnClickItemDetail] = useState(null);
 
     const [cartItems, setCartItems] = useState([])
-    
     
 
     const setSearchValue = (event) => {
@@ -528,7 +545,9 @@ export default function MenuPage(){
                 <div id="header">
                     Menu
                 </div>
+                {categories && (
                 <MenuSideBar categories={categories} onSelectedCategory={setSelectedCategory}/>
+                )}
             </div>
             
             <div id="itemBox">
@@ -545,7 +564,7 @@ export default function MenuPage(){
                                 />
                             </form>
                         </div>
-                        <button onClick={()=>handleDirect("/cart")} id="cartIcon" hr>
+                        <button onClick={()=>handleDirect("/cart")} id="cartIcon" >
                         
                             <ShoppingCartIcon  />
                         </button>
@@ -553,10 +572,10 @@ export default function MenuPage(){
                 </div>
             
                 <div className="items" >
-                    {selectedMenuItems.map((item, index) => (
+                    {selectedMenuItems.map((item) => (
                         <div>
                         <MenuItem 
-                            key={index}
+                            key={item.id}
                             name={item.name}
                             price={item.price}
                             description={item.description}
