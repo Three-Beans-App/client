@@ -5,9 +5,13 @@ import { useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
-
+// import useMenuItemData from "../contexts/menuItemContext"
 
 export default function MenuPage(){
+    
+    // const { menuItems, categories } = useMenuItemData();
+  
+    // mock data
     const menuItems = [
         // Coffee
         {
@@ -446,7 +450,7 @@ export default function MenuPage(){
             image: "coffee.png",
         },
     ];
-
+     // mock data
     const categories = [
         {
             name: "Coffee",
@@ -461,6 +465,8 @@ export default function MenuPage(){
             name: "Food",
         },
     ];
+
+
     const direct = useNavigate();
 
     const [selectedCategory, setSelectedCategory] = useState(categories[0])

@@ -59,7 +59,7 @@ export default function UserProvider({children}){
 
             console.log ("Login result is: " + JSON.stringify(loginResult));
 
-            if(response.status != 200) {
+            if(response.status !== 200) {
                 return {
                     success: false,
                     message: "Invalid login attempt",

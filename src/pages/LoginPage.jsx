@@ -16,14 +16,15 @@ export default function LoginPage(){
     const handleLogin = async (event) => {
         event.preventDefault();
         const LoginReq = await makeLoginRequest(email, password);
+        direct("/");
         if (!LoginReq.success){
             setError(LoginReq.message);
+            console.log("error" + error)
             return;
         } else {
             setError("");
         };
-        direct("/");
-        }
+    }
         
 
 
