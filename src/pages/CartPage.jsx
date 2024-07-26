@@ -2,16 +2,29 @@ import "../styles/pages/CartPage.css"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
+import Cart from "../components/Cart"
+import { useState } from "react";
 
 
 export default function CartPage(){
 
-
+    const [cartItems, setCartItems] = useState([])
+    
+    const addItemToCart = (item) => {
+        const newItem = {
+            ...item,
+            count: 1,
+        }
+        setCartItems([...cartItems, newItem])
+    }   
 
     return(
         <div id="cart-container">
-            <div id="cart-top-box">
+
+        <Cart 
+            items={cartItems}
+        />
+            {/* <div id="cart-top-box">
                 <div id="cart-title">
                     <label>Cart</label>
                 </div>
@@ -31,7 +44,7 @@ export default function CartPage(){
                 <AddShoppingCartIcon  />
                 <RemoveCircleOutlineIcon />
                 <AddCircleOutlineIcon />
-            </div>
+            </div> */}
             
 
         </div>

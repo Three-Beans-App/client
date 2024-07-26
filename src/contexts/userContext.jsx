@@ -26,11 +26,7 @@ export default function UserProvider({children}){
 		console.log(bodyData);
         try {
             let response = await axios.post("http://localhost:3001/users/signup", bodyData)
-                // method: "POST",
-                // body: JSON.stringify(bodyData),
-                // headers: {
-                //     'Content-Type': 'application/json'
-                // }
+            
             let signUpResult = response.data
 
             setUserJwt(signUpResult.token);
@@ -44,7 +40,7 @@ export default function UserProvider({children}){
                 message: signUpResult.message 
             };  
         } catch(error){
-            console.error(error);
+            console.error(error.message);
             return {
                 success: false,
                 message: error.response ? error.response.data.message : error.message

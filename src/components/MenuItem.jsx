@@ -3,11 +3,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
 
 
-export default function MenuItem({ name, price, description, image }){
+export default function MenuItem({ name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
 
 
     return (
-        <div id="menuItemContainer">
+        <div id="menuItemContainer" onClick={onOpenItemDetail}>
     
             <div id="itemImage">
                 <img src={image} alt="Description" />
@@ -19,10 +19,10 @@ export default function MenuItem({ name, price, description, image }){
                     <h5 id="description">{description}</h5>
                 </div>
                 <div id="icon">
-                <div className="star" >
+                <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
                       <Star/>
                 </div>
-                    <div className="addToCart">
+                    <div className="addToCart" onClick={(e) => { e.stopPropagation(); onAddToCart(); }}>
                         <AddShoppingCartIcon />
                     </div>
                 </div>
