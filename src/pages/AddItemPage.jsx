@@ -1,6 +1,6 @@
 import '../styles/pages/AddItemPage.css';
 import React, { useState, useCallback } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import { useMenuItemDispatch } from '../contexts/menuItemContext';
 
