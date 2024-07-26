@@ -10,13 +10,13 @@ import MenuItemProvider from './contexts/menuItemContext.jsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+   <MenuItemProvider>
     <UserProvider>
-      <MenuItemProvider>
         <BrowserRouter>     
           <App />   
-        </BrowserRouter>
-      </MenuItemProvider>     
+        </BrowserRouter>     
     </UserProvider>
+    </MenuItemProvider>
   </React.StrictMode>
 );
 
