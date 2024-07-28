@@ -1,0 +1,21 @@
+#admin-container{
+   
+    display: flex;
+    flex-direction: column;
+
+    #admin-sub-container{
+        display: flex;
+        justify-content: center;
+        margin: 50px;
+        background-color: rgb(255, 255, 255, 0.8);
+        .nav-btn{
+            border-radius: 4px;
+            margin: 50px;
+        }
+        .nav-btn:hover{
+            background-color: gray;
+            font-weight: bold;
+        }
+    
+    }
+}

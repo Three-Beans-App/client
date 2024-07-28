@@ -5,6 +5,7 @@ import "../styles/components/UserDropdown.css";
 import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
 import {  useUserDispatch } from "../contexts/userContext";
 
+
 export default function UserDropdown(){
 
     // check whether is open
@@ -53,6 +54,7 @@ export default function UserDropdown(){
                     <button onClick={()=>handleDirect("/favourite")}>Favourite</button>
                     <button onClick={()=>handleDirect("/cart")}>Cart</button>
                     <button onClick={()=>handleDirect("/history")}>History</button>
+                    <button onClick={()=>handleDirect("/profile")}>Profile</button>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             )}
