@@ -6,6 +6,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 import {useMenuItemData, useMenuItemDispatch } from "../contexts/menuItemContext"
+import { set } from "mongoose";
 
 export default function MenuPage(){
     
@@ -521,14 +522,45 @@ export default function MenuPage(){
 
     // function for add item to cart
     const handleAddToCart = (item) => {
-        const newItem = {
-            ...item,
-            count: 1,
-        }
-        setCartItems([...cartItems, newItem])
-        
-        console.log("Added to cart:", item);
+      // check item whether already exists in the cart
+      const checkItem = cartItems.find(cartItem=>(cartItem.name === item.name))
+      // if item exists, count + 1
+      if (checkItem){
+        //map to the cart item list.
+        setCartItems(cartItems.map(cartItem => {
+            if (cartItem.name === item.name){
+                return {
+                    ...cartItem,
+                    count: cartItem.count + 1
+                }
+            } else {
+                return cartItem
+            }
+        }))
+      }else{
+        // // if not add new item to the cart list
+        setCartItems([...cartItems, {item, count: 1}])
+      }
     };
+
+
+    const handleQuantityChange =(name, count)=> {
+        setCartItems(cartItems.map(cartItem => {
+            if (cartItem === name){
+                return{
+                    ...cartItem, 
+                    count: parseInt(count)
+                };
+            }
+            else{
+                return cartItem;
+            }
+        }))
+    };
+
+    const handleRemoveItem =(item) =>{
+        setCartItems(cartItems.filter(cartItem=>(cartItem.name !== item.name)))
+    }
 
     const handleStarClick = (item) => {
         // Implement the logic for star click

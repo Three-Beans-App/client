@@ -8,8 +8,8 @@ import HistoryPage from "./pages/HistoryPage";
 import FavouritePage from "./pages/FavouritePage"
 import CartPage from "./pages/CartPage";
 import AddItemPage from "./pages/AddItemPage";
-
-
+import ProfilePage from "./pages/ProfilePage"
+import AdminPage from "./pages/AdminPage"
 
 function App() {
   return (
@@ -23,6 +23,8 @@ function App() {
           <Route path="history" element={<HistoryPage />} />
           <Route path="cart" element={<CartPage />} /> 
           <Route path="addItem" element={<AddItemPage />} />   
+          <Route path="admin" element={<AdminPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>        
       </Routes>
   );

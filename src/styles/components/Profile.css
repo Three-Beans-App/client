@@ -1,0 +1,9 @@
+#profile-container{
+    display: flex;
+    justify-content: center;
+
+    #profile-sub-container{
+        background-color: rgb(255, 255, 255, 0.8);
+        width: 200px;
+    }
+}
