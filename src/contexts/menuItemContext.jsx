@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from 'react';
+import axios from 'axios';
 
 const MenuItemDataContext = createContext(null);
 const MenuItemDispatchContext = createContext(null);
@@ -17,9 +18,8 @@ export default function MenuItemProvider({ children }) {
 
     const fetchMenuItems = async () => {
         try {
-            const response = await fetch("http://localhost:3001/menu");
-            const data = await response.json();
-            setMenuItems(data.result);
+            const response = await axios.get("http://localhost:3001/menu");
+            setMenuItems(response.data.result);
         } catch (error) {
             console.error("Error fetching menu items: ", error);
         }
@@ -27,9 +27,8 @@ export default function MenuItemProvider({ children }) {
 
     const fetchCategories = async () => {
         try {
-            const response = await fetch("http://localhost:3001/menu/categories");
-            const data = await response.json();
-            setCategories(data.result);
+            const response = await axios.get("http://localhost:3001/menu/categories");
+            setCategories(response.data.result);
         } catch (error) {
             console.error("Error fetching categories: ", error);
         }
@@ -42,21 +41,17 @@ export default function MenuItemProvider({ children }) {
                 formData.append("file", image);
                 formData.append("filename", name);
 
-                await fetch("http://localhost:3001/menu/upload", {
-                    method: "POST",
-                    body: formData
-                });
+                await axios.post("http://localhost:3001/menu/upload", formData);
             }
 
-            const response = await fetch("http://localhost:3001/menu/addItem", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name, category, price, description })
+            const response = await axios.post("http://localhost:3001/menu/addItem", {
+                name,
+                category,
+                price,
+                description
             });
 
-            if (response.ok) {
+            if (response.status === 201) {
                 fetchMenuItems();
             }
         } catch (error) {
