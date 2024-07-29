@@ -1,51 +1,15 @@
 import "../styles/pages/CartPage.css"
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Cart from "../components/Cart"
-// import { useState } from "react";
-import { useCartDispatch, useCartData } from "../contexts/cartContext";
-import { useState } from "react";
+
+
 
 
 export default function CartPage(){
 
-    const { handleQuantityChange, handleRemoveItem } = useCartDispatch();
-    const { cartItems } = useCartData();
-    console.log(cartItems);
-      
 
     return(
         <div id="cart-container">
-
-        <Cart 
-            items={cartItems}
-            quantityChange={handleQuantityChange}
-            removeItem={handleRemoveItem}
-        />
-            {/* <div id="cart-top-box">
-                <div id="cart-title">
-                    <label>Cart</label>
-                </div>
-                <div> 
-                    total items
-                </div>
-                <div>
-                    total amount: 
-                </div>
-            </div>
-            <div id="cart-content-box">
-                
-            </div>
-             <h1>This is cart page!!!</h1>
-            <label>This is cart icon</label>
-            <div id="icon">
-                <AddShoppingCartIcon  />
-                <RemoveCircleOutlineIcon />
-                <AddCircleOutlineIcon />
-            </div>
-             */}
-
+            <Cart />
         </div>
     )
 }
