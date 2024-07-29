@@ -2,8 +2,14 @@ import React from 'react'
 import "../styles/components/Cart.css"
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useCartDispatch, useCartData } from "../contexts/cartContext";
 
-function Cart({ items, quantityChange, removeItem}) {
+
+
+function Cart() {
+    const { handleQuantityChange, handleRemoveItem } = useCartDispatch();
+    const { cartItems } = useCartData();
+
 
   return (
     <div id="cart-main-container">
@@ -12,21 +18,21 @@ function Cart({ items, quantityChange, removeItem}) {
                 <h2>Cart:</h2>
             </div>
             <div id="items-container">
-                {items.length === 0 && (
+                { cartItems.length === 0 && (
                     <span className="empty-text"> Cart is empty!</span>
                 )}
-                {items.map((item) => (
+                { cartItems.map((item) => (
                     <div className="cart-items" key={item.item.name}>
                         <img className="image"src={item.item.image} alt={item.item.name} />
                         <div className="item-detail">
                             <h3>{item.item.name}</h3>
-                            <span className="item-price">{item.item.price * item.count}$</span>
+                            <span className="item-price">$ {item.item.price * item.count}</span>
                         </div>
                         <select className="count" value={item.count} 
                             onChange={(event) => {
-                                quantityChange(
+                                handleQuantityChange(
                                     item.item.name,
-                                    event.target.value
+                                    Number(event.target.value)
                                 );
                             }}>
                         {[
@@ -40,12 +46,12 @@ function Cart({ items, quantityChange, removeItem}) {
                             );
                         })}
                         </select>
-                        <IconButton aria-label="close" className="remove-button" onClick={()=>removeItem(item)}>
+                        <IconButton aria-label="close" className="remove-button" onClick={()=>handleRemoveItem(item.item.name)}>
                             <DeleteIcon />
                         </IconButton>
                     </div>
                 ))}
-                {items.length > 0 && (
+                {cartItems.length > 0 && (
                     <button className="checkout-bnt" > Go to check out</button>
                 )}
             </div>

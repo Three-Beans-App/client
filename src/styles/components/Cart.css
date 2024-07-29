@@ -45,7 +45,12 @@
                 height: 80px;
             }
         }
+        .checkout-bnt{
+            align-self:center;
+            margin: 60px 0;
+            border-radius: 10px;
         }
+    }
     }
 }
 

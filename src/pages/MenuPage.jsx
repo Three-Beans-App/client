@@ -6,11 +6,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 import {useMenuItemData, useMenuItemDispatch } from "../contexts/menuItemContext"
+import { useCartDispatch, useCartData } from "../contexts/cartContext";
 
-import { useCartDispatch } from "../contexts/cartContext";
+
 
 export default function MenuPage(){
-    
+
+    const { notice } = useCartData();
     // const { menuItems, categories } = useMenuItemData();
     // const { fetchMenuItems, fetchCategories } = useMenuItemDispatch();
 
@@ -539,7 +541,7 @@ export default function MenuPage(){
                 <MenuSideBar categories={categories} onSelectedCategory={setSelectedCategory}/>
                 )}
             </div>
-            
+            {notice && <div className="add-cart-notice">{notice}</div>}
             <div id="itemBox">
                 <div id="titleAndSearchBox">
                     <div className="title">{selectedCategory.name}</div>

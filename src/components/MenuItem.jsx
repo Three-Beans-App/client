@@ -1,14 +1,15 @@
 import "../styles/components/MenuItem.css";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
-
+import { useCartData  } from "../contexts/cartContext";
 
 export default function MenuItem({ name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
-
+    
+    const { notice } = useCartData()
 
     return (
         <div id="menuItemContainer" onClick={onOpenItemDetail}>
-    
+            {notice && <div className="add-cart-notice">{notice}</div>}
             <div id="itemImage">
                 <img src={image} alt="Description" />
             </div>

@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 
 const CartDataContext = createContext(null);
@@ -29,8 +29,12 @@ export default function CartProvider({children}){
     ]
     */
 
-    const [cartItems, setCartItems] = useState([])
-	
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("shopping-cart")) || [])
+    const [notice, setNotice] = useState("");
+
+    useEffect(()=> {
+        localStorage.setItem("shopping-cart", JSON.stringify(cartItems))
+    },[cartItems])
 
     // function for add item to cart
     const handleAddToCart = (item) => {
@@ -53,11 +57,15 @@ export default function CartProvider({children}){
           // if not add new item to the cart list
           setCartItems([...cartItems, {item, count: 1}])
         }
+
+        setNotice(`You has been added ${item.name} to the cart`);
+        setTimeout(() => setNotice(""), 4000);
       };
+
    
     const handleQuantityChange =(name, count)=> {
         setCartItems(cartItems.map(cartItem => {
-            if (cartItem === name){
+            if (cartItem.item.name === name){
                 return{
                     ...cartItem, 
                     count: parseInt(count)
@@ -69,14 +77,14 @@ export default function CartProvider({children}){
         }))
     };
    
-    const handleRemoveItem =(item) =>{
-        setCartItems(cartItems.filter(cartItem=>(cartItem.name !== item.name)))
+    const handleRemoveItem =(name) =>{
+        setCartItems(cartItems.filter(cartItem=>(cartItem.item.name !== name)))
     }
 
     
 
     return (
-        <CartDataContext.Provider value={{cartItems}}>
+        <CartDataContext.Provider value={{cartItems, notice}}>
             <CartDispatchContext.Provider value={{
          
             handleAddToCart,
