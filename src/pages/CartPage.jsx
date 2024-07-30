@@ -1,11 +1,15 @@
 import "../styles/pages/CartPage.css"
+import Cart from "../components/Cart"
+
+
+
 
 export default function CartPage(){
 
 
-
     return(
-
-        <h1>This is cart page!!!</h1>
+        <div id="cart-container">
+            <Cart />
+        </div>
     )
 }

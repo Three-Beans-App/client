@@ -1,0 +1,21 @@
+.navLink {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    font-size:x-large;
+    margin-right: 60px;
+}
+
+
+
+@media screen and (max-width: 600px){
+    .navLink {
+        font-size:medium;
+        text-decoration: none;
+        cursor: pointer;
+        color: white;
+        margin: 10px; 
+        font-weight: bold;  
+
+    }
+}

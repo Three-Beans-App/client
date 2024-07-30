@@ -1,0 +1,63 @@
+#addItem-container{
+    display: flex;
+    justify-content: center;
+
+    #inner-container{
+        background-color: rgb(255, 255, 255, 0.8);
+        border-radius: 20px;
+        max-width: 480px;
+        width: 100%;
+    }
+
+    section{
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        resize: none;
+    }
+
+    .input-label{
+        font-size: 16px;
+        font-weight: bold;
+        padding-bottom: 8px;        
+    
+    }
+
+    .input-content{
+        padding: 6px;
+        font-size: 16px;
+        
+    }
+
+    textarea{
+        resize: vertical;
+        min-height: 24px;
+        max-height: 210px;
+    }
+
+    #imageContainer{
+        width: 250px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid darkgray;
+        cursor: pointer;
+        
+        img{ 
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+
+    .submit-btn{
+        border: 2px solid gray;
+        border-radius: 20px;
+    }
+}

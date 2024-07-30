@@ -2,19 +2,32 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    .catagory{
+    height: 100%;
+    .category{
         cursor: pointer;
-        
     }
 }
 button{
     width: 250px;
     height:80px;
     font-size:larger;
-    
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px){
+    #menuSideBarContainer{
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 16px;
+        margin-top: 16px;
+        .category{
+            cursor: pointer;
+            width: auto;
+            
+        }
+    }
     button{
         width: auto;
         height:80px;

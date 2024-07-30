@@ -1,0 +1,50 @@
+#signupContentContainer{
+    display: flex;
+    justify-content: center;
+
+    #signupContentBox{
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin: 5px;
+    }
+
+    #spacer{
+        min-height: 20px;
+    }
+    button{
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: lightgray;
+    }
+    input{
+        height: 30px;
+    }
+}
+
+
+.confirmation {
+    text-align: center;
+}
+
+.confirmation h2 {
+    margin-bottom: 10px;
+}
+
+.confirmation a {
+    color: rgb(78, 73, 73);
+    text-decoration: none;
+    font-weight: bold;
+}

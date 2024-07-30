@@ -1,57 +1,38 @@
-import "../styles/components/ItemDetail.css";
+import "../styles/components/Popup.css";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-// x to close the tag
-// Item image
-// Item name
-// Item price
-// Item description
-// choice of milk (only can select one)
-    // full cream
-    // skimmy milk
-    // almond milk
-    // oak milk
-    // soy
-// choice of sweetners 
-    // 1/2 sugar
-    // 1 sugar
-    // 2 sugar
-    // 3 sugar
-    // 4 sugar
-    // 1 equal
-    // 2 equal
-// choice of syrup 
-    // caramel syrup
-    // vanilla syrup
-    // hazelnut syrup
-// other option
-    // decaf
-    // half strenght
-    // 3/4 full
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Star from "./Star";
+import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
+import { useRef } from "react";
 
-// number - + 
-// add to cart
 
-export default function ItemDetail(){
 
+export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarClick}){
+
+    const popupItemRef = useRef(null);
+
+    useOnClickOutsideClose(popupItemRef, handleCloseItemDetail);
+    
 
     return(
 
-        <div id="ItemBigBox" data-closable>
+        <div id="ItemBigBox" data-closable ref={popupItemRef}>
             
             <div id="imageCloseContainer">
-                <img src="coffee.png" alt="Description" className="image"/>
-                <IconButton aria-label="close" className="IconButton">
+                <img src={item.image} alt="Description" className="image"/>
+                <IconButton aria-label="close" className="IconButton" onClick={handleCloseItemDetail }>
                     <CloseIcon />
                 </IconButton>
             </div>
             <div id="detail-container">
                 <div id="detailBox">
-                    <h3>latte</h3>
-                    <label>$ 5</label>
-                    <p>description</p>
+                    <h3>{item.name}</h3>
+                    <label>{item.price}</label>
+                    <p>{item.description}</p>
                 </div>
-                <div> 
+            
+                {/* <div> 
                     <label>Choose a milk type:</label>
                     <select id="milkType">
                         <option value="full">Full Cream</option>
@@ -60,8 +41,8 @@ export default function ItemDetail(){
                         <option value="oat">Oat</option>
                         <option value="soy">Soy</option>
                     </select>  
-                </div>
-                <div id="option-container">
+                </div> */}
+                {/* <div id="option-container">
                     <div id="sweetnerBox">
                         <label>Sweetners:</label>
                         <div id="sweetner-items">
@@ -114,9 +95,15 @@ export default function ItemDetail(){
                                 <span>Hazelnut</span> 
                                 <input type="checkbox" value="hazelnut"/>
                             </label>
-                        </div>
-                    </div>
-                </div>
+                        </div> */}
+                    {/* </div> */}
+                {/* </div> */}
+            </div>
+            <div>
+                <Star  onClick={(e) => { e.stopPropagation(); onStarClick(item); }}/>
+            </div>
+            <div>
+                <AddShoppingCartIcon  onClick={(e) => { e.stopPropagation(); onAddToCart(item); }} />
             </div>
 
         </div>

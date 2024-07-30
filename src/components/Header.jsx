@@ -1,5 +1,6 @@
 import "../styles/components/Header.css";
-import { NavLink } from "react-router-dom"
+import NavBar from "./Navbar";
+
 
 export default function Header(){
 
@@ -9,10 +10,9 @@ export default function Header(){
                 <img src="logo.png" alt="logoImage"/>
             </div>
         
-            <nav>
-                <NavLink to="/" className="navLink">Home</NavLink>
-                <NavLink to="/menu" className="navLink">Menu</NavLink>
-                <NavLink to="/login" className="navLink">Login/Sign Up</NavLink>
+            <nav id="navBox">
+                
+                <NavBar className="navLink"/>
             </nav>
            
         </header>

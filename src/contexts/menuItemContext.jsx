@@ -36,10 +36,11 @@ export default function MenuItemProvider({ children }) {
 
     const addMenuItem = async (name, category, price, description, image) => {
         try {
+
             const response = await axios.post("http://localhost:3001/menu/addItem", {
                 name,
                 category,
-                price,
+                price
                 description,
                 image
             });

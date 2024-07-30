@@ -1,67 +1,115 @@
 #menuContainer{
+    position: relative;
     display: flex;
-    border:2px solid red;
     justify-items: start;
-    background-color: azure;
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+   
+
+    #header{
+        font-weight: bold;
+        font-size: 24px;
+        height: 40px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid gray;
+        display: flex;
+        justify-content: center;
+    }
+
+
 
     #itemBox{
-        border:2px solid rebeccapurple;
-
-
+        width: 100%;
         #titleAndSearchBox{
             display: flex;
             justify-content: space-between;
+            border-bottom: 1px solid gray;
+            margin-left: 20px;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
 
             .title{
-                font-size: larger;
+                font-size: 24px;
                 font-weight: bold;
-                background-color: azure;
-                height: 40px;
-                margin: 10px;
+                color: black;
+            }
+            #searchAndCartIcon{
+                display: flex;
+            }
+            #cartIcon{
+                all: unset;
+                margin-left: 24px;
+                cursor: pointer;
             }
             .searchBar{
-                padding: 10px;
-
                 input[type="text"]{
                     font-size: 18px;
                     border: none;
-                    padding:6px;
-                    margin: 5px;
+                    height: 32px;
+                    border-radius: 4px;
+                    padding-left: 8px;
                 }
 
                 button{
                     cursor: pointer;
                     width: 90px;
-                    height: 30px;
-                    margin: 5px;
-
+                    height: 32px;
+                    margin-left: 8px;
                 }
-            }
-            
+            } 
         }
 
         .items{
-            margin-left: 10px;
+            margin-left: 20px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            justify-content: center;
             width: auto;
             gap: 10px;
-        }
+           
+            
+        }    
+        
+    }
+    #itemDetail-popup{
+        z-index: 1000; 
+        position: absolute;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        width: 95%;
+        justify-content: center;
+        display: flex; 
         
     }
 }
 
 
 @media screen and (max-width: 600px){
-    
-    input[type=text]{
-        margin:0;
-        text-align: left;
+    #menuContainer{
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+
+        #titleAndSearchBox{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .title{
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 16px;
+        }
+
+        #searchAndCartIcon{
+            margin-bottom: 8px;            
+        }
     }
-
-
-
 }
 
 
