@@ -36,19 +36,13 @@ export default function MenuItemProvider({ children }) {
 
     const addMenuItem = async (name, category, price, description, image) => {
         try {
-            if (image) {
-                const formData = new FormData();
-                formData.append("file", image);
-                formData.append("filename", name);
-
-                await axios.post("http://localhost:3001/menu/upload", formData);
-            }
 
             const response = await axios.post("http://localhost:3001/menu/addItem", {
                 name,
                 category,
-                price,
-                description
+                price
+                description,
+                image
             });
 
             if (response.status === 201) {
