@@ -15,18 +15,25 @@ function Cart() {
     <div id="cart-main-container">
         <div id="cart-sub-container">
             <div className="cart-header"> 
-                <h2>Cart:</h2>
+                <h2>Cart</h2>
+            </div>
+            <div className="header-content">
+                <lable className="item-lable">Item Image </lable>
+                <lable className="item-lable">Item Name & Price</lable>
+                <lable className="item-lable">Item Number</lable>
+                <lable className="item-lable">Total Price</lable>
+                <lable className="item-lable">Delete Item</lable>
             </div>
             <div id="items-container">
                 { cartItems.length === 0 && (
                     <span className="empty-text"> Cart is empty!</span>
                 )}
-                { cartItems.map((item) => (
+                {   cartItems.map((item) => (
                     <div className="cart-items" key={item.item.name}>
                         <img className="image"src={item.item.image} alt={item.item.name} />
                         <div className="item-detail">
-                            <h3>{item.item.name}</h3>
-                            <span className="item-price">$ {item.item.price * item.count}</span>
+                            <lable className="item-name">{item.item.name}</lable>
+                            <lable className="item-price">$ {item.item.price}</lable>
                         </div>
                         <select className="count" value={item.count} 
                             onChange={(event) => {
@@ -46,6 +53,7 @@ function Cart() {
                             );
                         })}
                         </select>
+                        <span className="item-total-price">$ {item.item.price * item.count}</span>
                         <IconButton aria-label="close" className="remove-button" onClick={()=>handleRemoveItem(item.item.name)}>
                             <DeleteIcon />
                         </IconButton>

@@ -39,12 +39,12 @@ export default function CartProvider({children}){
     // function for add item to cart
     const handleAddToCart = (item) => {
         // check item whether already exists in the cart
-        const checkItem = cartItems.find(cartItem=>(cartItem.name === item.name))
+        const checkItem = cartItems.find(cartItem=>(cartItem.item.name === item.name))
         // if item exists, count + 1
         if (checkItem){
           //map to the cart item list.
           setCartItems(cartItems.map(cartItem => {
-              if (cartItem.name === item.name){
+              if (cartItem.item.name === item.name){
                   return {
                       ...cartItem,
                       count: cartItem.count + 1

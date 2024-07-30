@@ -541,7 +541,7 @@ export default function MenuPage(){
                 <MenuSideBar categories={categories} onSelectedCategory={setSelectedCategory}/>
                 )}
             </div>
-            {notice && <div className="add-cart-notice">{notice}</div>}
+            
             <div id="itemBox">
                 <div id="titleAndSearchBox">
                     <div className="title">{selectedCategory.name}</div>
@@ -562,7 +562,7 @@ export default function MenuPage(){
                         </button>
                     </div>
                 </div>
-            
+                {notice && <div className="add-cart-notice">{notice}</div>}
                 <div className="items" >
                     {selectedMenuItems.map((item) => (
                         <div>
