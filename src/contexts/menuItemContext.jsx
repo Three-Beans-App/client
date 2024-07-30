@@ -40,7 +40,7 @@ export default function MenuItemProvider({ children }) {
             const response = await axios.post("http://localhost:3001/menu/addItem", {
                 name,
                 category,
-                price
+                price,
                 description,
                 image
             });
