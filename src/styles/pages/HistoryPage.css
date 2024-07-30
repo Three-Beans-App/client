@@ -1,0 +1,65 @@
+.order-history {
+    padding: 20px;
+    background-color: white;
+  }
+  
+  .historytitle {
+    margin-bottom: 20px;
+  }
+  
+  .order-list {
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+  }
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .order-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .order-details-left {
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  
+  .order-details-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-left: 20px;
+    min-width: 120px;
+  }
+  
+  .order-details-right p {
+    margin: 0;
+  }
+  
+  .delete-button {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 1rem; 
+    padding: 0; 
+    margin: 0;
+    line-height: 1; 
+  }
+  
+  .delete-button:hover {
+    color: #ff1a1a;
+  }
+  
