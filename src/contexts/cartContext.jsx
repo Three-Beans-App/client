@@ -14,21 +14,6 @@ export function useCartDispatch(){
 
 export default function CartProvider({children}){
 
-    /*
-    [
-        {
-            numItems: 2,
-            name: "Large Coffee",
-            customisation: null
-        },
-        {
-            numItems: 1,
-            name: "Muffin",
-            customisation: null
-        }
-    ]
-    */
-
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("shopping-cart")) || [])
     const [notice, setNotice] = useState("");
 

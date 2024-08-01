@@ -1,15 +1,15 @@
 import "../styles/components/MenuItem.css";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
-// import { useCartData  } from "../contexts/cartContext";
+
 
 export default function MenuItem({ name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
     
-    // const { notice } = useCartData()
+
 
     return (
         <div id="menuItem-main-container">
-            {/* {notice && <div className="add-cart-notice">{notice}</div>} */}
+           
             <div id="menuItemContainer" onClick={onOpenItemDetail}>
                 <div id="itemImage">
                     <img src={image} alt="Description" />
@@ -21,9 +21,9 @@ export default function MenuItem({ name, price, description, image, onStarClick,
                         <h5 id="description">{description}</h5>
                     </div>
                     <div id="icon">
-                    <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
-                        <Star/>
-                    </div>
+                        <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
+                            <Star/>
+                        </div>
                         <div className="addToCart" onClick={(e) => { e.stopPropagation(); onAddToCart(); }}>
                             <AddShoppingCartIcon />
                         </div>

@@ -6,59 +6,58 @@
     width: 600px; 
     display: flex;
     flex-direction: column;
-    
 
-}
-
-#imageCloseContainer{
-    position:relative;
-    width: fit-content;   
-    
-    
-    .IconButton{
-        position: absolute;
-        top:0;
-        right:0;
-        height: 50px;
-        width: 50px;
-        color:rgb(215, 39, 39);
-        font-weight: bolder;
+    #imageCloseContainer{
+        position:relative;
+        width: fit-content;   
         
         
+        .IconButton{
+            position: absolute;
+            top:0;
+            right:0;
+            height: 50px;
+            width: 50px;
+            color:rgb(215, 39, 39);
+            font-weight: bolder;
+            
+            
+            
+        }
+        .image{
+            display: block;
+            width: 600px;  
+           
+        }
+    
         
     }
-    .image{
-        display: block;
-        width: 600px;  
-       
+
+    #detail-container{
+        display: flex;
+        margin-left: 30px;
+        padding: 10px;
+        justify-content: space-between;
+
+        .cart-icon{
+            cursor: pointer;
+        }
+        .cart-icon:hover{
+            color:brown
+        }
+        .start-icon{
+            cursor: pointer;
+        }
+      
     }
+    
+
 }
 
-#detail-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 30px;
-    padding: 10px;
-}
 
-#checkbox-items{
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-}
 
-#option-containe{
-    display: flex;
-}
 
-#sweetner-items{
-    display: flex;
-    flex-direction: column;
-}
-#syrup-items{
-    display: flex;
-    flex-direction: column;
-}
+
 
 
 

@@ -10,6 +10,8 @@ import CartPage from "./pages/CartPage";
 import AddItemPage from "./pages/AddItemPage";
 import ProfilePage from "./pages/ProfilePage"
 import AdminPage from "./pages/AdminPage"
+import ConfirmationPage from "./pages/ConfirmationPage"
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path="favourite" element={<FavouritePage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route path="cart" element={<CartPage />} /> 
+          <Route path="confirmation" element={<ConfirmationPage />} />
           <Route path="addItem" element={<AddItemPage />} />   
           <Route path="admin" element={<AdminPage />} />
           <Route path="profile" element={<ProfilePage />} />
