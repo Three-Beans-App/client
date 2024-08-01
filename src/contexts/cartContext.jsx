@@ -15,7 +15,7 @@ export function useCartDispatch(){
 export default function CartProvider({children}){
 
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("shopping-cart")) || [])
-    const [notice, setNotice] = useState("");
+    // const [notice, setNotice] = useState("");
 
     useEffect(()=> {
         localStorage.setItem("shopping-cart", JSON.stringify(cartItems))
@@ -43,8 +43,8 @@ export default function CartProvider({children}){
           setCartItems([...cartItems, {item, count: 1}])
         }
 
-        setNotice(`You has been added ${item.name} to the cart`);
-        setTimeout(() => setNotice(""), 4000);
+        // setNotice(`You has been added ${item.name} to the cart`);
+        // setTimeout(() => setNotice(""), 4000);
       };
 
    
@@ -69,7 +69,7 @@ export default function CartProvider({children}){
     
 
     return (
-        <CartDataContext.Provider value={{cartItems, notice}}>
+        <CartDataContext.Provider value={{cartItems}}>
             <CartDispatchContext.Provider value={{
          
             handleAddToCart,

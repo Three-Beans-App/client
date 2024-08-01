@@ -40,12 +40,12 @@ export default function ConfirmationPage(){
                     <label>Order Confirmation</label>
                 </section>
                 <div className="header-content">
-                    <lable className="item-lable">Image </lable>
+                    <label className="item-label">Image </label>
                     <div className="wrapper-name">
-                        <lable className="item-lable">Item</lable>
+                        <label className="item-label">Item</label>
                     </div>
-                    <lable className="item-lable">Qty</lable>
-                    <lable className="item-lable">Cost</lable>
+                    <label className="item-label">Qty</label>
+                    <label className="item-label">Cost</label>
                 </div>
                 <div id="items-container">
                     {cartItems.map((item) => (
@@ -55,12 +55,12 @@ export default function ConfirmationPage(){
                             </div>
                             <div className="wrapper-name">
                                 <div className="item-detail">
-                                    <lable className="item-name">{item.item.name}</lable>
-                                    <lable className="item-price">$ {item.item.price}</lable>
+                                    <label className="item-name">{item.item.name}</label>
+                                    <label className="item-price">$ {item.item.price}</label>
                                 </div>
                             </div>
                             <div className="wrapper">   
-                                <lable className="count">{item.count}</lable>
+                                <label className="count">{item.count}</label>
                             </div>
                             <div className="wrapper">
                                 <span className="item-total-price">$ {item.item.price * item.count}</span>
