@@ -18,7 +18,7 @@ export default function MenuItemProvider({ children }) {
 
     const fetchMenuItems = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/menu");
+            const response = await axios.get("http://localhost:3001/menu/items/");
             setMenuItems(response.data.result);
         } catch (error) {
             console.error("Error fetching menu items: ", error);
@@ -27,7 +27,7 @@ export default function MenuItemProvider({ children }) {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/menu/categories");
+            const response = await axios.get("http://localhost:3001/menu/categories/");
             setCategories(response.data.result);
         } catch (error) {
             console.error("Error fetching categories: ", error);
@@ -37,7 +37,7 @@ export default function MenuItemProvider({ children }) {
     const addMenuItem = async (name, category, price, description, image) => {
         try {
 
-            const response = await axios.post("http://localhost:3001/menu/addItem", {
+            const response = await axios.post("http://localhost:3001/menu/create/item/", {
                 name,
                 category,
                 price,
