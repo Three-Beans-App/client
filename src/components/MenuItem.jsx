@@ -1,11 +1,12 @@
 import "../styles/components/MenuItem.css";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
+import { useUserData } from "../contexts/userContext";
 
 
 export default function MenuItem({ name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
     
-
+    const {isLoggedIn} = useUserData();
 
     return (
         <div id="menuItem-main-container">
@@ -21,9 +22,13 @@ export default function MenuItem({ name, price, description, image, onStarClick,
                         <h5 id="description">{description}</h5>
                     </div>
                     <div id="icon">
-                        <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
-                            <Star/>
-                        </div>
+                        {isLoggedIn ? 
+                            <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
+                                <Star/>
+                            </div>
+                            :
+                            <div />
+                        }
                         <div className="addToCart" onClick={(e) => { e.stopPropagation(); onAddToCart(); }}>
                             <AddShoppingCartIcon />
                         </div>

@@ -44,13 +44,13 @@ export default function CartPage(){
                 <h2>Cart</h2>
             </div>
             <div className="header-content">
-                <lable className="item-lable">Image </lable>
+                <label className="item-label">Image </label>
                 <div className="wrapper-name">
-                    <lable className="item-lable">Item</lable>
+                    <label className="item-label">Item</label>
                 </div>
-                <lable className="item-lable">Qty</lable>
-                <lable className="item-lable">Cost</lable>
-                <lable className="item-lable">Delete</lable>
+                <label className="item-label">Qty</label>
+                <label className="item-label">Cost</label>
+                <label className="item-label">Delete</label>
             </div>
             <div id="items-container">
                 { cartItems.length === 0 && (
@@ -63,8 +63,8 @@ export default function CartPage(){
                         </div>
                         <div className="wrapper-name">
                             <div className="item-detail">
-                                <lable className="item-name">{item.item.name}</lable>
-                                <lable className="item-price">$ {item.item.price}</lable>
+                                <label className="item-name">{item.item.name}</label>
+                                <label className="item-price">$ {item.item.price}</label>
                             </div>
                         </div>
                         <div className="wrapper">
