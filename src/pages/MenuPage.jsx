@@ -507,7 +507,6 @@ export default function MenuPage(){
         setSearchTerm(event.target.value);
     };
 
-    console.log(actualSelectedCategory)
     const selectedMenuItems = menuItems.filter(item => 
         item.category === actualSelectedCategory?._id && 
         (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === "")
@@ -559,17 +558,15 @@ export default function MenuPage(){
                             </form>
                         </div>
                         <button onClick={()=>handleDirect("/cart")} id="cartIcon" >
-                        
-                            <ShoppingCartIcon  />
+                            <ShoppingCartIcon />
                         </button>
                     </div>
                 </div>
                 {/* {notice && <div className="add-cart-notice">{notice}</div>} */}
                 <div className="items" >
                     {selectedMenuItems.map((item) => (
-                        <div>
                         <MenuItem 
-                            key={item.id}
+                            key={item._id}
                             name={item.name}
                             price={item.price}
                             description={item.description}
@@ -578,7 +575,6 @@ export default function MenuPage(){
                             onAddToCart={() => handleAddToCart(item)}
                             onStarClick={() => handleStarClick(item)}
                         />
-                        </div>
                     ))}
                 </div>  
                 

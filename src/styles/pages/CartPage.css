@@ -23,7 +23,10 @@
         .header-content{
             display: flex;
             justify-content:space-between;
-            padding: 0px 10px;
+            border-bottom: 1px solid gray;
+            padding-bottom: 4px;
+            margin: 0px 10px;
+
             .item-label{
                 width: 100%;
                 font-size: large;

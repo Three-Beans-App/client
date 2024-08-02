@@ -17,24 +17,21 @@ export default function UserProvider({children}){
 	const [userJwt, setUserJwt] = useState("");
 	const [decodedUserJwt, setDecodedUserJwt] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-   
+    const [userId, setUserId] = useState(null)
 
     const makeSignupRequest = async (name, email, password, birthday) => {
 
         let bodyData = { name, email, password, birthday };
-		console.log("Body data to send is: ");
-		console.log(bodyData);
         try {
             let response = await axios.post("http://localhost:3001/users/signup", bodyData)
             
             let signUpResult = response.data
 
             setUserJwt(signUpResult.token);
-            setDecodedUserJwt(signUpResult.decodedJwt)
+            setDecodedUserJwt(signUpResult.decodedJwt);
             setIsLoggedIn(true);
-
-            console.log ("Sign up result is: " + JSON.stringify(signUpResult));
-
+            setUserId(signUpResult.newUser._id)
+            
             return { 
                 success: true,
                 message: signUpResult.message 
@@ -57,8 +54,6 @@ export default function UserProvider({children}){
 
             const loginResult = response.data;
 
-            console.log ("Login result is: " + JSON.stringify(loginResult));
-
             if(response.status !== 200) {
                 return {
                     success: false,
@@ -69,6 +64,7 @@ export default function UserProvider({children}){
             setUserJwt(loginResult.token);
             setDecodedUserJwt(loginResult.decodedUserJwt);
             setIsLoggedIn(true);
+            setUserId(loginResult.userId)
 
             return response;
         }  catch(error){
@@ -83,16 +79,15 @@ export default function UserProvider({children}){
         setUserJwt("");
         setDecodedUserJwt({});
         setIsLoggedIn(false);
-        console.log("Logout successful!");
+        setUserId(null);
     }
 
 
-    return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn}}>
+    return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn, userId}}>
         <UserDispatchContext.Provider value={{
-            // functions to make requests to sign up and log in and so on 
             makeSignupRequest,
             makeLoginRequest,
-            logoutUser
+            logoutUser,
         }}>
             {children}
         </UserDispatchContext.Provider>

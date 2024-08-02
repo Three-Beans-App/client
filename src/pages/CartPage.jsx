@@ -21,8 +21,7 @@ export default function CartPage(){
 
     const getNumItems = () => {
         const total = cartItems.reduce((total, item) => {
-            console.log(item);
-            return total + item.count;
+            return total + item.quantity;
         }, 0);
         
         return total
@@ -30,8 +29,7 @@ export default function CartPage(){
 
     const getTotalCost = () => {
         const total = cartItems.reduce((total, item) => {
-            console.log(item);
-            return total + item.item.price * item.count;
+            return total + item.item.price * item.quantity;
         }, 0);
         
         return total.toFixed(2);
@@ -68,7 +66,7 @@ export default function CartPage(){
                             </div>
                         </div>
                         <div className="wrapper">
-                            <select className="count" value={item.count} 
+                            <select className="count" value={item.quantity} 
                                 onChange={(event) => {
                                     handleQuantityChange(
                                         item.item.name,
@@ -89,7 +87,7 @@ export default function CartPage(){
                             </select>
                         </div>
                         <div className="wrapper">
-                            <span className="item-total-price">$ {item.item.price * item.count}</span>
+                            <span className="item-total-price">$ {item.item.price * item.quantity}</span>
                         </div>
                         <div className="wrapper">
                             <IconButton aria-label="close" className="remove-button" onClick={()=>handleRemoveItem(item.item.name)}>
