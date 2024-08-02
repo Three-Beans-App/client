@@ -8,10 +8,10 @@ import HistoryPage from "./pages/HistoryPage";
 import FavouritePage from "./pages/FavouritePage"
 import CartPage from "./pages/CartPage";
 import AddItemPage from "./pages/AddItemPage";
-import ProfilePage from "./pages/ProfilePage"
-import AdminPage from "./pages/AdminPage"
-import ConfirmationPage from "./pages/ConfirmationPage"
-
+import ProfilePage from "./pages/ProfilePage";
+import AdminPage from "./pages/AdminPage";
+import ConfirmationPage from "./pages/ConfirmationPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <Route path="addItem" element={<AddItemPage />} />   
           <Route path="admin" element={<AdminPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="order" element={<OrderPage />} />
         </Route>        
       </Routes>
   );

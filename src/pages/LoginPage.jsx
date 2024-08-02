@@ -19,7 +19,6 @@ export default function LoginPage(){
         direct("/");
         if (!LoginReq.success){
             setError(LoginReq.message);
-            console.log("error" + error)
             return;
         } else {
             setError("");

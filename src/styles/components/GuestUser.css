@@ -1,0 +1,24 @@
+#guest-checkout-container{
+
+    #guest-checkout-content{
+        padding: 10px;
+        max-width: 250px;
+    }
+
+    #guest-checkout-title{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin-top: 10px;
+    }
+    input{
+        margin-top: 4px;
+        padding: 4px;
+    }
+}

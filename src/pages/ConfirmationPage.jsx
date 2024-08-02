@@ -1,13 +1,32 @@
 import "../styles/pages/ConfirmationPage.css"
-import { useCartData } from "../contexts/cartContext"
+import { useCartData, useCartDispatch } from "../contexts/cartContext"
 import { useNavigate } from "react-router-dom";
+import { useOrderDispatch } from "../contexts/orderContext";
+import { useUserData } from "../contexts/userContext";
+import { useState } from "react";
+import GuestUser from "../components/GuestUser";
 
 
 export default function ConfirmationPage(){
 
     const { cartItems } = useCartData();
+    const { handleEmptyCart } = useCartDispatch();
+    const { userCreateOrder } = useOrderDispatch();
+    const { userId, isLoggedIn } = useUserData();
+
+    const [guestName, setGuestName] = useState("");
+    const [guestContact, setGuestContact] = useState("");
+    const [guestError, setGuestError] = useState(false);
 
     const direct = useNavigate();
+
+    const onNameChange = (value) => {
+        setGuestName(value);
+    }
+
+    const onContactChange = (value) => {
+        setGuestContact(value);
+    }
 
     const handleDirect = (path) => {
         direct(path);
@@ -15,8 +34,7 @@ export default function ConfirmationPage(){
 
     const getNumItems = () => {
         const total = cartItems.reduce((total, item) => {
-            console.log(item);
-            return total + item.count;
+            return total + item.quantity;
         }, 0);
         
         return total
@@ -24,14 +42,31 @@ export default function ConfirmationPage(){
 
     const getTotalCost = () => {
         const total = cartItems.reduce((total, item) => {
-            console.log(item);
-            return total + item.item.price * item.count;
+            return total + item.item.price * item.quantity;
         }, 0);
         
         return total.toFixed(2);
     }
 
+    const invalidGuestUser = () => {
+            return guestName.trim() === '' || guestContact.trim() === '';
+    }
 
+    const confirmAndCreateOrder = ()=>{
+        console.log(userId)
+        if (userId) {
+            userCreateOrder({guestUser: null, userId });  
+        } else {
+            if (invalidGuestUser()) {
+                setGuestError(true);
+                return;
+            }
+            userCreateOrder({ guestUser: { name: guestName, contact: guestContact }, userId: null });
+        }
+        setGuestError(false);
+        handleEmptyCart();
+        handleDirect("/order");
+    }
 
     return(
         <div id="confirmation-container">
@@ -60,10 +95,10 @@ export default function ConfirmationPage(){
                                 </div>
                             </div>
                             <div className="wrapper">   
-                                <label className="count">{item.count}</label>
+                                <label className="count">{item.quantity}</label>
                             </div>
                             <div className="wrapper">
-                                <span className="item-total-price">$ {item.item.price * item.count}</span>
+                                <span className="item-total-price">$ {item.item.price * item.quantity}</span>
                             </div>
                         </div>
                     ))}
@@ -72,17 +107,26 @@ export default function ConfirmationPage(){
                     <div className="total-item"><b>Total items:</b> {getNumItems()}</div>
                     <div className="total-item"><b>Total cost:</b>  ${getTotalCost()}</div>
                 </div>
+
+                {!userId && !isLoggedIn && 
+                    <div>
+                        <GuestUser 
+                            name={guestName}
+                            contact={guestContact}
+                            onNameChange={onNameChange}
+                            onContactChange={onContactChange}
+                        />
+                        {guestError && <div className="invalid-details">Enter a valid name and contact</div>}
+                    </div>
+                }
                 <div className="confirm-btn">
                     <div className="back">
-                        <button className="back-to-cart" onClick={()=>handleDirect("/cart")}>Go back to cart page</button>
+                        <button className="back-to-cart" onClick={()=>handleDirect("/cart")}>Continue Shopping</button>
                     </div>
                     <div className="confirm">
-                        <button className="confirm-order" onClick={()=>handleDirect("/confirmation")}>Confirm Order</button>
+                        <button className="confirm-order" onClick={confirmAndCreateOrder}>Confirm Order</button>
                     </div>
                 </div>
-
-            
-
             </div>
         </div>
     )

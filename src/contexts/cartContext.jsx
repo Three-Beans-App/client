@@ -24,24 +24,27 @@ export default function CartProvider({children}){
     // function for add item to cart
     const handleAddToCart = (item) => {
         // check item whether already exists in the cart
+        console.log(cartItems)
         const checkItem = cartItems.find(cartItem=>(cartItem.item.name === item.name))
-        // if item exists, count + 1
+        
         if (checkItem){
-          //map to the cart item list.
-          setCartItems(cartItems.map(cartItem => {
-              if (cartItem.item.name === item.name){
-                  return {
-                      ...cartItem,
-                      count: cartItem.count + 1
-                  }
-              } else {
-                  return cartItem
-              }
-          }))
-        }else{
-          // if not add new item to the cart list
-          setCartItems([...cartItems, {item, count: 1}])
+            // if item exists, count + 1
+            setCartItems(cartItems.map(cartItem => {
+                if (cartItem.item.name === item.name){
+                    return {
+                        ...cartItem,
+                        quantity: cartItem.quantity + 1
+                    }
+                } else {
+                    return cartItem
+                }
+            }))
+        } else{
+            // if not add new item to the cart list
+            setCartItems([...cartItems, {item, quantity: 1}])
         }
+
+        console.log(cartItems);
 
         // setNotice(`You has been added ${item.name} to the cart`);
         // setTimeout(() => setNotice(""), 4000);
@@ -66,6 +69,10 @@ export default function CartProvider({children}){
         setCartItems(cartItems.filter(cartItem=>(cartItem.item.name !== name)))
     }
 
+    const handleEmptyCart = () => {
+        setCartItems([]);
+    }
+
     
 
     return (
@@ -74,7 +81,8 @@ export default function CartProvider({children}){
          
             handleAddToCart,
             handleQuantityChange,
-            handleRemoveItem
+            handleRemoveItem,
+            handleEmptyCart
         
         }}>
             {children}
