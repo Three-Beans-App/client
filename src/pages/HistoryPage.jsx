@@ -30,7 +30,8 @@ export default function HistoryPage() {
 
     useEffect(() => {
         userViewAllOrders();
-    }, [userViewAllOrders]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className="order-history">
