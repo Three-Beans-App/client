@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import axios from 'axios';
 
 const UserDataContext = createContext(null);
@@ -14,10 +14,27 @@ export function useUserDispatch(){
 
 export default function UserProvider({children}){
 
-	const [userJwt, setUserJwt] = useState("");
-	const [decodedUserJwt, setDecodedUserJwt] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userId, setUserId] = useState(null)
+    const [userJwt, setUserJwt] = useState(localStorage.getItem('userJwt') || "");
+    const [decodedUserJwt, setDecodedUserJwt] = useState(JSON.parse(localStorage.getItem('decodedUserJwt') || '{}'));
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+    const [userId, setUserId] = useState(localStorage.getItem('userId') || null);
+
+    const storeUserJwt = (value) => {
+        setUserJwt(value);
+        localStorage.setItem('userJwt', value);
+    }
+    const storeDecodedUserJwt = (value) => {
+        setDecodedUserJwt(value);
+        localStorage.setItem('decodedUserJwt', JSON.stringify(value || {}));
+    }
+    const storeIsLoggedIn = (value) => {
+        setIsLoggedIn(value);
+        localStorage.setItem('isLoggedIn', value);
+    }
+    const storeUserId = (value) => {
+        setUserId(value);
+        localStorage.setItem('userId', value);
+    }
 
     const makeSignupRequest = async (name, email, password, birthday) => {
 
@@ -27,10 +44,10 @@ export default function UserProvider({children}){
             
             let signUpResult = response.data
 
-            setUserJwt(signUpResult.token);
-            setDecodedUserJwt(signUpResult.decodedJwt);
-            setIsLoggedIn(true);
-            setUserId(signUpResult.newUser._id)
+            storeUserJwt(signUpResult.token);
+            storeDecodedUserJwt(signUpResult.decodedJwt);
+            storeIsLoggedIn(true);
+            storeUserId(signUpResult.newUser._id)
             
             return { 
                 success: true,
@@ -61,10 +78,10 @@ export default function UserProvider({children}){
                 };
             }
 
-            setUserJwt(loginResult.token);
-            setDecodedUserJwt(loginResult.decodedUserJwt);
-            setIsLoggedIn(true);
-            setUserId(loginResult.userId)
+            storeUserJwt(loginResult.token);
+            storeDecodedUserJwt(loginResult.decodedUserJwt);
+            storeIsLoggedIn(true);
+            storeUserId(loginResult.userId)
 
             return response;
         }  catch(error){
@@ -76,10 +93,10 @@ export default function UserProvider({children}){
     }
 
     const logoutUser = () => {
-        setUserJwt("");
-        setDecodedUserJwt({});
-        setIsLoggedIn(false);
-        setUserId(null);
+        storeUserJwt("");
+        storeDecodedUserJwt({});
+        storeIsLoggedIn(false);
+        storeUserId(null);
     }
 
 

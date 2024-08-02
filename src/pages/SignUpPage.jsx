@@ -1,37 +1,31 @@
 import "../styles/pages/SignUpPage.css"
 import { useState } from 'react'
-import { useUserDispatch } from "../contexts/userContext"
+import { useUserData, useUserDispatch } from "../contexts/userContext"
 import { NavLink } from "react-router-dom";
-
 
 export default function SignUpPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [birthday, setBirthday] = useState("");
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [message, setMessage] = useState("");
+
 
     const {makeSignupRequest} = useUserDispatch();
+    const { isLoggedIn } = useUserData();
 
     const handleSignup = async (event) => {
         event.preventDefault();
-        const result = await makeSignupRequest(name, email, password, birthday);
-        if (result.success) {
-            setMessage(result.message);
-            setIsSubmitted(true);
-        } else {
-            setMessage(result.message);
-        }
+        await makeSignupRequest(name, email, password, birthday);
+       
     };
     
 
     return(
         <div id="signupContentContainer">
             <div id="signupContentBox">
-                {isSubmitted ? (
+                {isLoggedIn ? (
                     <div className="confirmation">
-                    <h2>{message}</h2>
+                    <h2>Welcome to Three Beans Cafe</h2>
                     <NavLink to="/">Go to Home Page</NavLink>
                     </div>
                 ) : (

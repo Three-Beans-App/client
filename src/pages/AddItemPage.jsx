@@ -1,5 +1,5 @@
 import '../styles/pages/AddItemPage.css';
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMenuItemDispatch } from '../contexts/menuItemContext';
 
@@ -26,7 +26,7 @@ export default function AddItemPage() {
         await addMenuItem(name, category, price, description, imageUrl);
         navigate("/menu");
     };
-    // example code comments
+    
 
     return (
         <div id="addItem-container">
