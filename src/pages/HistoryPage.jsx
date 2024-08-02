@@ -30,7 +30,7 @@ export default function HistoryPage() {
 
     useEffect(() => {
         userViewAllOrders();
-    }, []);
+    }, [userViewAllOrders]);
 
     return (
         <div className="order-history">
