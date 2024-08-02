@@ -19,9 +19,7 @@ export default function OrderProvider({ children }){
 
     const [ userOrderHistory, setUserOrderHistory ] = useState([]);
     const [ order, setOrder ] = useState({});
-    
-
-    const { userId } = useUserData();
+    const { userId, userJwt } = useUserData();
     
 
     const { cartItems } = useCartData();
@@ -32,10 +30,15 @@ export default function OrderProvider({ children }){
         try {
 
             const id = userId;
-            const historyUrl=`https://localhost:3001/orders/users/id${id}`;
+            const historyUrl=`http://localhost:3001/orders/user/${id}`;
 
-            const response = await axios.get(historyUrl);
+            const response = await axios.get(historyUrl, {
+                headers: {
+                    'Authorization': `Bearer ${userJwt}`
+                }
+            });
             setUserOrderHistory(response.data.result);
+            console.log(response.data.result)
         } catch (error) {
             console.error("Error fetching user order history: ", error);
         }
@@ -58,7 +61,7 @@ export default function OrderProvider({ children }){
         try {
             const response = await axios.post("http://localhost:3001/orders/", orderDetail);
             setOrder(response.data.result);
-            setUserOrderHistory(...userOrderHistory, order)
+            setUserOrderHistory(existHistory => [...existHistory, response.data.result])
         }catch(error) {
             console.error("Error user create order: ", error)
         }
