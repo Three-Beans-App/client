@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext"
 import "../styles/pages/ViewActiveOrdersPage.css"
 import datetimeFormat from "../functions/datetimeFormat";
+import { useUserData } from "../contexts/userContext";
 
 
 export default function ViewActiveOrdersPage(){
 
     const { adminViewActiveOrders, updateOrderStatus, deleteOrder} = useOrderDispatch()
     const { activeOrders } = useOrderData()
+    const { isAdmin } = useUserData()
 
     useEffect(() => {
         adminViewActiveOrders();
@@ -39,6 +41,10 @@ export default function ViewActiveOrdersPage(){
     }
 
 
+    if (!isAdmin) {
+        return null;
+    }
+    
     return(
         <div className="order-history">
             <div className="historytitle">
