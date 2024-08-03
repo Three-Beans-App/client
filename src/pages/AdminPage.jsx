@@ -25,6 +25,10 @@ export default function AdminPage(){
                 <div>
                     <button className="nav-btn" onClick={()=> handleNavigate("/viewAllOrders")}>View All Orders</button>
                 </div>
+
+                <div>
+                    <button className="nav-btn" onClick={()=> handleNavigate("/viewActiveOrders")}>View Active Orders</button>
+                </div>
             </div>
         </div>
     )

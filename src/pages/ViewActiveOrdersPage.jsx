@@ -1,53 +1,65 @@
-import "../styles/pages/HistoryPage.css";
-import { useOrderData, useOrderDispatch } from "../contexts/orderContext";
 import { useEffect } from "react";
+import { useOrderData, useOrderDispatch } from "../contexts/orderContext"
+import "../styles/pages/ViewActiveOrdersPage.css"
 import datetimeFormat from "../functions/datetimeFormat";
 
-export default function HistoryPage() {
-    // const [orders, setOrders] = useState([
-    //     {
-    //         id: 1,
-    //         photo: "https://example.com/photo1.jpg",
-    //         date: "20-07-2024",
-    //         status: "Complete",
-    //         totalCost: "$15.00"
-    //     },
-    //     {
-    //         id: 2,
-    //         photo: "https://example.com/photo2.jpg",
-    //         date: "20-07-2024",
-    //         status: "Complete",
-    //         totalCost: "$6.00"
-    //     },
-    // ]);
 
-    // const handleDelete = (orderId) => {
-    //     setOrders(orders.filter(order => order.id !== orderId));
-    // };
+export default function ViewActiveOrdersPage(){
 
-    const { userOrderHistory } = useOrderData();
-    const { userViewAllOrders } = useOrderDispatch();
+    const { adminViewActiveOrders, updateOrderStatus, deleteOrder} = useOrderDispatch()
+    const { activeOrders } = useOrderData()
 
     useEffect(() => {
-        userViewAllOrders();
+        adminViewActiveOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return (
+    const getNextStatus = (status) => {
+        if (status === "pending") {
+            return "preparing";
+        }
+        if (status === "preparing") {
+            return "ready";
+        }
+        if (status === "ready") {
+            return "completed";
+        }
+    }
+
+    const getAction = (status) => {
+        if (status === "pending") {
+            return "Start preparing";
+        }
+        if (status === "preparing") {
+            return "Ready for pickup";
+        }
+        if (status === "ready") {
+            return "Complete order";
+        }
+    }
+
+
+    return(
         <div className="order-history">
             <div className="historytitle">
-                <h2>Order History</h2>
+                <h2>All Active Orders</h2>
             </div>
             <div className="order-list">    
-                { userOrderHistory?.length === 0 && (
-                    <span className="empty-text"> History is empty!</span>
+                { activeOrders?.length === 0 && (
+                    <span className="empty-text"> No Orders!</span>
                 )}
             
-                {userOrderHistory.map((order) => (
+                {activeOrders.map((order) => (
                     <div className="order-container" key={order?.itemId}>
-                        <div className="order-details-left">
-                            <p><b>Date:</b> {datetimeFormat(order?.date)}</p>
-                            <p><b>Status:</b> {order?.status}</p>
+                        <div className="top-container">
+                            <div className="order-details-left">
+                                <p><b>Date:</b> {datetimeFormat(order?.date)}</p>
+                                <p><b>Status:</b> {order?.status}</p>
+                            </div>
+                            <div className="status-change-right">
+                                <button onClick={()=>updateOrderStatus(order._id, getNextStatus(order.status))}>{getAction(order.status)}</button>
+                                <button onClick={()=>deleteOrder(order._id)}>Cancel</button>
+                            </div>
                         </div>
                         <div className="order-items">
                              <h3>Ordered Items</h3>
@@ -73,5 +85,7 @@ export default function HistoryPage() {
                 ))}
             </div>
         </div>
-    );
+
+    )
+
 }
