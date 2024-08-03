@@ -22,7 +22,6 @@ export default function OrderProvider({ children }){
     const { userId, userJwt } = useUserData();
     const [ allOrders, setAllOrders ] = useState([]);
     const [ activeOrders, setActiveOrders ] = useState([]);
-
     const { cartItems } = useCartData();
     // view all the order history by User id
 
