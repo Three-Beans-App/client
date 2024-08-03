@@ -51,12 +51,12 @@ export default function CartProvider({children}){
       };
 
    
-    const handleQuantityChange =(name, count)=> {
+    const handleQuantityChange =(name, quantity)=> {
         setCartItems(cartItems.map(cartItem => {
             if (cartItem.item.name === name){
                 return{
                     ...cartItem, 
-                    count: parseInt(count)
+                    quantity: parseInt(quantity)
                 };
             }
             else{

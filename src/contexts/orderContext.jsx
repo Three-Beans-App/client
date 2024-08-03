@@ -20,12 +20,11 @@ export default function OrderProvider({ children }){
     const [ userOrderHistory, setUserOrderHistory ] = useState([]);
     const [ order, setOrder ] = useState({});
     const { userId, userJwt } = useUserData();
-    
+    const [ allOrders, setAllOrders ] = useState([]);
 
     const { cartItems } = useCartData();
     // view all the order history by User id
-    
-   
+
     const userViewAllOrders = async() => {
         try {
 
@@ -69,6 +68,18 @@ export default function OrderProvider({ children }){
 
     }
     // admin view all the order
+    const adminViewAllOrders = async() => {
+        try {
+           
+            const response = await axios.get("http://localhost:3001/orders/",{
+                headers: {
+                    'Authorization': `Bearer ${userJwt}`
+                }});
+            setAllOrders(response.data.result);
+        }catch(error) {
+            console.error("Error user create order: ", error)
+        }
+    }
 
     // admin view order by status
 
@@ -78,9 +89,9 @@ export default function OrderProvider({ children }){
 
 
     return (
-        <OrderDataContext.Provider value={{userOrderHistory, order}}>
+        <OrderDataContext.Provider value={{userOrderHistory, order, allOrders}}>
             <OrderDispatchContext.Provider 
-            value={{ userViewAllOrders, userCreateOrder }}>
+            value={{ userViewAllOrders, userCreateOrder, adminViewAllOrders }}>
                 {children}
             </OrderDispatchContext.Provider>
         </OrderDataContext.Provider>
