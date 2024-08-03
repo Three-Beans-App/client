@@ -2,6 +2,7 @@ import '../styles/pages/AddItemPage.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMenuItemDispatch } from '../contexts/menuItemContext';
+import { useUserData } from '../contexts/userContext';
 
 
 export default function AddItemPage() {
@@ -12,6 +13,7 @@ export default function AddItemPage() {
     const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
     const { addMenuItem } = useMenuItemDispatch();
+    const { isAdmin } = useUserData();
 
 
     const handlePriceChange = (value) => {
@@ -27,6 +29,9 @@ export default function AddItemPage() {
         navigate("/menu");
     };
     
+    if (!isAdmin) {
+        return null;
+    }
 
     return (
         <div id="addItem-container">

@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import "../styles/pages/AdminPage.css"
+import { useUserData } from '../contexts/userContext';
 
 export default function AdminPage(){
 
+    const { isAdmin } = useUserData();
 
     const navigate = useNavigate();
 
@@ -10,8 +12,11 @@ export default function AdminPage(){
         navigate(path)
     }
 
-    return (
+    if (!isAdmin) {
+        return null;
+    }
 
+    return (
         <div id="admin-container">
             <div id="admin-sub-container">
                 <div>

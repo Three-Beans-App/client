@@ -2,16 +2,22 @@ import { useOrderData, useOrderDispatch } from "../contexts/orderContext"
 import "../styles/pages/ViewAllOrderPage.css"
 import datetimeFormat from "../functions/datetimeFormat";
 import { useEffect } from "react";
+import { useUserData } from "../contexts/userContext";
 
 
 export default function ViewAllOrdersPage(){
     const { allOrders } = useOrderData();
     const { adminViewAllOrders } = useOrderDispatch()
+    const { isAdmin } = useUserData();
 
     useEffect(() => {
         adminViewAllOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    if (!isAdmin) {
+        return null;
+    }
 
     return(
         <div className="order-history">

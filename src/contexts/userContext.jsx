@@ -18,6 +18,7 @@ export default function UserProvider({children}){
     const [decodedUserJwt, setDecodedUserJwt] = useState(JSON.parse(localStorage.getItem('decodedUserJwt') || '{}'));
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
     const [userId, setUserId] = useState(localStorage.getItem('userId') || null);
+    const [ isAdmin, setIsAdmin ] = useState(localStorage.getItem('isAdmin') === 'true')
 
     const storeUserJwt = (value) => {
         setUserJwt(value);
@@ -36,6 +37,11 @@ export default function UserProvider({children}){
         localStorage.setItem('userId', value);
     }
 
+    const storeIsAdmin = (value) => {
+        setIsAdmin(value);
+        localStorage.setItem('isAdmin', value);
+    }
+
     const makeSignupRequest = async (name, email, password, birthday) => {
 
         let bodyData = { name, email, password, birthday };
@@ -48,7 +54,8 @@ export default function UserProvider({children}){
             storeDecodedUserJwt(signUpResult.decodedJwt);
             storeIsLoggedIn(true);
             storeUserId(signUpResult.newUser._id)
-            
+            storeIsAdmin(signUpResult.newUser.admin)
+
             return { 
                 success: true,
                 message: signUpResult.message 
@@ -82,6 +89,7 @@ export default function UserProvider({children}){
             storeDecodedUserJwt(loginResult.decodedUserJwt);
             storeIsLoggedIn(true);
             storeUserId(loginResult.userId)
+            storeIsAdmin(loginResult.admin)
 
             return response;
         }  catch(error){
@@ -97,10 +105,11 @@ export default function UserProvider({children}){
         storeDecodedUserJwt({});
         storeIsLoggedIn(false);
         storeUserId(null);
+        storeIsAdmin(null)
     }
 
 
-    return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn, userId}}>
+    return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn, userId, isAdmin}}>
         <UserDispatchContext.Provider value={{
             makeSignupRequest,
             makeLoginRequest,
