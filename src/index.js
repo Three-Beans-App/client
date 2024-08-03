@@ -8,11 +8,13 @@ import UserProvider from "./contexts/userContext.jsx";
 import MenuItemProvider from './contexts/menuItemContext.jsx';
 import CartProvider from './contexts/cartContext.jsx';
 import OrderProvider from './contexts/orderContext.jsx';
+import FavouriteProvider from './contexts/favouriteContext.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
    <UserProvider>
+    <FavouriteProvider>
       <MenuItemProvider>
           <CartProvider>
               <OrderProvider>
@@ -22,6 +24,7 @@ root.render(
                 </OrderProvider>
             </CartProvider>
         </MenuItemProvider>
+      </FavouriteProvider>
     </UserProvider>
   </React.StrictMode>
 );

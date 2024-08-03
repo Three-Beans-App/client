@@ -18,6 +18,12 @@ export default function MenuItemProvider({ children }) {
     const [categories, setCategories] = useState([]);
     const { userJwt } = useUserData();
 
+    const getFavouriteMenuItems = (favouriteList) => {
+        return menuItems.filter(menuItem =>
+            favouriteList.some(favourite => favourite.item.itemId === menuItem._id)
+        ); 
+    }
+
     const fetchMenuItems = async () => {
         try {
             const response = await axios.get("http://localhost:3001/menu/items/");
@@ -62,7 +68,7 @@ export default function MenuItemProvider({ children }) {
     return (
         <MenuItemDataContext.Provider value={{ menuItems, categories }}>
             <MenuItemDispatchContext.Provider 
-                value={{ fetchMenuItems, fetchCategories, addMenuItem }}
+                value={{ fetchMenuItems, fetchCategories, addMenuItem, getFavouriteMenuItems }}
             >
                 {children}
             </MenuItemDispatchContext.Provider>

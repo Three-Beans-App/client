@@ -61,7 +61,6 @@
         }
         .add-cart-notice{
             position: fixed;
-            border: 1px solid red;
             padding: 5px;
             background-color:aquamarine;
             border-radius: 10px;
@@ -75,8 +74,6 @@
             justify-content: center;
             width: auto;
             gap: 10px;
-           
-            
         }    
         
     }

@@ -1,11 +1,6 @@
 import "../styles/pages/OrderPage.css";
-import { useOrderData } from "../contexts/orderContext"
 
 export default function OrderPage(){
-
-    const { order } = useOrderData();
-
-    console.log(order)
 
     return(
         <div id="order-main-container">
@@ -19,12 +14,6 @@ export default function OrderPage(){
                 <div className="order-details">
                     <text> Thanks for your purchase. </text>
                 </div>
-
-
-
-
-
-
             </div>
         </div>
     )

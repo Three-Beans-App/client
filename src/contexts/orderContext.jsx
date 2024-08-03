@@ -37,7 +37,6 @@ export default function OrderProvider({ children }){
                 }
             });
             setUserOrderHistory(response.data.result);
-            console.log(response.data.result)
         } catch (error) {
             console.error("Error fetching user order history: ", error);
         }
@@ -128,7 +127,6 @@ export default function OrderProvider({ children }){
             // update status in local
             if (response.status === 200) {
                 // update local values
-                console.log(activeOrders.filter(order => !(order._id === id && status === "completed" && status === "cancelled")))
                 if (status === "completed" || status === "cancelled") {
                     setActiveOrders(activeOrders.filter(order => order._id !== id));
                 } else {

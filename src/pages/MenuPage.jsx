@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 import {useMenuItemData, useMenuItemDispatch } from "../contexts/menuItemContext"
 import { useCartDispatch } from "../contexts/cartContext";
+import { useFavouriteDispatch } from "../contexts/favouriteContext";
 
 
 
@@ -15,12 +16,6 @@ export default function MenuPage(){
     // const { notice } = useCartData();
     const { menuItems, categories } = useMenuItemData();
     const { fetchMenuItems, fetchCategories } = useMenuItemDispatch();
-
-    useEffect(() => {
-        fetchMenuItems();
-        fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     // const getRandomImageUrl = () => {
     //     const randomIndex = Math.floor(Math.random() * imageUrls.length);
@@ -496,12 +491,18 @@ export default function MenuPage(){
     const [searchTerm, setSearchTerm] = useState("");
     const [isItemDetaillOpen, setIsItemDetaillOpen] = useState(false);
     const [onClickItemDetail, setOnClickItemDetail] = useState(null);
-
+    const { onClickStar, fetchFavouriteList } = useFavouriteDispatch();
     const { handleAddToCart } = useCartDispatch()
 
     const actualSelectedCategory = selectedCategory ? selectedCategory : categories[0];
 
 
+    useEffect(() => {
+        fetchMenuItems();
+        fetchCategories();
+        fetchFavouriteList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
 
     const setSearchValue = (event) => {
@@ -529,8 +530,7 @@ export default function MenuPage(){
 
 
     const handleStarClick = (item) => {
-        // Implement the logic for star click
-        console.log("Star clicked:", item);
+        onClickStar(item);
     };
 
     return(
@@ -568,6 +568,7 @@ export default function MenuPage(){
                     {selectedMenuItems.map((item) => (
                         <MenuItem 
                             key={item._id}
+                            id={item._id}
                             name={item.name}
                             price={item.price}
                             description={item.description}

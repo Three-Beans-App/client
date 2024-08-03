@@ -1,6 +1,44 @@
 
 #content-main-box{
+    
     background-color: rgb(255, 255, 255, 0.8);
-    /* #content-sub-box{
-    } */
+    padding-bottom: 40px;
+    position: relative;
+
+    #content-sub-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .item-details{
+           
+            display: flex;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+    }
+
+    .items{
+        margin-left: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
+        gap: 10px;
+    }  
+
+    #itemDetail-popup{
+        z-index: 1000; 
+        position: absolute;
+        top: 0;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        display: flex; 
+    }
+
+    
 }

@@ -24,7 +24,6 @@ export default function CartProvider({children}){
     // function for add item to cart
     const handleAddToCart = (item) => {
         // check item whether already exists in the cart
-        console.log(cartItems)
         const checkItem = cartItems.find(cartItem=>(cartItem.item.name === item.name))
         
         if (checkItem){
@@ -43,11 +42,6 @@ export default function CartProvider({children}){
             // if not add new item to the cart list
             setCartItems([...cartItems, {item, quantity: 1}])
         }
-
-        console.log(cartItems);
-
-        // setNotice(`You has been added ${item.name} to the cart`);
-        // setTimeout(() => setNotice(""), 4000);
       };
 
    
