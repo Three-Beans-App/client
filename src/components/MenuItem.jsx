@@ -4,7 +4,7 @@ import Star from "./Star";
 import { useUserData } from "../contexts/userContext";
 
 
-export default function MenuItem({ name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
+export default function MenuItem({ id, name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
     
     const {isLoggedIn} = useUserData();
 
@@ -24,7 +24,7 @@ export default function MenuItem({ name, price, description, image, onStarClick,
                     <div id="icon">
                         {isLoggedIn ? 
                             <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
-                                <Star/>
+                                <Star itemId={id}/>
                             </div>
                             :
                             <div />

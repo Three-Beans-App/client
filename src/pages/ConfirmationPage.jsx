@@ -53,7 +53,6 @@ export default function ConfirmationPage(){
     }
 
     const confirmAndCreateOrder = ()=>{
-        console.log(userId)
         if (userId) {
             userCreateOrder({guestUser: null, userId });  
         } else {

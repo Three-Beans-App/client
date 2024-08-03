@@ -1,5 +1,4 @@
 #order-main-container{
-    border: 2px solid red;
     #order-sub-container{
         background-color: rgb(255, 255, 255, 0.8);
         display: flex;

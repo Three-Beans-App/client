@@ -32,8 +32,8 @@ export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarC
                     <p>{item.description}</p>
                 </div>
                 <div id="icon">
-                    <div>
-                        <Star className="start-icon" onClick={(e) => { e.stopPropagation(); onStarClick(item); }}/>
+                    <div onClick={(e) => { e.stopPropagation(); onStarClick(item); }}>
+                        <Star className="start-icon" itemId={item._id}/>
                     </div>
                     <div>
                         <AddShoppingCartIcon className="cart-icon" onClick={(e) => { e.stopPropagation(); onAddToCart(item); }} />
