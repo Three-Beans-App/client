@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from 'react';
 import axios from 'axios';
+import { useUserData } from './userContext';
 
 const MenuItemDataContext = createContext(null);
 const MenuItemDispatchContext = createContext(null);
@@ -15,6 +16,7 @@ export function useMenuItemDispatch() {
 export default function MenuItemProvider({ children }) {
     const [menuItems, setMenuItems] = useState([]);
     const [categories, setCategories] = useState([]);
+    const { userJwt } = useUserData();
 
     const fetchMenuItems = async () => {
         try {
@@ -43,7 +45,10 @@ export default function MenuItemProvider({ children }) {
                 price,
                 description,
                 image
-            });
+            },
+            {headers: {
+                'Authorization': `Bearer ${userJwt}`
+            }});
 
             if (response.status === 201) {
                 fetchMenuItems();
