@@ -21,6 +21,7 @@ export default function OrderProvider({ children }){
     const [ order, setOrder ] = useState({});
     const { userId, userJwt } = useUserData();
     const [ allOrders, setAllOrders ] = useState([]);
+    const [ activeOrders, setActiveOrders ] = useState([]);
 
     const { cartItems } = useCartData();
     // view all the order history by User id
@@ -81,17 +82,103 @@ export default function OrderProvider({ children }){
         }
     }
 
-    // admin view order by status
+    // // admin view order by status
+    // const adminViewOrdersByStatus = async() => {
+    //     try {
+    //        const statusUrl = `http://localhost:3001/orders/`
+    //         const response = await axios.get("http://localhost:3001/orders/",{
+    //             headers: {
+    //                 'Authorization': `Bearer ${userJwt}`
+    //             }});
+    //         setAllOrders(response.data.result);
+    //     }catch(error) {
+    //         console.error("Error user create order: ", error)
+    //     }
+    // }
+
 
     // admin view all the active orders
+    const adminViewActiveOrders = async() => {
+        try{
+            const response = await axios.get("http://localhost:3001/orders/active",{
+                headers: {
+                    'Authorization': `Bearer ${userJwt}`
+                }});
+            setActiveOrders(response.data.result);
+        }catch(error) {
+            console.error("Error user create order: ", error)
+        }
+    }
+    
+
 
     // update order status
+    const updateOrderStatus = async(id, status) => {
+        try{
+           
+            const updateOrderUrl = `http://localhost:3001/orders/status/${id}`
+            const response = await axios.patch(updateOrderUrl, 
+                { status },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${userJwt}`
+                    }
+                }
+            );
+
+            // update status in local
+            if (response.status === 200) {
+                // update local values
+                console.log(activeOrders.filter(order => !(order._id === id && status === "completed" && status === "cancelled")))
+                if (status === "completed" || status === "cancelled") {
+                    setActiveOrders(activeOrders.filter(order => order._id !== id));
+                } else {
+                    setActiveOrders(activeOrders.map(order => order._id === id ? { ...order, status } : order));
+                }
+                setAllOrders(allOrders.map(order => order._id === id ? { ...order, status } : order));
+            }
+
+        }catch(error){
+            console.error("Error user create order: ", error)
+        }
+    }
+
+
+    // Delte order
+    const deleteOrder = async(id) => {
+        try{
+           
+            const updateOrderUrl = `http://localhost:3001/orders/deleteOrder/${id}`
+            const response = await axios.delete(updateOrderUrl,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${userJwt}`
+                    }
+                }
+            );
+            // update status in local
+            if (response.status === 200) {
+                // update local values
+                setActiveOrders(activeOrders.filter(order => order._id !== id));
+                setAllOrders(allOrders.filter(order => order._id !== id));
+            }
+
+        }catch(error){
+    console.error("Error user create order: ", error)
+    }
+    }
 
 
     return (
-        <OrderDataContext.Provider value={{userOrderHistory, order, allOrders}}>
+        <OrderDataContext.Provider value={{userOrderHistory, order, allOrders, activeOrders}}>
             <OrderDispatchContext.Provider 
-            value={{ userViewAllOrders, userCreateOrder, adminViewAllOrders }}>
+            value={{ 
+                userViewAllOrders,
+                userCreateOrder, 
+                adminViewAllOrders, 
+                adminViewActiveOrders, 
+                updateOrderStatus, 
+                deleteOrder }}>
                 {children}
             </OrderDispatchContext.Provider>
         </OrderDataContext.Provider>

@@ -24,7 +24,7 @@ export default function ViewAllOrdersPage(){
                 )}
             
                 {allOrders.map((order) => (
-                    <div className="order-item" key={order?.itemId}>
+                    <div className="order-container" key={order?.itemId}>
                         <div className="order-details-left">
                             <p><b>Date:</b> {datetimeFormat(order?.date)}</p>
                             <p><b>Status:</b> {order?.status}</p>
