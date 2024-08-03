@@ -23,7 +23,6 @@ export default function CartPage(){
         const total = cartItems.reduce((total, item) => {
             return total + item.quantity;
         }, 0);
-        
         return total
     }
 
@@ -87,7 +86,7 @@ export default function CartPage(){
                             </select>
                         </div>
                         <div className="wrapper">
-                            <span className="item-total-price">$ {item.item.price * item.quantity}</span>
+                            <span className="item-total-price">$ {(item.item.price * item.quantity).toFixed(2)}</span>
                         </div>
                         <div className="wrapper">
                             <IconButton aria-label="close" className="remove-button" onClick={()=>handleRemoveItem(item.item.name)}>

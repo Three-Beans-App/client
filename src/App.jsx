@@ -12,6 +12,7 @@ import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import OrderPage from "./pages/OrderPage";
+import ViewAllOrdersPage from "./pages/ViewAllOrdersPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="admin" element={<AdminPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="order" element={<OrderPage />} />
+          <Route path="viewallorders" element={<ViewAllOrdersPage />} />
         </Route>        
       </Routes>
   );
