@@ -23,8 +23,9 @@ export default function OrderProvider({ children }){
     const [ allOrders, setAllOrders ] = useState([]);
     const [ activeOrders, setActiveOrders ] = useState([]);
     const { cartItems } = useCartData();
-    // view all the order history by User id
 
+
+    // view all the order history by User id - user side
     const userViewAllOrders = async() => {
         try {
 
@@ -42,7 +43,7 @@ export default function OrderProvider({ children }){
         }
     }
 
-    // user create new order 
+    // user create a new order 
     const userCreateOrder = async({ guestUser, userId }) => {
 
         const cartItemsOrder = cartItems.map(item => ({
@@ -65,8 +66,9 @@ export default function OrderProvider({ children }){
         }
 
 
-    }
-    // admin view all the order
+    };
+
+    // admin view all the orders
     const adminViewAllOrders = async() => {
         try {
            
@@ -78,22 +80,7 @@ export default function OrderProvider({ children }){
         }catch(error) {
             console.error("Error user create order: ", error)
         }
-    }
-
-    // // admin view order by status
-    // const adminViewOrdersByStatus = async() => {
-    //     try {
-    //        const statusUrl = `http://localhost:3001/orders/`
-    //         const response = await axios.get("http://localhost:3001/orders/",{
-    //             headers: {
-    //                 'Authorization': `Bearer ${userJwt}`
-    //             }});
-    //         setAllOrders(response.data.result);
-    //     }catch(error) {
-    //         console.error("Error user create order: ", error)
-    //     }
-    // }
-
+    };
 
     // admin view all the active orders
     const adminViewActiveOrders = async() => {
@@ -110,7 +97,7 @@ export default function OrderProvider({ children }){
     
 
 
-    // update order status
+    // admin update order status
     const updateOrderStatus = async(id, status) => {
         try{
            
@@ -141,7 +128,7 @@ export default function OrderProvider({ children }){
     }
 
 
-    // Delte order
+    //admin delete order
     const deleteOrder = async(id) => {
         try{
            

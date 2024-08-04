@@ -10,11 +10,13 @@ export default function ViewAllOrdersPage(){
     const { adminViewAllOrders } = useOrderDispatch()
     const { isAdmin } = useUserData();
 
+    // call the function to admin view all the orders
     useEffect(() => {
         adminViewAllOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // check whether is admin, if not admin return null
     if (!isAdmin) {
         return null;
     }

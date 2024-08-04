@@ -18,12 +18,14 @@ export default function MenuItemProvider({ children }) {
     const [categories, setCategories] = useState([]);
     const { userJwt } = useUserData();
 
+    // filter the favourite list items by the favouriteList ids
     const getFavouriteMenuItems = (favouriteList) => {
         return menuItems.filter(menuItem =>
             favouriteList.some(favourite => favourite.item.itemId === menuItem._id)
         ); 
     }
 
+    // get all the menu items from database
     const fetchMenuItems = async () => {
         try {
             const response = await axios.get("http://localhost:3001/menu/items/");
@@ -33,6 +35,8 @@ export default function MenuItemProvider({ children }) {
         }
     };
 
+
+    // get all the categories from database
     const fetchCategories = async () => {
         try {
             const response = await axios.get("http://localhost:3001/menu/categories/");
@@ -42,6 +46,7 @@ export default function MenuItemProvider({ children }) {
         }
     };
 
+    // add a new item to database
     const addMenuItem = async (name, category, price, description, image) => {
         try {
 
@@ -65,6 +70,7 @@ export default function MenuItemProvider({ children }) {
     };
 
 
+    // update an existing item 
     const updateMenuItem = async (id, name, category, price, description, image) => {
 
         try {
@@ -84,11 +90,13 @@ export default function MenuItemProvider({ children }) {
         }
     }
 
+    // find an item by the item id
     const getMenuItemById = (id) => {
         return menuItems.find(item => id === item._id);
     }
 
 
+    // delete an item by the item id
     const deleteMenuItem = async(id) =>{
         try {
             const deleteItemUrl =`http://localhost:3001/menu/delete/item/${id}`

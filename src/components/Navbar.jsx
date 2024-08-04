@@ -9,8 +9,6 @@ export default function NavBar(){
   
     const {isLoggedIn} = useUserData();
     
-
-
     return(
         <nav>
             <NavLink to="/" className="navLink">Home</NavLink>

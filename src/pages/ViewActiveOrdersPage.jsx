@@ -6,16 +6,17 @@ import { useUserData } from "../contexts/userContext";
 
 
 export default function ViewActiveOrdersPage(){
-
     const { adminViewActiveOrders, updateOrderStatus, deleteOrder} = useOrderDispatch()
     const { activeOrders } = useOrderData()
     const { isAdmin } = useUserData()
 
+    // load the function for admin to view all the active orders 
     useEffect(() => {
         adminViewActiveOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // for change the next status
     const getNextStatus = (status) => {
         if (status === "pending") {
             return "preparing";
@@ -28,6 +29,8 @@ export default function ViewActiveOrdersPage(){
         }
     }
 
+    // for the after the status first changed
+    // then set to the next status
     const getAction = (status) => {
         if (status === "pending") {
             return "Start preparing";
@@ -40,7 +43,7 @@ export default function ViewActiveOrdersPage(){
         }
     }
 
-
+    // check whether is admin, if not admin return null
     if (!isAdmin) {
         return null;
     }

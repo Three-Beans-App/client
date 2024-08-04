@@ -8,11 +8,10 @@ export default function SignUpPage(){
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [birthday, setBirthday] = useState("");
-
-
     const {makeSignupRequest} = useUserDispatch();
     const { isLoggedIn } = useUserData();
 
+    // call the function to sign up
     const handleSignup = async (event) => {
         event.preventDefault();
         await makeSignupRequest(name, email, password, birthday);

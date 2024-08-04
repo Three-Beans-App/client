@@ -494,41 +494,46 @@ export default function MenuPage(){
     const { onClickStar, fetchFavouriteList } = useFavouriteDispatch();
     const { handleAddToCart } = useCartDispatch()
 
+    // store the whether user selete the category value, if not, set the first category as default
     const actualSelectedCategory = selectedCategory ? selectedCategory : categories[0];
 
-
+    // call the function to load the menu items, categaories and favourites
     useEffect(() => {
         fetchMenuItems();
         fetchCategories();
         fetchFavouriteList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
 
+    // when the search bar has value when set the set the value to it
     const setSearchValue = (event) => {
         setSearchTerm(event.target.value);
     };
 
+    // filter the items by category 
     const selectedMenuItems = menuItems.filter(item => 
         item.category === actualSelectedCategory?._id && 
         (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === "")
     );
 
+    // navigation route
     const handleDirect = (path) => {
         direct(path);
     }
 
+     // function on click the item it will popup
     const handleOpenItemDetail = (item) => {
         setOnClickItemDetail(item);
         setIsItemDetaillOpen(true);
     };
 
+     // function to close the popup item
     const handleCloseItemDetail = () => {
         setOnClickItemDetail(null);
         setIsItemDetaillOpen(false);
     } ;
 
-
+    // funciton for handle start on click 
     const handleStarClick = (item) => {
         onClickStar(item);
     };

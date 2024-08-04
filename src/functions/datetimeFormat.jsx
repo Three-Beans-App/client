@@ -1,5 +1,4 @@
-
-
+// adjust the data time format for display
 export default function  datetimeFormat(beforeFormat){
     const updateFormat = new Date(beforeFormat);
     return updateFormat.toLocaleString('en-US', { 

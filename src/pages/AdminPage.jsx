@@ -8,10 +8,13 @@ export default function AdminPage(){
 
     const navigate = useNavigate();
 
+
+    // navigateion route
     const handleNavigate = (path) => {
         navigate(path)
     }
 
+       // if this page not the admin user return null
     if (!isAdmin) {
         return null;
     }

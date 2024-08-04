@@ -13,6 +13,7 @@ export default function MenuItem({ id, name, price, description, image, onStarCl
 
     const navigate = useNavigate();
 
+    // function for navigater router
     const handleNavigate = (path) => {
         navigate(path)
     }

@@ -17,6 +17,7 @@ export default function FavouritePage(){
     const favouriteMenuItems = getFavouriteMenuItems(favouriteList);
     const { handleAddToCart } = useCartDispatch()
 
+    // load the data to the page
     useEffect(() => {
         fetchMenuItems();
         fetchCategories();
@@ -24,11 +25,13 @@ export default function FavouritePage(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // function on click the item it will popup
     const handleOpenItemDetail = (item) => {
         setOnClickItemDetail(item);
         setIsItemDetailOpen(true);
     };
 
+    // function to close the popup item
     const handleCloseItemDetail = () => {
         setOnClickItemDetail(null);
         setIsItemDetailOpen(false);

@@ -13,6 +13,8 @@ export default function LoginPage(){
 
     const { makeLoginRequest } = useUserDispatch();
 
+    // call the login request function
+    // then navigate to home page after login
     const handleLogin = async (event) => {
         event.preventDefault();
         const LoginReq = await makeLoginRequest(email, password);
