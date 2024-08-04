@@ -8,12 +8,6 @@ export default function Profile(){
         <div id="profile-container">
             <div id="profile-sub-container">
                 <h2>Profile </h2>
-
-
-
-
-
-
             </div>
         </div>
     )

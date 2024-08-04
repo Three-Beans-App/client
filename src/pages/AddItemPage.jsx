@@ -18,13 +18,17 @@ export default function AddItemPage() {
     const { isAdmin } = useUserData();
     const { id } = useParams();
     
-
+    
     useEffect(() => {
+        // retrieve the category name by the category id
         const getCategoryName = (id) => {
             const currentCategory = categories.find(category => category._id === id);
             return currentCategory?.name;
         };
 
+        // when the param pass id, if id is exsts
+        // call the getMenuItemById function to retrieve the item
+        // set the item details to states
         const existItem = async() => {
             if (id) {
                 const item = getMenuItemById(id);
@@ -42,6 +46,7 @@ export default function AddItemPage() {
     },[id, getMenuItemById, categories])
 
 
+    // when the page load then call the functions to fetch the menu items to display
     useEffect(() => {
         fetchMenuItems(); 
         fetchCategories();   
@@ -55,10 +60,11 @@ export default function AddItemPage() {
         }
     };
 
+    // when the add or update button on click
+    // add new item if not a existing id
+    // else update the existing item
+    // then navigate to menu page
     const handleSubmit = () => {
-    
-        
-        // add new item if not a existing id
         if (!id) {
             addMenuItem(name, category, price, description, imageUrl);
         } else {
@@ -67,14 +73,19 @@ export default function AddItemPage() {
         navigate("/menu");
     };
 
+    // delete item by id
+    // then navigate to menu page
     const deleteItem = () => {
         deleteMenuItem(id);
         navigate("/menu");
     }
 
+    // if this page not the admin user return null
     if (!isAdmin) {
         return null;
     }
+
+    // when select category then set the category to state
     const handleSeleteCategory = (event) => {
         setCategory(event.target.value)
     }

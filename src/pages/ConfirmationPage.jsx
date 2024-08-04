@@ -20,18 +20,22 @@ export default function ConfirmationPage(){
 
     const direct = useNavigate();
 
+    // set the guest name when there is no login user to check out
     const onNameChange = (value) => {
         setGuestName(value);
     }
 
+    // set the guest conact number when there is no login user to check out
     const onContactChange = (value) => {
         setGuestContact(value);
     }
 
+    // navigateion route
     const handleDirect = (path) => {
         direct(path);
     }
 
+    // caculate the total number of the items
     const getNumItems = () => {
         const total = cartItems.reduce((total, item) => {
             return total + item.quantity;
@@ -40,6 +44,7 @@ export default function ConfirmationPage(){
         return total
     }
 
+      // caculate the total of cost
     const getTotalCost = () => {
         const total = cartItems.reduce((total, item) => {
             return total + item.item.price * item.quantity;
@@ -48,10 +53,12 @@ export default function ConfirmationPage(){
         return total.toFixed(2);
     }
 
+    // to check the whether the guest user type their details
     const invalidGuestUser = () => {
             return guestName.trim() === '' || guestContact.trim() === '';
     }
 
+    // create order and clear the cart 
     const confirmAndCreateOrder = ()=>{
         if (userId) {
             userCreateOrder({guestUser: null, userId });  

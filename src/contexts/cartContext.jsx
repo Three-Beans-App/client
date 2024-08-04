@@ -15,8 +15,8 @@ export function useCartDispatch(){
 export default function CartProvider({children}){
 
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("shopping-cart")) || [])
-    // const [notice, setNotice] = useState("");
-
+  
+    // when cartItems update then add to localStorage
     useEffect(()=> {
         localStorage.setItem("shopping-cart", JSON.stringify(cartItems))
     },[cartItems])
@@ -44,7 +44,9 @@ export default function CartProvider({children}){
         }
       };
 
-   
+   // cartItems quantity change
+   // then check whether is exist, if so pass the qantity
+   // else add it to it
     const handleQuantityChange =(name, quantity)=> {
         setCartItems(cartItems.map(cartItem => {
             if (cartItem.item.name === name){
@@ -59,10 +61,12 @@ export default function CartProvider({children}){
         }))
     };
    
+    // cart remove item
     const handleRemoveItem =(name) =>{
         setCartItems(cartItems.filter(cartItem=>(cartItem.item.name !== name)))
     }
 
+    // handle after check out clear the cart
     const handleEmptyCart = () => {
         setCartItems([]);
     }

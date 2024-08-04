@@ -20,28 +20,37 @@ export default function UserProvider({children}){
     const [userId, setUserId] = useState(localStorage.getItem('userId') || null);
     const [ isAdmin, setIsAdmin ] = useState(localStorage.getItem('isAdmin') === 'true')
 
+    // update userJwt and store value to localStorage
     const storeUserJwt = (value) => {
         setUserJwt(value);
         localStorage.setItem('userJwt', value);
     }
+
+     // update decodedUserJwt and store value to localStorage
     const storeDecodedUserJwt = (value) => {
         setDecodedUserJwt(value);
         localStorage.setItem('decodedUserJwt', JSON.stringify(value || {}));
     }
+
+     // update isLoggedIn value and store value to localStorage
     const storeIsLoggedIn = (value) => {
         setIsLoggedIn(value);
         localStorage.setItem('isLoggedIn', value);
     }
+
+     // update userId and store value to localStorage
     const storeUserId = (value) => {
         setUserId(value);
         localStorage.setItem('userId', value);
     }
 
+     // update isAdmin value and store value to localStorage
     const storeIsAdmin = (value) => {
         setIsAdmin(value);
         localStorage.setItem('isAdmin', value);
     }
 
+    // for user to sign up and store all the information
     const makeSignupRequest = async (name, email, password, birthday) => {
 
         let bodyData = { name, email, password, birthday };
@@ -69,7 +78,7 @@ export default function UserProvider({children}){
         } 	
 }
     
-
+    // user login request and store all the information 
     const makeLoginRequest = async (email, password) => {
         let bodyData = { email, password };
 
@@ -100,6 +109,7 @@ export default function UserProvider({children}){
         } 
     }
 
+    // user log out, then clear all the information
     const logoutUser = () => {
         storeUserJwt("");
         storeDecodedUserJwt({});

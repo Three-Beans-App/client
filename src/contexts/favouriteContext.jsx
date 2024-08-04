@@ -19,7 +19,7 @@ export default function FavouriteProvider({children}){
     const [favouriteList, setFavouriteList] = useState(JSON.parse(localStorage.getItem("favourite-list")) || [])
     const { userJwt, userId } = useUserData();
 
-
+    // when favouriteList update, add to localStorage
     useEffect(()=> {
         localStorage.setItem("favourite-list", JSON.stringify(favouriteList))
     },[favouriteList])
@@ -56,6 +56,7 @@ export default function FavouriteProvider({children}){
         }
     };
 
+    // fetch FavouriteList 
     const fetchFavouriteList = async() => {
         try{
             const response = await axios.get(`http://localhost:3001/favourites/${userId}`,{

@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
  // set a function when onclick outside of  will close the dropdown menu or popup
-
-
 export default function useOnClickOutsideClose(ref, callback){
     useEffect(() => {
         const handleOnClickOutside = (event) => {

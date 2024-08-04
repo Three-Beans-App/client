@@ -4,30 +4,10 @@ import { useEffect } from "react";
 import datetimeFormat from "../functions/datetimeFormat";
 
 export default function HistoryPage() {
-    // const [orders, setOrders] = useState([
-    //     {
-    //         id: 1,
-    //         photo: "https://example.com/photo1.jpg",
-    //         date: "20-07-2024",
-    //         status: "Complete",
-    //         totalCost: "$15.00"
-    //     },
-    //     {
-    //         id: 2,
-    //         photo: "https://example.com/photo2.jpg",
-    //         date: "20-07-2024",
-    //         status: "Complete",
-    //         totalCost: "$6.00"
-    //     },
-    // ]);
-
-    // const handleDelete = (orderId) => {
-    //     setOrders(orders.filter(order => order.id !== orderId));
-    // };
-
     const { userOrderHistory } = useOrderData();
     const { userViewAllOrders } = useOrderDispatch();
 
+    // call the function for user view all the history 
     useEffect(() => {
         userViewAllOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps

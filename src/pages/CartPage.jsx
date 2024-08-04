@@ -15,10 +15,12 @@ export default function CartPage(){
 
     const direct = useNavigate();
 
+    // navigateion route
     const handleDirect = (path) => {
         direct(path);
     }
 
+    // caculate the total number of the items
     const getNumItems = () => {
         const total = cartItems.reduce((total, item) => {
             return total + item.quantity;
@@ -26,6 +28,7 @@ export default function CartPage(){
         return total
     }
 
+    // caculate the total of cost
     const getTotalCost = () => {
         const total = cartItems.reduce((total, item) => {
             return total + item.item.price * item.quantity;

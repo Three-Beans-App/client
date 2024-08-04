@@ -12,6 +12,8 @@ export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarC
 
     const popupItemRef = useRef(null);
 
+    // function for handle popup 
+    // when onclick outside of the popup then close the popup
     useOnClickOutsideClose(popupItemRef, handleCloseItemDetail);
     
 
