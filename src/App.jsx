@@ -27,12 +27,15 @@ function App() {
           <Route path="history" element={<HistoryPage />} />
           <Route path="cart" element={<CartPage />} /> 
           <Route path="confirmation" element={<ConfirmationPage />} />
-          <Route path="addItem" element={<AddItemPage />} />   
+          <Route path="add-item" element={<AddItemPage />} />   
+          <Route path="update-item"  >
+            <Route path=":id" element={<AddItemPage />} />
+          </Route>
           <Route path="admin" element={<AdminPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="order" element={<OrderPage />} />
-          <Route path="viewallorders" element={<ViewAllOrdersPage />} />
-          <Route path="viewactiveorders" element={<ViewActiveOrdersPage />} />
+          <Route path="view-all-orders" element={<ViewAllOrdersPage />} />
+          <Route path="view-active-orders" element={<ViewActiveOrdersPage />} />
         </Route>        
       </Routes>
   );

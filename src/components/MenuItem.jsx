@@ -1,12 +1,21 @@
 import "../styles/components/MenuItem.css";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import Star from "./Star";
 import { useUserData } from "../contexts/userContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function MenuItem({ id, name, price, description, image, onStarClick, onAddToCart, onOpenItemDetail }){
     
     const {isLoggedIn} = useUserData();
+    const { isAdmin } = useUserData()
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path)
+    }
 
     return (
         <div id="menuItem-main-container">
@@ -22,13 +31,21 @@ export default function MenuItem({ id, name, price, description, image, onStarCl
                         <h5 id="description">{description}</h5>
                     </div>
                     <div id="icon">
-                        {isLoggedIn ? 
+                        {isLoggedIn && !isAdmin ? 
                             <div className="star" onClick={(e) => { e.stopPropagation(); onStarClick();}}>
                                 <Star itemId={id}/>
                             </div>
                             :
-                            <div />
+                            !isAdmin && <div />
                         }
+                        <div className="update-button">
+                        { isAdmin &&
+                            <div className="admin-update-item" onClick={()=> handleNavigate(`/update-item/${id}`)}>
+                                <BorderColorIcon/>
+                            </div>
+                        }
+                        </div>
+                        
                         <div className="addToCart" onClick={(e) => { e.stopPropagation(); onAddToCart(); }}>
                             <AddShoppingCartIcon />
                         </div>

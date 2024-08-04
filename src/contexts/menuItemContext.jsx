@@ -65,10 +65,56 @@ export default function MenuItemProvider({ children }) {
     };
 
 
+    const updateMenuItem = async (id, name, category, price, description, image) => {
+
+        try {
+            const updateItemUrl =`http://localhost:3001/menu/update/item/${id}`
+            await axios.patch(updateItemUrl, {
+                name,
+                category,
+                price,
+                description,
+                image
+            },
+            {headers: {
+                'Authorization': `Bearer ${userJwt}`
+            }});
+        } catch (error) {
+            console.error("Error adding menu item: ", error);
+        }
+    }
+
+    const getMenuItemById = (id) => {
+        return menuItems.find(item => id === item._id);
+    }
+
+
+    const deleteMenuItem = async(id) =>{
+        try {
+            const deleteItemUrl =`http://localhost:3001/menu/delete/item/${id}`
+            console.log(deleteItemUrl)
+            await axios.delete(deleteItemUrl, {
+               headers: {
+                'Authorization': `Bearer ${userJwt}`
+                }
+            });
+        } catch (error) {
+            console.error("Error adding menu item: ", error);
+        }
+    }
+
     return (
         <MenuItemDataContext.Provider value={{ menuItems, categories }}>
             <MenuItemDispatchContext.Provider 
-                value={{ fetchMenuItems, fetchCategories, addMenuItem, getFavouriteMenuItems }}
+                value={{ 
+                    fetchMenuItems, 
+                    fetchCategories, 
+                    addMenuItem, 
+                    getFavouriteMenuItems, 
+                    updateMenuItem,
+                    getMenuItemById,
+                    deleteMenuItem
+                    }}
             >
                 {children}
             </MenuItemDispatchContext.Provider>

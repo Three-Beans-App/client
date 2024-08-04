@@ -7,7 +7,7 @@ export default function Header(){
     return (
         <header>
             <div id="logo">
-                <img src="logo.png" alt="logoImage"/>
+                <img src="/logo.png" alt="logoImage"/>
             </div>
         
             <nav id="navBox">
