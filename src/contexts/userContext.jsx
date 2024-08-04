@@ -119,11 +119,33 @@ export default function UserProvider({children}){
     }
 
 
+     // update an existing user 
+     const updateExistingUser = async ( name, email, password, birthday) => {
+
+        try {
+            const updateUserUrl =`http://localhost:3001/users/update/`
+            await axios.patch(updateUserUrl, {
+                name,
+                email,
+                password,
+                birthday
+            },
+            {headers: {
+                'Authorization': `Bearer ${userJwt}`
+            }});
+        } catch (error) {
+            console.error("Error adding menu item: ", error);
+        }
+    }
+
+
+
     return <UserDataContext.Provider value={{userJwt, decodedUserJwt, isLoggedIn, userId, isAdmin}}>
         <UserDispatchContext.Provider value={{
             makeSignupRequest,
             makeLoginRequest,
             logoutUser,
+            updateExistingUser
         }}>
             {children}
         </UserDispatchContext.Provider>
