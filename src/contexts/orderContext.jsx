@@ -59,8 +59,8 @@ export default function OrderProvider({ children }){
         
         try {
             const response = await axios.post("http://localhost:3001/orders/", orderDetail);
-            setOrder(response.data.result);
-            setUserOrderHistory(existHistory => [...existHistory, response.data.result])
+            setOrder(response.data.order);
+            setUserOrderHistory(existHistory => [...existHistory, response.data.order])
         }catch(error) {
             console.error("Error user create order: ", error)
         }
