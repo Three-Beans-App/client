@@ -28,7 +28,7 @@ export default function MenuItemProvider({ children }) {
     // get all the menu items from database
     const fetchMenuItems = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/menu/items/");
+            const response = await axios.get("https://threebeansapi.onrender.com/menu/items/");
             setMenuItems(response.data.result);
         } catch (error) {
             console.error("Error fetching menu items: ", error);
@@ -39,7 +39,7 @@ export default function MenuItemProvider({ children }) {
     // get all the categories from database
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/menu/categories/");
+            const response = await axios.get("https://threebeansapi.onrender.com/menu/categories/");
             setCategories(response.data.result);
         } catch (error) {
             console.error("Error fetching categories: ", error);
@@ -50,7 +50,7 @@ export default function MenuItemProvider({ children }) {
     const addMenuItem = async (name, category, price, description, image) => {
         try {
 
-            const response = await axios.post("http://localhost:3001/menu/create/item/", {
+            const response = await axios.post("https://threebeansapi.onrender.com/menu/create/item/", {
                 name,
                 category,
                 price,
@@ -74,7 +74,7 @@ export default function MenuItemProvider({ children }) {
     const updateMenuItem = async (id, name, category, price, description, image) => {
 
         try {
-            const updateItemUrl =`http://localhost:3001/menu/update/item/${id}`
+            const updateItemUrl =`https://threebeansapi.onrender.com/menu/update/item/${id}`
             await axios.patch(updateItemUrl, {
                 name,
                 category,
@@ -99,7 +99,7 @@ export default function MenuItemProvider({ children }) {
     // delete an item by the item id
     const deleteMenuItem = async(id) =>{
         try {
-            const deleteItemUrl =`http://localhost:3001/menu/delete/item/${id}`
+            const deleteItemUrl =`https://threebeansapi.onrender.com/menu/delete/item/${id}`
             console.log(deleteItemUrl)
             await axios.delete(deleteItemUrl, {
                headers: {
