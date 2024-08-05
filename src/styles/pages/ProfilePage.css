@@ -1,0 +1,37 @@
+#profileContentContainer {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+#profileContentBox {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    height: 300px;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+label {
+    margin: 5px;
+}
+
+input {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+button {
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: lightgray;
+}
