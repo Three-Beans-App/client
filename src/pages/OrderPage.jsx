@@ -2,15 +2,10 @@ import "../styles/pages/OrderPage.css";
 import React from "react";
 import QRCode from "react-qr-code";
 import { useOrderData } from "../contexts/orderContext";
-import { useNavigate } from "react-router-dom";
-
-
 
 
 export default function OrderPage(){
     const { order } = useOrderData();
-    const navigate = useNavigate();
-
 
     if (!order) {
         return <div>Loading...</div>;
