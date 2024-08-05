@@ -7,15 +7,27 @@
 
     #content-sub-box{
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        .item-details{
+        justify-content:space-between;
+        
+        .head-box{
+            margin-left: 40%;
+            padding: 20px;
            
-            display: flex;
-            width: 200px;
-            height: 200px;
-            margin: 20px;
         }
+        .cart-box{
+            display: flex;
+            padding: 20px;
+            margin-left: 50px;
+            #cartIcon{
+                all: unset;
+                cursor: pointer;
+            }
+            #cartIcon:hover{
+                color: brown;
+            }
+            
+        }
+        
     }
 
     .items{

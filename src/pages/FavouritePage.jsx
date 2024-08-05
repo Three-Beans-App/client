@@ -1,10 +1,12 @@
 import "../styles/pages/FavouritePage.css"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuItem from "../components/MenuItem"
 import { useFavouriteData, useFavouriteDispatch } from "../contexts/favouriteContext"
 import { useCartDispatch } from "../contexts/cartContext";
 import { useEffect, useState } from "react";
 import Popup from "../components/Popup";
 import { useMenuItemDispatch } from "../contexts/menuItemContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,6 +18,13 @@ export default function FavouritePage(){
     const { fetchMenuItems, fetchCategories, getFavouriteMenuItems } = useMenuItemDispatch();
     const favouriteMenuItems = getFavouriteMenuItems(favouriteList);
     const { handleAddToCart } = useCartDispatch()
+
+
+    const direct = useNavigate();
+    // navigation route
+    const handleDirect = (path) => {
+        direct(path);
+    }
 
     // load the data to the page
     useEffect(() => {
@@ -56,25 +65,31 @@ export default function FavouritePage(){
         
         <div id="content-main-box">
             <div id="content-sub-box">
-                <h1>My Favourite List</h1>
+                <div className="head-box">
+                    <h1>My Favourite List</h1>
+                </div>
+                <div className="cart-box">
+                    <button onClick={()=>handleDirect("/cart")} id="cartIcon" >
+                                <ShoppingCartIcon />
+                    </button>
+                </div>
             </div>
             <div>
-            <div className="items" >
-                {favouriteMenuItems.map((item) => (
-                            <MenuItem 
-                                key={item._id}
-                                id={item._id}
-                                name={item.name}
-                                price={item.price}
-                                description={item.description}
-                                image={item.image}
-                                onOpenItemDetail={() => handleOpenItemDetail(item)}
-                                onAddToCart={() => handleAddToCart(item)}
-                                onStarClick={() => onClickStar(item)}
-                            />
-                        ))}
-            </div>
-                
+                <div className="items" >
+                    {favouriteMenuItems.map((item) => (
+                                <MenuItem 
+                                    key={item._id}
+                                    id={item._id}
+                                    name={item.name}
+                                    price={item.price}
+                                    description={item.description}
+                                    image={item.image}
+                                    onOpenItemDetail={() => handleOpenItemDetail(item)}
+                                    onAddToCart={() => handleAddToCart(item)}
+                                    onStarClick={() => onClickStar(item)}
+                                />
+                            ))}
+                </div>    
             </div>
             {isItemDetailOpen && onClickItemDetail && (
                 <div id="itemDetail-popup" >
