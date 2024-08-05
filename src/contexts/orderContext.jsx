@@ -23,7 +23,20 @@ export default function OrderProvider({ children }){
     const [ allOrders, setAllOrders ] = useState([]);
     const [ activeOrders, setActiveOrders ] = useState([]);
     const { cartItems } = useCartData();
+    const [ QRCodeValue, setQRCodeValue] = useState(localStorage.getItem('QR-code-value') || "")
+    const [ QRorderStatus, setQRorderStatus] = useState(localStorage.getItem('QR-code-status') || "")
 
+    // update QRCodeValue and store value to localStorage
+    const storeQRCodeValue = (value) => {
+        setQRCodeValue(value);
+        localStorage.setItem('QR-code-value', value);
+    }
+
+    // update QRorderStatus and store value to localStorage
+    const storeQRorderStatus = (value) => {
+        setQRorderStatus(value);
+        localStorage.setItem('QR-code-status', value);
+    }
 
     // view all the order history by User id - user side
     const userViewAllOrders = async() => {
@@ -61,6 +74,8 @@ export default function OrderProvider({ children }){
             const response = await axios.post("http://localhost:3001/orders/", orderDetail);
             setOrder(response.data.order);
             setUserOrderHistory(existHistory => [...existHistory, response.data.order])
+            storeQRCodeValue(response.data.order._id)
+            storeQRorderStatus(response.data.order.status)
         }catch(error) {
             console.error("Error user create order: ", error)
         }
@@ -154,7 +169,7 @@ export default function OrderProvider({ children }){
 
 
     return (
-        <OrderDataContext.Provider value={{userOrderHistory, order, allOrders, activeOrders}}>
+        <OrderDataContext.Provider value={{userOrderHistory, order, allOrders, activeOrders, QRCodeValue, QRorderStatus}}>
             <OrderDispatchContext.Provider 
             value={{ 
                 userViewAllOrders,
