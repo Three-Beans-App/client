@@ -1,0 +1,6 @@
+.sale-container{
+    background-color: rgb(255, 255, 255, 0.8);
+    .sale-sub-container{
+        border: 1px solid red;
+    }
+}

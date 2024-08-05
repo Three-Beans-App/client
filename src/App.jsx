@@ -14,6 +14,8 @@ import ConfirmationPage from "./pages/ConfirmationPage";
 import OrderPage from "./pages/OrderPage";
 import ViewAllOrdersPage from "./pages/ViewAllOrdersPage";
 import ViewActiveOrdersPage from "./pages/ViewActiveOrdersPage";
+import ViewSalesPage from "./pages/ViewSalesPage";
+
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <Route path="order" element={<OrderPage />} />
           <Route path="view-all-orders" element={<ViewAllOrdersPage />} />
           <Route path="view-active-orders" element={<ViewActiveOrdersPage />} />
+          <Route path="/view-sales" element={<ViewSalesPage />} />
         </Route>        
       </Routes>
   );

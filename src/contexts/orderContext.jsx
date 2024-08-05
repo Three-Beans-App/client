@@ -43,7 +43,7 @@ export default function OrderProvider({ children }){
         try {
 
             const id = userId;
-            const historyUrl=`http://localhost:3001/orders/user/${id}`;
+            const historyUrl=`https://threebeansapi.onrender.com/orders/user/${id}`;
 
             const response = await axios.get(historyUrl, {
                 headers: {
@@ -71,7 +71,7 @@ export default function OrderProvider({ children }){
         };
         
         try {
-            const response = await axios.post("http://localhost:3001/orders/", orderDetail);
+            const response = await axios.post("https://threebeansapi.onrender.com/orders/", orderDetail);
             setOrder(response.data.order);
             setUserOrderHistory(existHistory => [...existHistory, response.data.order])
             storeQRCodeValue(response.data.order._id)
@@ -87,7 +87,7 @@ export default function OrderProvider({ children }){
     const adminViewAllOrders = async() => {
         try {
            
-            const response = await axios.get("http://localhost:3001/orders/",{
+            const response = await axios.get("https://threebeansapi.onrender.com/orders/",{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});
@@ -100,7 +100,7 @@ export default function OrderProvider({ children }){
     // admin view all the active orders
     const adminViewActiveOrders = async() => {
         try{
-            const response = await axios.get("http://localhost:3001/orders/active",{
+            const response = await axios.get("https://threebeansapi.onrender.com/orders/active",{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});
@@ -116,7 +116,7 @@ export default function OrderProvider({ children }){
     const updateOrderStatus = async(id, status) => {
         try{
            
-            const updateOrderUrl = `http://localhost:3001/orders/status/${id}`
+            const updateOrderUrl = `https://threebeansapi.onrender.com/orders/status/${id}`
             const response = await axios.patch(updateOrderUrl, 
                 { status },
                 {
@@ -147,7 +147,7 @@ export default function OrderProvider({ children }){
     const deleteOrder = async(id) => {
         try{
            
-            const updateOrderUrl = `http://localhost:3001/orders/deleteOrder/${id}`
+            const updateOrderUrl = `https://threebeansapi.onrender.com/orders/deleteOrder/${id}`
             const response = await axios.delete(updateOrderUrl,
                 {
                     headers: {
