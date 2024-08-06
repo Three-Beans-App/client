@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { useUserData } from "./userContext";
 import { API_BASE_URL } from "./variables";
 
