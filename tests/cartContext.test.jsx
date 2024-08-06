@@ -2,7 +2,7 @@ import React from "react";
 import { renderHook } from "@testing-library/react";
 import { act } from "react";
 import CartProvider, { useCartData, useCartDispatch } from "../src/contexts/cartContext";
-import { useActionData } from "react-router-dom";
+
 
 describe('Cart Context', () => {
     let wrapper;
@@ -109,6 +109,36 @@ describe('Cart Context', () => {
 
             act(() => {
                 initialResult.current.dispatch.handleRemoveItem('Test Item');
+            });
+
+            const { result: updatedResult } = renderHook(() => useCartData(), { wrapper });
+
+            expect(updatedResult.current.cartItems.length).toBe(0);
+        });
+    });
+
+
+    describe('handleEmptyCart', () => {
+        it('should clear all items from the cart', () => {
+            const { result: initialResult } = renderHook(() => {
+                const data = useCartData();
+                const dispatch = useCartDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            act(() => {
+                initialResult.current.dispatch.handleAddToCart({
+                    name: 'Test Item',
+                    price: 10
+                });
+                initialResult.current.dispatch.handleAddToCart({
+                    name: 'Test Item 2',
+                    price: 15
+                });
+            });
+
+            act(() => {
+                initialResult.current.dispatch.handleEmptyCart();
             });
 
             const { result: updatedResult } = renderHook(() => useCartData(), { wrapper });
