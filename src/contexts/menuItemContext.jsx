@@ -1,6 +1,7 @@
 import { useState, createContext, useContext } from 'react';
 import axios from 'axios';
 import { useUserData } from './userContext';
+import { API_BASE_URL } from './variables';
 
 const MenuItemDataContext = createContext(null);
 const MenuItemDispatchContext = createContext(null);
@@ -28,7 +29,7 @@ export default function MenuItemProvider({ children }) {
     // get all the menu items from database
     const fetchMenuItems = async () => {
         try {
-            const response = await axios.get("https://threebeansapi.onrender.com/menu/items/");
+            const response = await axios.get(`${API_BASE_URL}/menu/items/`);
             setMenuItems(response.data.result);
         } catch (error) {
             console.error("Error fetching menu items: ", error);
@@ -39,7 +40,7 @@ export default function MenuItemProvider({ children }) {
     // get all the categories from database
     const fetchCategories = async () => {
         try {
-            const response = await axios.get("https://threebeansapi.onrender.com/menu/categories/");
+            const response = await axios.get(`${API_BASE_URL}/menu/categories/`);
             setCategories(response.data.result);
         } catch (error) {
             console.error("Error fetching categories: ", error);
@@ -50,7 +51,7 @@ export default function MenuItemProvider({ children }) {
     const addMenuItem = async (name, category, price, description, image) => {
         try {
 
-            const response = await axios.post("https://threebeansapi.onrender.com/menu/create/item/", {
+            const response = await axios.post(`${API_BASE_URL}/menu/create/item/`, {
                 name,
                 category,
                 price,
@@ -74,7 +75,7 @@ export default function MenuItemProvider({ children }) {
     const updateMenuItem = async (id, name, category, price, description, image) => {
 
         try {
-            const updateItemUrl =`https://threebeansapi.onrender.com/menu/update/item/${id}`
+            const updateItemUrl =`${API_BASE_URL}/menu/update/item/${id}`
             await axios.patch(updateItemUrl, {
                 name,
                 category,
@@ -99,7 +100,7 @@ export default function MenuItemProvider({ children }) {
     // delete an item by the item id
     const deleteMenuItem = async(id) =>{
         try {
-            const deleteItemUrl =`https://threebeansapi.onrender.com/menu/delete/item/${id}`
+            const deleteItemUrl =`${API_BASE_URL}/menu/delete/item/${id}`
             console.log(deleteItemUrl)
             await axios.delete(deleteItemUrl, {
                headers: {

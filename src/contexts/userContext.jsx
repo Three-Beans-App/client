@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from "react";
 import axios from 'axios';
+import { API_BASE_URL } from "./variables";
 
 const UserDataContext = createContext(null);
 const UserDispatchContext = createContext(null);
@@ -55,7 +56,7 @@ export default function UserProvider({children}){
 
         let bodyData = { name, email, password, birthday };
         try {
-            let response = await axios.post("https://threebeansapi.onrender.com/users/signup", bodyData)
+            let response = await axios.post(`${API_BASE_URL}/users/signup`, bodyData)
             
             let signUpResult = response.data
 
@@ -83,7 +84,7 @@ export default function UserProvider({children}){
         let bodyData = { email, password };
 
         try{
-            const response = await axios.post("https://threebeansapi.onrender.com/users/login", bodyData);
+            const response = await axios.post(`${API_BASE_URL}/users/login`, bodyData);
 
             const loginResult = response.data;
 
@@ -123,7 +124,7 @@ export default function UserProvider({children}){
      const updateExistingUser = async ( name, email, password, birthday) => {
 
         try {
-            const updateUserUrl =`https://threebeansapi.onrender.com/users/update/`
+            const updateUserUrl =`${API_BASE_URL}/users/update/`
             await axios.patch(updateUserUrl, {
                 name,
                 email,
