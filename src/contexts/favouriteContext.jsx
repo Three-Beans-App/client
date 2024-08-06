@@ -36,7 +36,7 @@ export default function FavouriteProvider({children}){
         try{
             // if the item is not in the favourite list, then store the item to the favourite list
             if (!isAlreadyFavourite) {
-                const response = await axios.post("http://localhost:3001/favourites/",
+                const response = await axios.post("https://threebeansapi.onrender.com/favourites/",
                     {userId, itemId: item._id},
                     {
                         headers: {
@@ -48,7 +48,7 @@ export default function FavouriteProvider({children}){
             } else {
 
                 // else this item already exist in the favourite list, then when onclick, it will delete it from favourite list
-                await axios.delete(`http://localhost:3001/favourites/${favouriteItem._id}`, {
+                await axios.delete(`https://threebeansapi.onrender.com/favourites/${favouriteItem._id}`, {
                     headers: {
                         'Authorization': `Bearer ${userJwt}`
                     },
@@ -66,7 +66,7 @@ export default function FavouriteProvider({children}){
     // fetch FavouriteList 
     const fetchFavouriteList = async() => {
         try{
-            const response = await axios.get(`http://localhost:3001/favourites/${userId}`,{
+            const response = await axios.get(`https://threebeansapi.onrender.com/favourites/${userId}`,{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});

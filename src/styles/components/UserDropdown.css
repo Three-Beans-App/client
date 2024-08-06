@@ -18,8 +18,8 @@
         right: 0;
         background-color: none;
         border: none;
-        border-radius: 5px;
         width: 200px;   
+        color: black;
        
     }
 
@@ -29,6 +29,7 @@
         text-align: left;
         width: 100%;
         font-weight: bolder;
+        color: black;
         
     }
 }
