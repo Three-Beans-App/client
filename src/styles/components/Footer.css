@@ -5,11 +5,15 @@ footer{
    .copyright{
     font-size: large;
     font-weight: bold;
+
    }
 
     .admin-btn{
-        width: 80px;
-        height: 30px;
+        width: 100px;
+        height: 50px;
         border-radius: 10px;
+        background-color: white;
+        font-weight: bold;
+        color: black;
     }
 }

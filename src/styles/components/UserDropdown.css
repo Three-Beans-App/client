@@ -6,6 +6,7 @@
     .icon{
         font-size: 70px;
         cursor: pointer;
+        color: white;
     }
 
     .dropdown-items{

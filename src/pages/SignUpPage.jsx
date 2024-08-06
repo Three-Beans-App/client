@@ -10,14 +10,19 @@ export default function SignUpPage(){
     const [birthday, setBirthday] = useState("");
     const {makeSignupRequest} = useUserDispatch();
     const { isLoggedIn } = useUserData();
+    const [error, setError] = useState("");
 
     // call the function to sign up
     const handleSignup = async (event) => {
         event.preventDefault();
-        await makeSignupRequest(name, email, password, birthday);
-       
-    };
-    
+        const signupReq = await makeSignupRequest(name, email, password, birthday);
+        if(!signupReq.success){
+            setError(signupReq.message)
+            return;
+        } else{
+            setError("")
+        }
+    };  
 
     return(
         <div id="signupContentContainer">
@@ -53,6 +58,10 @@ export default function SignUpPage(){
                     <button type="submit" >
                         Sign Up
                     </button>
+                    {error && 
+                        <div className="error">{error}</div>
+                    }
+                    
                 </form>
 
 

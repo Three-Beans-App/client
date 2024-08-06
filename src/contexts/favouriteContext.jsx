@@ -24,16 +24,19 @@ export default function FavouriteProvider({children}){
         localStorage.setItem("favourite-list", JSON.stringify(favouriteList))
     },[favouriteList])
 
-    // function for add item to favourite list
+    // function for add or delete item to favourite list by onClick the star
     const onClickStar = async(item) => {
+        
+        // find the item id which match the item in the favourite list 
         const favouriteItem = favouriteList.find(favourite => favourite.item.itemId === item._id);
+        // store the item whether is in the favourite list, return true or false
         const isAlreadyFavourite = favouriteItem !== undefined;
         
 
-        //https://threebeansapi.onrender.com/favourites/  or "https://threebeansapi.onrender.com/favourites/"
         try{
+            // if the item is not in the favourite list, then store the item to the favourite list
             if (!isAlreadyFavourite) {
-                const response = await axios.post("https://threebeansapi.onrender.com/favourites/",
+                const response = await axios.post("http://localhost:3001/favourites/",
                     {userId, itemId: item._id},
                     {
                         headers: {
@@ -43,7 +46,9 @@ export default function FavouriteProvider({children}){
                 );
                 setFavouriteList([...favouriteList, response.data.favourite]);
             } else {
-                await axios.delete(`https://threebeansapi.onrender.com/favourites/${favouriteItem._id}`, {
+
+                // else this item already exist in the favourite list, then when onclick, it will delete it from favourite list
+                await axios.delete(`http://localhost:3001/favourites/${favouriteItem._id}`, {
                     headers: {
                         'Authorization': `Bearer ${userJwt}`
                     },
@@ -61,7 +66,7 @@ export default function FavouriteProvider({children}){
     // fetch FavouriteList 
     const fetchFavouriteList = async() => {
         try{
-            const response = await axios.get(`https://threebeansapi.onrender.com/favourites/${userId}`,{
+            const response = await axios.get(`http://localhost:3001/favourites/${userId}`,{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});

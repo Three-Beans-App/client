@@ -1,8 +1,9 @@
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext"
 import "../styles/pages/ViewAllOrderPage.css"
-import datetimeFormat from "../functions/datetimeFormat";
+import  datetimeFormat  from "../functions/datetimeFormat";
 import { useEffect } from "react";
 import { useUserData } from "../contexts/userContext";
+import { toDollarValue } from "../functions/toDollarValue";
 
 
 export default function ViewAllOrdersPage(){
@@ -49,13 +50,13 @@ export default function ViewAllOrdersPage(){
                                     <div className="item-details">
                                         <div className="item-name-content">{item.name}</div>
                                         <div className="item-content">{item.quantity}</div>
-                                        <div className="item-content">${item.price}</div>
-                                        <div className="item-content">${item.total}</div>
+                                        <div className="item-content">${toDollarValue(item.price)}</div>
+                                        <div className="item-content">${toDollarValue(item.total)}</div>
                                     </div>
                                 ))}
                         </div>
                         <div className="order-details-right">
-                            <p><b>Total Cost:</b> ${order?.totalPrice}</p>
+                            <p><b>Total Cost:</b> ${toDollarValue(order?.totalPrice)}</p>
                         </div>
                     </div>
                 ))}
