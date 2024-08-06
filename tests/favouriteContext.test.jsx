@@ -52,5 +52,37 @@ describe('Favourite Context', () => {
             expect(result.current.data.favouriteList.length).toBe(1);
             expect(result.current.data.favouriteList[0].item).toEqual(testItem);
         });
+
+        it('should remove an item from the favourite list', async () => {
+            const testItem = {
+                _id: '1234',
+                name: 'Test Item'
+            };
+            const favouriteItem = {
+                _id: 'fav1234',
+                item: {
+                    itemId: testItem._id,
+                    ...testItem
+                }
+            };
+
+            axios.delete.mockResolvedValue({ status: 200 });
+
+            const { result } = renderHook(() => {
+                const data = useFavouriteData();
+                const dispatch = useFavouriteDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            act(() => {
+                result.current.data.favouriteList.push(favouriteItem);
+            });
+
+            await act(async () => {
+                await result.current.dispatch.onClickStar(testItem);
+            });
+
+            expect(result.current.data.favouriteList.length).toBe(0);
+        });
     });
 });
