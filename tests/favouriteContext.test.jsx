@@ -85,4 +85,44 @@ describe('Favourite Context', () => {
             expect(result.current.data.favouriteList.length).toBe(0);
         });
     });
+
+
+    describe('fetchFavouriteList', () => {
+        it('should fetch and set the favourite list', async () => {
+            const testFavouriteList = [
+                {
+                    _id: 'fav1234',
+                    item: {
+                        _id: '1234',
+                        name: 'Test Item'
+                    }
+                },
+                {
+                    _id: 'fav5678',
+                    item: {
+                        _id: '5678',
+                        name: 'Test Item 2'
+                    }
+                }
+            ];
+
+            axios.get.mockResolvedValue({
+                data: {
+                    result: testFavouriteList
+                }
+            });
+
+            const { result } = renderHook(() => {
+                const data = useFavouriteData();
+                const dispatch = useFavouriteDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.fetchFavouriteList();
+            });
+
+            expect(result.current.data.favouriteList).toEqual(testFavouriteList);
+        });
+    });
 });
