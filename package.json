@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "dev": "nodemon /src/index.js"
   },
@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.24.7",
     "nodemon": "^3.1.4"
   },
   "proxy": "https://localhost:3001"
