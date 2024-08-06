@@ -5,12 +5,14 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
 import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
 import { useRef } from "react";
+import { useUserData } from "../contexts/userContext";
 
 
 
 export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarClick}){
 
     const popupItemRef = useRef(null);
+    const {isLoggedIn} = useUserData();
 
     // function for handle popup 
     // when onclick outside of the popup then close the popup
@@ -34,9 +36,11 @@ export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarC
                     <p>{item.description}</p>
                 </div>
                 <div id="icon">
+                {isLoggedIn && 
                     <div onClick={(e) => { e.stopPropagation(); onStarClick(item); }}>
                         <Star className="start-icon" itemId={item._id}/>
                     </div>
+                }
                     <div>
                         <AddShoppingCartIcon className="cart-icon" onClick={(e) => { e.stopPropagation(); onAddToCart(item); }} />
                     </div>

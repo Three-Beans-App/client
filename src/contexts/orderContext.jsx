@@ -25,6 +25,7 @@ export default function OrderProvider({ children }){
     const { cartItems } = useCartData();
     const [ QRCodeValue, setQRCodeValue] = useState(localStorage.getItem('QR-code-value') || "")
     const [ QRorderStatus, setQRorderStatus] = useState(localStorage.getItem('QR-code-status') || "")
+    
 
     // update QRCodeValue and store value to localStorage
     const storeQRCodeValue = (value) => {
@@ -43,7 +44,7 @@ export default function OrderProvider({ children }){
         try {
 
             const id = userId;
-            const historyUrl=`https://threebeansapi.onrender.com/orders/user/${id}`;
+            const historyUrl=`http://localhost:3001/orders/user/${id}`;
 
             const response = await axios.get(historyUrl, {
                 headers: {
@@ -71,7 +72,7 @@ export default function OrderProvider({ children }){
         };
         
         try {
-            const response = await axios.post("https://threebeansapi.onrender.com/orders/", orderDetail);
+            const response = await axios.post("http://localhost:3001/orders/", orderDetail);
             setOrder(response.data.order);
             setUserOrderHistory(existHistory => [...existHistory, response.data.order])
             storeQRCodeValue(response.data.order._id)
@@ -87,11 +88,12 @@ export default function OrderProvider({ children }){
     const adminViewAllOrders = async() => {
         try {
            
-            const response = await axios.get("https://threebeansapi.onrender.com/orders/",{
+            const response = await axios.get("http://localhost:3001/orders/",{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});
             setAllOrders(response.data.result);
+            // storeSalesReport(response.data.result, getTotalPriceOfAllOrders)
         }catch(error) {
             console.error("Error user create order: ", error)
         }
@@ -100,7 +102,7 @@ export default function OrderProvider({ children }){
     // admin view all the active orders
     const adminViewActiveOrders = async() => {
         try{
-            const response = await axios.get("https://threebeansapi.onrender.com/orders/active",{
+            const response = await axios.get("http://localhost:3001/orders/active",{
                 headers: {
                     'Authorization': `Bearer ${userJwt}`
                 }});
@@ -116,7 +118,7 @@ export default function OrderProvider({ children }){
     const updateOrderStatus = async(id, status) => {
         try{
            
-            const updateOrderUrl = `https://threebeansapi.onrender.com/orders/status/${id}`
+            const updateOrderUrl = `http://localhost:3001/orders/status/${id}`
             const response = await axios.patch(updateOrderUrl, 
                 { status },
                 {
@@ -143,31 +145,6 @@ export default function OrderProvider({ children }){
     }
 
 
-    //admin delete order
-    const deleteOrder = async(id) => {
-        try{
-           
-            const updateOrderUrl = `https://threebeansapi.onrender.com/orders/deleteOrder/${id}`
-            const response = await axios.delete(updateOrderUrl,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${userJwt}`
-                    }
-                }
-            );
-            // update status in local
-            if (response.status === 200) {
-                // update local values
-                setActiveOrders(activeOrders.filter(order => order._id !== id));
-                setAllOrders(allOrders.filter(order => order._id !== id));
-            }
-
-        }catch(error){
-    console.error("Error user create order: ", error)
-    }
-    }
-
-
     return (
         <OrderDataContext.Provider value={{userOrderHistory, order, allOrders, activeOrders, QRCodeValue, QRorderStatus}}>
             <OrderDispatchContext.Provider 
@@ -177,7 +154,7 @@ export default function OrderProvider({ children }){
                 adminViewAllOrders, 
                 adminViewActiveOrders, 
                 updateOrderStatus, 
-                deleteOrder }}>
+            }}>
                 {children}
             </OrderDispatchContext.Provider>
         </OrderDataContext.Provider>

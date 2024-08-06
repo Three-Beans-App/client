@@ -18,13 +18,13 @@ export default function LoginPage(){
     const handleLogin = async (event) => {
         event.preventDefault();
         const LoginReq = await makeLoginRequest(email, password);
-        direct("/");
-        if (!LoginReq.success){
+       if (!LoginReq.success){
             setError(LoginReq.message);
             console.log(error);
             return;
         } else {
             setError("");
+            direct("/");
         };
     }
         
@@ -46,15 +46,18 @@ export default function LoginPage(){
         
                     />
                     <div id="space" />
-                    <button  type="submit" id="login-bnt">
+                    <button  type="submit" >
                     Login
                     </button>
                     <label>Or if you not a member:</label>
                     <div>
                     <NavLink to={"/signup"}>
-                        <button className="button">Sign Up Now</button>
+                        <button >Sign Up Now</button>
                     </NavLink>
                     </div>
+                    {error && 
+                        <div className="error">{error}</div>
+                    }
                 </form> 
             </div>
         </div>   

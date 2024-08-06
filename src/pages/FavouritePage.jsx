@@ -47,21 +47,6 @@ export default function FavouritePage(){
     } ;
 
     return (
-        // <div id="content-main-box">
-        //     <div id="content-sub-box">
-        //         <section className="top-title">
-        //             <h1>My Favourite List</h1>
-        //         </section>
-        //         <div>
-        //             {favouriteList && favouriteList.map((list) => (
-        //                 <div className="item-details">
-        //                     <div className="item-name-content">{list.item.name}</div>
-        //                     <div className="item-content">${list.item.price}</div>
-        //                 </div>
-        //             ))} 
-        //         </div>
-        //  </div>
-        // </div>
         
         <div id="content-main-box">
             <div id="content-sub-box">

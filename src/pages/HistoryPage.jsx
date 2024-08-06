@@ -1,7 +1,7 @@
 import "../styles/pages/HistoryPage.css";
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext";
 import { useEffect } from "react";
-import datetimeFormat from "../functions/datetimeFormat";
+import  datetimeFormat from "../functions/datetimeFormat";
 
 export default function HistoryPage() {
     const { userOrderHistory } = useOrderData();
@@ -47,7 +47,7 @@ export default function HistoryPage() {
                                 ))}
                         </div>
                         <div className="order-details-right">
-                            <p><b>Total Cost:</b> ${order?.totalPrice}</p>
+                            <p><b>Total Cost:</b> ${order?.totalPrice.toFixed(2)}</p>
                         </div>
                     </div>
                 ))}

@@ -55,7 +55,7 @@ export default function UserProvider({children}){
 
         let bodyData = { name, email, password, birthday };
         try {
-            let response = await axios.post("https://threebeansapi.onrender.com/users/signup", bodyData)
+            let response = await axios.post("http://localhost:3001/users/signup", bodyData)
             
             let signUpResult = response.data
 
@@ -83,7 +83,7 @@ export default function UserProvider({children}){
         let bodyData = { email, password };
 
         try{
-            const response = await axios.post("https://threebeansapi.onrender.com/users/login", bodyData);
+            const response = await axios.post("http://localhost:3001/users/login", bodyData);
 
             const loginResult = response.data;
 
@@ -123,7 +123,7 @@ export default function UserProvider({children}){
      const updateExistingUser = async ( name, email, password, birthday) => {
 
         try {
-            const updateUserUrl =`https://threebeansapi.onrender.com/users/update/`
+            const updateUserUrl =`http://localhost:3001/users/update/`
             await axios.patch(updateUserUrl, {
                 name,
                 email,

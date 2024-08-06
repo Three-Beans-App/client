@@ -3,10 +3,11 @@ import { useOrderData, useOrderDispatch } from "../contexts/orderContext"
 import "../styles/pages/ViewActiveOrdersPage.css"
 import datetimeFormat from "../functions/datetimeFormat";
 import { useUserData } from "../contexts/userContext";
+import { toDollarValue } from "../functions/toDollarValue";
 
 
 export default function ViewActiveOrdersPage(){
-    const { adminViewActiveOrders, updateOrderStatus, deleteOrder} = useOrderDispatch()
+    const { adminViewActiveOrders, updateOrderStatus } = useOrderDispatch()
     const { activeOrders } = useOrderData()
     const { isAdmin } = useUserData()
 
@@ -67,7 +68,7 @@ export default function ViewActiveOrdersPage(){
                             </div>
                             <div className="status-change-right">
                                 <button onClick={()=>updateOrderStatus(order._id, getNextStatus(order.status))}>{getAction(order.status)}</button>
-                                <button onClick={()=>deleteOrder(order._id)}>Cancel</button>
+                                <button onClick={()=>updateOrderStatus(order._id, "cancelled")}>Cancel</button>
                             </div>
                         </div>
                         <div className="order-items">
@@ -83,12 +84,12 @@ export default function ViewActiveOrdersPage(){
                                         <div className="item-name-content">{item.name}</div>
                                         <div className="item-content">{item.quantity}</div>
                                         <div className="item-content">${item.price}</div>
-                                        <div className="item-content">${item.total}</div>
+                                        <div className="item-content">${toDollarValue(item.total)}</div>
                                     </div>
                                 ))}
                         </div>
                         <div className="order-details-right">
-                            <p><b>Total Cost:</b> ${order?.totalPrice}</p>
+                            <p><b>Total Cost:</b> ${toDollarValue(order?.totalPrice)}</p>
                         </div>
                     </div>
                 ))}
