@@ -90,4 +90,30 @@ describe('Cart Context', () => {
             expect(updatedResult.current.cartItems[0].quantity).toBe(5);
         });
     });
+
+
+    describe('handleRemoveItem', () => {
+        it('should remove an item from the cart', () => {
+            const { result: initialResult } = renderHook(() => {
+                const data = useCartData();
+                const dispatch = useCartDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            act(() => {
+                initialResult.current.dispatch.handleAddToCart({
+                    name: 'Test Item',
+                    price: 10
+                });
+            });
+
+            act(() => {
+                initialResult.current.dispatch.handleRemoveItem('Test Item');
+            });
+
+            const { result: updatedResult } = renderHook(() => useCartData(), { wrapper });
+
+            expect(updatedResult.current.cartItems.length).toBe(0);
+        });
+    });
 });
