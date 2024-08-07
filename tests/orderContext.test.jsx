@@ -58,4 +58,37 @@ describe('OrderContext', () => {
             );
         });
     });
+
+
+    describe('userCreateOrder', () => {
+        it('should create a new order and update the user order history', async () => {
+            const testOrder = {
+                _id: '123',
+                items: [{ itemId: '1', quantity: 2 }, { itemId: '2', quantity: 1 }],
+                status: 'pending'
+            };
+            axios.post.mockResolvedValue({ data: { order: testOrder}});
+
+            const { result } = renderHook(() => {
+                const data = useOrderData();
+                const dispatch = useOrderDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.userCreateOrder({ userId: 'testUserId', guestUser: false });  
+            });
+
+            expect(axios.post).toHaveBeenCalledWith(
+                expect.stringContaining('/orders/'),
+                expect.objectContaining({
+                    userId: 'testUserId',
+                    guestUser: false,
+                    items: [{ itemId: '1', quantity: 2}, { itemId: '2', quantity: 1 }]
+                })
+            );
+            expect(result.current.data.order).toEqual(testOrder);
+            expect(result.current.data.userOrderHistory).toContainEqual(testOrder);
+        });
+    });
 });
