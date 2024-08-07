@@ -114,6 +114,33 @@ describe('OrderContext', () => {
                 expect.any(Object)
             );
             expect(result.current.data.allOrders).toEqual(testOrders);
-        })
+        });
     });
+
+
+    describe('adminViewActiveOrders', () => {
+        it('should fetch and set active orders', async () => {
+            const testOrders = [
+                { _id: '1', status: 'pending' },
+                { _id: '2', status: 'preparing' },
+            ];
+            axios.get.mockResolvedValue({ data: { result: testOrders } });
+
+            const { result } = renderHook(() => {
+                const data = useOrderData();
+                const dispatch = useOrderDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.adminViewActiveOrders();
+            });
+
+            expect(axios.get).toHaveBeenCalledWith(
+                expect.stringContaining('/orders/active'),
+                expect.any(Object)
+            );
+            expect(result.current.data.activeOrders.length).toBe(2);
+        })
+    })
 });
