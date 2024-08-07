@@ -14,8 +14,8 @@ export function useMenuItemDispatch() {
     return useContext(MenuItemDispatchContext);
 };
 
-export default function MenuItemProvider({ children }) {
-    const [menuItems, setMenuItems] = useState([]);
+export default function MenuItemProvider({ children, defaultMenuItems = [] }) {
+    const [menuItems, setMenuItems] = useState(defaultMenuItems);
     const [categories, setCategories] = useState([]);
     const { userJwt } = useUserData();
 
@@ -122,7 +122,8 @@ export default function MenuItemProvider({ children }) {
                     getFavouriteMenuItems, 
                     updateMenuItem,
                     getMenuItemById,
-                    deleteMenuItem
+                    deleteMenuItem,
+                    setMenuItems
                     }}
             >
                 {children}

@@ -23,17 +23,45 @@ describe('MenuItemContext', () => {
         wrapper = ({ children }) => <MenuItemProvider>{children}</MenuItemProvider>;
     });
 
+
+    describe('getFavouriteMenuItems', () => {
+        it('should return items within the favourite list', () => {
+            const testMenuItems = [
+                { _id: '1', name: 'Test Item'},
+                { _id: '2', name: 'Test Item 2'},
+                { _id: '3', name: 'Test Item 3'}
+            ];
+
+            const favouriteList = [
+                { item: { itemId: '1'} },
+                { item: { itemId: '3'} }
+            ];
+
+            wrapper = ({ children }) => (
+                <MenuItemProvider defaultMenuItems={testMenuItems}>
+                    {children}
+                </MenuItemProvider>
+            );
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            const favouriteItems = result.current.dispatch.getFavouriteMenuItems(favouriteList);
+
+            console.log('Favourite Items:', favouriteItems);
+            expect(favouriteItems).toEqual([testMenuItems[0], testMenuItems[2]]);
+            });        
+        });
+
+
     describe('fetchMenuItems', () => {
         it('should fetch and set menu items', async () => {
             const testMenuItems = [
-                {
-                    _id: '1',
-                    name: 'Test Item'
-                },
-                {
-                    _id: '2',
-                    name: 'Test Item 2'
-                }
+                { _id: '1', name: 'Test Item' },
+                { _id: '2', name: 'Test Item 2' }
             ];
             axios.get.mockResolvedValue({ data: { result: testMenuItems}});
 
