@@ -141,6 +141,32 @@ describe('OrderContext', () => {
                 expect.any(Object)
             );
             expect(result.current.data.activeOrders.length).toBe(2);
-        })
-    })
+        });
+    });
+
+
+    describe('updateOrderStatus', () => {
+        it('should update the order status and update local orders', async () => {
+            const testOrderId = '1';
+            const newStatus = 'completed';
+
+            axios.patch.mockResolvedValue({ status: 200 });
+
+            const { result } = renderHook(() => {
+                const data = useOrderData();
+                const dispatch = useOrderDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.updateOrderStatus(testOrderId, newStatus);
+            });
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                expect.stringContaining(`/orders/status/${testOrderId}`),
+                    { status: newStatus },
+                    expect.any(Object)
+            );
+        });
+    });
 });
