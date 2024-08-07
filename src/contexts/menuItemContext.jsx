@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import axios from 'axios';
 import { useUserData } from './userContext';
 import { API_BASE_URL } from './variables';
