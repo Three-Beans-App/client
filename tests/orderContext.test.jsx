@@ -3,8 +3,6 @@ import { renderHook } from "@testing-library/react";
 import { act } from "react";
 import OrderProvider, { useOrderData, useOrderDispatch } from "../src/contexts/orderContext";
 import axios from "axios";
-import { useUserData } from "../src/contexts/userContext";
-import { useCartData } from "../src/contexts/cartContext";
 
 jest.mock('../src/contexts/userContext', () => ({
     useUserData: () => ({
@@ -90,5 +88,32 @@ describe('OrderContext', () => {
             expect(result.current.data.order).toEqual(testOrder);
             expect(result.current.data.userOrderHistory).toContainEqual(testOrder);
         });
+    });
+
+
+    describe('adminViewAllOrders', () => {
+        it('should fetch and set all orders', async () => {
+            const testOrders = [
+                {_id: '1', status: 'pending'},
+                {_id: '2', status: 'completed'}
+            ];
+            axios.get.mockResolvedValue({ data: { result: testOrders } });
+
+            const { result } = renderHook(() => {
+                const data = useOrderData();
+                const dispatch = useOrderDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.adminViewAllOrders();
+            });
+
+            expect(axios.get).toHaveBeenCalledWith(
+                expect.stringContaining('/orders/'),
+                expect.any(Object)
+            );
+            expect(result.current.data.allOrders).toEqual(testOrders);
+        })
     });
 });
