@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useUserData } from "../contexts/userContext"
 import { useCartData } from './cartContext';
 import { API_BASE_URL } from './variables';

@@ -4,7 +4,6 @@ import { act } from "react";
 import FavouriteProvider, { useFavouriteData, useFavouriteDispatch } from "../src/contexts/favouriteContext";
 import axios from "axios";
 
-
 jest.mock('../src/contexts/userContext', () => ({
     useUserData: () => ({
         userJwt: 'test-jwt-token',
