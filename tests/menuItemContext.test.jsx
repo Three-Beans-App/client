@@ -139,4 +139,47 @@ describe('MenuItemContext', () => {
             );
         });
     });
+
+
+    describe('updateMenuItem', () => {
+        it('should update an existing menu item', async () => {
+            const updatedItem = {
+                id: '1',
+                name: 'Updated Item',
+                category: 'Updated Category',
+                price: 15,
+                description: 'Updated description',
+                image: 'updated-image-url'
+            };
+
+            axios.patch.mockResolvedValueOnce({ status: 200 });
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.updateMenuItem(
+                    updatedItem.id,
+                    updatedItem.name,
+                    updatedItem.category,
+                    updatedItem.price,
+                    updatedItem.description,
+                    updatedItem.image
+                );
+            });
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                expect.stringContaining(`/menu/update/item/${updatedItem.id}`),
+                expect.objectContaining({
+                    name: updatedItem.name,
+                    category:updatedItem.category,
+                    price: updatedItem.price
+                }),
+                expect.any(Object)
+            );
+        });
+    });
 });
