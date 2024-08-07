@@ -51,7 +51,7 @@ export default function FavouritePage(){
         <div id="content-main-box">
             <div id="content-sub-box">
                 <div className="head-box">
-                    <h1>My Favourite List</h1>
+                     <h1>Favourite Items</h1>
                 </div>
                 <div className="cart-box">
                     <button onClick={()=>handleDirect("/cart")} id="cartIcon" >

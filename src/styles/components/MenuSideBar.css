@@ -33,13 +33,15 @@ button:hover{
         }
     }
     button{
-        width: 90px;
+        width: auto;
         height:50px;
+        flex-wrap: wrap;
         font-size:medium;
         display: flex;
         justify-content: center;
         align-items: center;
         color:black; 
-        font-weight: bold;    
+        font-weight: bold;  
+        padding: 5px;  
     }
 }   

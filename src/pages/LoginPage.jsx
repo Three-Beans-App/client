@@ -17,17 +17,16 @@ export default function LoginPage(){
     // then navigate to home page after login
     const handleLogin = async (event) => {
         event.preventDefault();
-        const LoginReq = await makeLoginRequest(email, password);
-       if (!LoginReq.success){
-            setError(LoginReq.message);
-            console.log(error);
-            return;
+        const loginRes = await makeLoginRequest(email, password);
+
+        if (loginRes.success === false){
+            setError(loginRes.message);
         } else {
             setError("");
             direct("/");
         };
     }
-        
+
 
 
     return(
