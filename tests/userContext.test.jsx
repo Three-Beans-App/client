@@ -100,4 +100,28 @@ describe('UserContext', () => {
             expect(loginResult.status).toBe(200);
         });
     });
+
+
+    describe('logoutUser', () => {
+        it('should log out the user and clear stored data', () => {
+            mockLocalStorage('userJwt', 'token');
+            mockLocalStorage('isLoggedIn', 'true');
+            mockLocalStorage('userId', '123');
+            mockLocalStorage('isAdmin', 'true');
+
+            const { result } = renderHook(() => {
+                const dispatch = useUserDispatch();
+                return { dispatch };
+            }, { wrapper });
+
+            act(() => {
+                result.current.dispatch.logoutUser();
+            });
+
+            expect(localStorage.getItem('userJwt')).toBe('');
+            expect(localStorage.getItem('isLoggedIn')).toBe('false');
+            expect(localStorage.getItem('userId')).toBe('null');
+            expect(localStorage.getItem('isAdmin')).toBe('null');
+        });
+    });
 });
