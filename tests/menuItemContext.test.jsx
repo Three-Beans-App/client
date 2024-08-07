@@ -78,4 +78,27 @@ describe('MenuItemContext', () => {
             expect(result.current.data.menuItems).toEqual(testMenuItems);
         });
     });
+
+
+    describe('fetchCategories', () => {
+        it('should fetch and set categories', async () => {
+            const testCategories = [
+                {_id: '1', name: 'Test Category'},
+                {_id: '1', name: 'Test Category 2'}
+            ];
+            axios.get.mockResolvedValue({ data: { result: testCategories }});
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.fetchCategories();
+            });
+
+            expect(result.current.data.categories).toEqual(testCategories);
+        });
+    });
 });
