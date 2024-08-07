@@ -2,10 +2,7 @@ import React from "react";
 import { renderHook } from "@testing-library/react";
 import { act } from "react";
 import MenuItemProvider, { useMenuItemData, useMenuItemDispatch } from "../src/contexts/menuItemContext";
-
 import axios from "axios";
-
-
 
 jest.mock('../src/contexts/userContext', () => ({
     useUserData: () => ({
