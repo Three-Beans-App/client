@@ -182,4 +182,29 @@ describe('MenuItemContext', () => {
             );
         });
     });
+
+
+    describe('getMenuItemById', () => {
+        it('should return a menu item by ID', () => {
+            const testMenuItems = [
+                { _id: '1', name: 'Test Item 1' },
+                { _id: '2', name: 'Test Item 2' }
+            ];
+
+            wrapper = ({ children }) => (
+                <MenuItemProvider defaultMenuItems={testMenuItems}>
+                    {children}
+                </MenuItemProvider>
+            );
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            const menuItem = result.current.dispatch.getMenuItemById('2');
+            expect(menuItem).toEqual(testMenuItems[1]);
+        })
+    });
 });
