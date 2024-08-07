@@ -5,17 +5,25 @@
     background-color: rgb(255, 255, 255, 0.8);
     #admin-sub-container{
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        margin: 20px;
+        align-items: center;
+        margin: 30px;
+        
         
         .nav-btn{
+            width: 200px;
             border-radius: 4px;
-            margin: 50px;
+            margin: 30px;
+            color: black;
+            background-color: lightgray;
         }
         .nav-btn:hover{
             background-color: gray;
             font-weight: bold;
+            color: black;
         }
     
     }
 }
+
