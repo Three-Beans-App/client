@@ -124,4 +124,37 @@ describe('UserContext', () => {
             expect(localStorage.getItem('isAdmin')).toBe('null');
         });
     });
+
+
+    describe('updateExistingUser', () => {
+        it('should update the user data via API call', async () => {
+            axios.patch.mockResolvedValue({ status: 200 });
+
+            const { result } = renderHook(() => {
+                const dispatch = useUserDispatch();
+                return { dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.updateExistingUser(
+                    'Test', 
+                    'user@test.com', 
+                    'newpassword', 
+                    '1999-02-02');
+            });
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                expect.stringContaining('/users/update'),
+                {
+                    name: 'Test',
+                    email: 'user@test.com',
+                    password: 'newpassword',
+                    birthday: '1999-02-02'
+                },
+                {
+                    headers: { 'Authorization': 'Bearer '}
+                }
+            );
+        });
+    });
 });
