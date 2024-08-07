@@ -63,6 +63,7 @@ export default function MenuItemProvider({ children, defaultMenuItems = [] }) {
             }});
 
             if (response.status === 201) {
+                console.log('fetchMenuItems is being called.');
                 fetchMenuItems();
             }
         } catch (error) {

@@ -2,8 +2,9 @@ import React from "react";
 import { renderHook } from "@testing-library/react";
 import { act } from "react";
 import MenuItemProvider, { useMenuItemData, useMenuItemDispatch } from "../src/contexts/menuItemContext";
+
 import axios from "axios";
-import { useUserData } from "../src/contexts/userContext";
+
 
 
 jest.mock('../src/contexts/userContext', () => ({
@@ -99,6 +100,43 @@ describe('MenuItemContext', () => {
             });
 
             expect(result.current.data.categories).toEqual(testCategories);
+        });
+    });
+
+
+    describe('addMenuItem', () => {
+        it('should add a new menu item', async () => {
+            const newItem = {
+                name: 'Test Item',
+                category: 'Test Category',
+                price: 10,
+                description: 'Test item description',
+                image: 'test-image-url'
+            };
+
+            axios.post.mockResolvedValueOnce({ status: 201 });
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+            
+            await act(async () => {
+                await result.current.dispatch.addMenuItem(
+                    newItem.name,
+                    newItem.category,
+                    newItem.price,
+                    newItem.description,
+                    newItem.image
+                );
+            });
+
+            expect(axios.post).toHaveBeenCalledWith(
+                expect.stringContaining('/menu/create/item/'),
+                expect.objectContaining(newItem),
+                expect.any(Object)
+            );
         });
     });
 });
