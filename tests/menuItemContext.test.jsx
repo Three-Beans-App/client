@@ -207,4 +207,28 @@ describe('MenuItemContext', () => {
             expect(menuItem).toEqual(testMenuItems[1]);
         })
     });
+
+
+    describe('deleteMenuItem', () => {
+        it('should delete a menu item by ID', async () => {
+            const itemId = '1';
+
+            axios.delete.mockResolvedValueOnce({ status: 200 });
+
+            const { result } = renderHook(() => {
+                const data = useMenuItemData();
+                const dispatch = useMenuItemDispatch();
+                return { data, dispatch };
+            }, { wrapper });
+
+            await act(async () => {
+                await result.current.dispatch.deleteMenuItem(itemId);
+            });
+
+            expect(axios.delete).toHaveBeenCalledWith(
+                expect.stringContaining(`/menu/delete/item/${itemId}`),
+                expect.any(Object)
+            );
+        });
+    });
 });
