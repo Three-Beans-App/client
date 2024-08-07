@@ -60,7 +60,44 @@ describe('UserContext', () => {
                 expect(localStorage.getItem('isAdmin')).toBe('false');
                 expect(signUpResult.success).toBe(true);
                 expect(signUpResult.message).toBe('Signup successful');
-            })
-        })
-    })
+            });
+        });
+    });
+
+
+    describe('makeLoginRequest', () => {
+        it('should log in a user and store the relevant data', async () => {
+            const testLogin = {
+                data: {
+                    token: 'token',
+                    decodedUserJwt: { id: '123' },
+                    userId: '123',
+                    admin: true
+                },
+                status: 200
+            };
+            axios.post.mockResolvedValue(testLogin);
+
+            const { result } = renderHook(() => {
+                const dispatch = useUserDispatch();
+                return { dispatch };
+            }, { wrapper });
+
+            let loginResult;
+            await act(async () => {
+                loginResult = await result.current.dispatch.makeLoginRequest('user@test.com', 'password');
+            });
+
+            expect(axios.post).toHaveBeenCalledWith(
+                expect.stringContaining('users/login'),
+                { email: 'user@test.com', password: 'password' }
+            );
+
+            expect(localStorage.getItem('userJwt')).toBe('token');
+            expect(localStorage.getItem('isLoggedIn')).toBe('true');
+            expect(localStorage.getItem('userId')).toBe('123');
+            expect(localStorage.getItem('isAdmin')).toBe('true');
+            expect(loginResult.status).toBe(200);
+        });
+    });
 });
