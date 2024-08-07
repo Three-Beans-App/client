@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import axios from 'axios';
 import { useUserData } from './userContext';
 import { API_BASE_URL } from './variables';
@@ -14,8 +14,8 @@ export function useMenuItemDispatch() {
     return useContext(MenuItemDispatchContext);
 };
 
-export default function MenuItemProvider({ children }) {
-    const [menuItems, setMenuItems] = useState([]);
+export default function MenuItemProvider({ children, defaultMenuItems = [] }) {
+    const [menuItems, setMenuItems] = useState(defaultMenuItems);
     const [categories, setCategories] = useState([]);
     const { userJwt } = useUserData();
 
@@ -63,6 +63,7 @@ export default function MenuItemProvider({ children }) {
             }});
 
             if (response.status === 201) {
+                console.log('fetchMenuItems is being called.');
                 fetchMenuItems();
             }
         } catch (error) {
@@ -122,7 +123,8 @@ export default function MenuItemProvider({ children }) {
                     getFavouriteMenuItems, 
                     updateMenuItem,
                     getMenuItemById,
-                    deleteMenuItem
+                    deleteMenuItem,
+                    setMenuItems
                     }}
             >
                 {children}
