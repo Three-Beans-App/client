@@ -22,27 +22,17 @@ export default function AdminPage(){
     return (
         <div id="admin-container">
             <div id="admin-sub-container">
-                <div>
+               
                     <button className="nav-btn" onClick={()=> handleNavigate("/add-item")}>Add New Items</button>
-                </div>
-
-                <div>
+            
                     <button className="nav-btn" onClick={()=> handleNavigate(`/menu`)}>Update Current Items</button>
-                </div>
-
-                <div>
+               
                     <button className="nav-btn" onClick={()=> handleNavigate("/view-all-orders")}>View All Orders</button>
-                </div>
-            </div>
-            <div id="admin-sub-container">
-                <div>
+            
                     <button className="nav-btn" onClick={()=> handleNavigate("/view-active-orders")}>View Active Orders</button>
-                </div>
-
-                <div>
+            
                     <button className="nav-btn" onClick={()=> handleNavigate("/view-sales")}>View Sales</button>
-                </div>
-
+              
             </div>
         </div>
     )

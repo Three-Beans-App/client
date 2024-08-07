@@ -12,6 +12,10 @@ button{
     height:80px;
     font-size:larger;
     cursor: pointer;
+    font-weight: bold;
+}
+button:hover{
+    background-color: lightgray;
 }
 
 @media screen and (max-width: 600px){
@@ -29,9 +33,13 @@ button{
         }
     }
     button{
-        width: auto;
-        height:80px;
+        width: 90px;
+        height:50px;
         font-size:medium;
-        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:black; 
+        font-weight: bold;    
     }
 }   

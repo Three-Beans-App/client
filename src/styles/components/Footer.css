@@ -9,10 +9,17 @@ footer{
    }
 
     .admin-btn{
-        width: 100px;
-        height: 50px;
+        width: 120px;
+        height: 60px;
         border-radius: 10px;
         background-color: white;
+        font-weight: bold;
+        color: black;
+        margin: 20px;
+    }
+
+    .admin-btn:hover{
+        background-color: gray;
         font-weight: bold;
         color: black;
     }
