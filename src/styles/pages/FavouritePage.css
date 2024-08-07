@@ -7,17 +7,16 @@
 
     #content-sub-box{
         display: flex;
-        justify-content:space-between;
-        
+        flex-direction:column;
+        flex-wrap: wrap;
         .head-box{
-            margin-left: 40%;
-            padding: 20px;
-           
+            display: flex;
+            justify-content: center;       
         }
         .cart-box{
             display: flex;
-            padding: 20px;
-            margin-left: 50px;
+            justify-content: flex-end;
+            margin-right: 20px;
             #cartIcon{
                 all: unset;
                 cursor: pointer;
