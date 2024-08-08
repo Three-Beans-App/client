@@ -6,17 +6,18 @@
     .category{
         cursor: pointer;
     }
+    button{
+        width: 250px;
+        height:80px;
+        font-size:larger;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    button:hover{
+        background-color: lightgray;
+    }
 }
-button{
-    width: 250px;
-    height:80px;
-    font-size:larger;
-    cursor: pointer;
-    font-weight: bold;
-}
-button:hover{
-    background-color: lightgray;
-}
+
 
 @media screen and (max-width: 600px){
     #menuSideBarContainer{
@@ -31,17 +32,22 @@ button:hover{
             width: auto;
             
         }
+
+        button{
+            width: auto;
+            height:50px;
+            flex-wrap: wrap;
+            font-size:medium;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:black; 
+            font-weight: bold;  
+            padding: px;  
+        }
+        button:hover{
+            background-color: lightgray;
+        }
     }
-    button{
-        width: auto;
-        height:50px;
-        flex-wrap: wrap;
-        font-size:medium;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color:black; 
-        font-weight: bold;  
-        padding: 5px;  
-    }
+   
 }   
