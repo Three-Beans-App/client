@@ -17,9 +17,14 @@ export default function Footer(){
 
     return(
         <footer>
-            <h3 className="copyright">Copyright 2024 Three Beans Cafe</h3>
+            <div className="footer-div">
+                <h3 className="copyright">Copyright 2024 Three Beans Cafe</h3>
+            </div>
+            
             { isAdmin && 
-                <button className="admin-btn" onClick={()=> handleNavigate("/admin")}>Admin</button>
+                <div className="footer-btn">
+                    <button className="admin-btn" onClick={()=> handleNavigate("/admin")}>Admin</button>
+                </div>
             }
         </footer>
     )

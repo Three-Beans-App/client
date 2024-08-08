@@ -24,7 +24,9 @@ export default function Popup({item, handleCloseItemDetail, onAddToCart, onStarC
         <div id="ItemBigBox" data-closable ref={popupItemRef}>
             
             <div id="imageCloseContainer">
-                <img src={item.image} alt="Description" className="image"/>
+                <div className="image-container">
+                    <img src={item.image} alt="Description"/>
+                </div>
                 <IconButton aria-label="close" className="IconButton" onClick={handleCloseItemDetail }>
                     <CloseIcon />
                 </IconButton>

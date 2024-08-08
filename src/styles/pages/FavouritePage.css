@@ -20,9 +20,12 @@
             #cartIcon{
                 all: unset;
                 cursor: pointer;
+                transition:  0.3s;
             }
             #cartIcon:hover{
                 color: brown;
+                transition:  0.3s;
+                
             }
             
         }

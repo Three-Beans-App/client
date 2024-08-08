@@ -1,17 +1,16 @@
 import { useState } from "react"
 import "../styles/pages/LoginPage.css"
 import { useUserDispatch } from "../contexts/userContext"
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function LoginPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    const { makeLoginRequest } = useUserDispatch();
     const direct = useNavigate();
 
-    const { makeLoginRequest } = useUserDispatch();
 
     // call the login request function
     // then navigate to home page after login
@@ -23,10 +22,13 @@ export default function LoginPage(){
             setError(loginRes.message);
         } else {
             setError("");
-            direct("/");
+            handleNavigate("/");
         };
     }
 
+    const handleNavigate = (path) => {
+        direct(path)
+    }
 
 
     return(
@@ -50,9 +52,7 @@ export default function LoginPage(){
                     </button>
                     <label>Or if you not a member:</label>
                     <div>
-                    <NavLink to={"/signup"}>
-                        <button >Sign Up Now</button>
-                    </NavLink>
+                        <button  className="bnt" onClick={()=>handleNavigate("/signup")}>Sign Up Now</button>
                     </div>
                     {error && 
                         <div className="error">{error}</div>
