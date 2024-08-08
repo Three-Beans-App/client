@@ -8,7 +8,6 @@ import HistoryPage from "./pages/HistoryPage";
 import FavouritePage from "./pages/FavouritePage"
 import CartPage from "./pages/CartPage";
 import AddItemPage from "./pages/AddItemPage";
-import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import OrderPage from "./pages/OrderPage";
@@ -34,7 +33,6 @@ function App() {
             <Route path=":id" element={<AddItemPage />} />
           </Route>
           <Route path="admin" element={<AdminPage />} />
-          <Route path="profile" element={<ProfilePage />} />
           <Route path="order" element={<OrderPage />} />
           <Route path="view-all-orders" element={<ViewAllOrdersPage />} />
           <Route path="view-active-orders" element={<ViewActiveOrdersPage />} />
