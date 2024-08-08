@@ -10,7 +10,7 @@
     font-weight:bolder;
 }
 
-.button{
+.nav-button{
     padding: 10px 20px;
     background-color: rgb(78, 73, 73);
     color: white;
@@ -19,17 +19,16 @@
     cursor: pointer;
     font-weight: bold;
     transition:  0.3s;
+    text-decoration: none;
 }
 
-.button:hover{
+.nav-button:hover{
     background-color: rgb(125, 117, 117);
     font-weight:bolder ;
     transition:  0.3s;
 }
 
-#homeContents{
 
-}
 
 @media screen and (max-width: 600px){
 

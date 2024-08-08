@@ -1,10 +1,13 @@
 import "../styles/pages/HomePage.css";
-import { NavLink } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 export default function HomePage() {
+    const direct = useNavigate();
 
-
+    const handleNavigate = (path) => {
+        direct(path)
+    }
     return(
         <div id="homeContainer">
             <div id="homeTitle">
@@ -22,10 +25,7 @@ export default function HomePage() {
                     Public Holiday: 6am -2pm
                 </h3>
             </div>
-            <NavLink to={"/menu"}>
-                <button className="button">Order Now</button>
-            </NavLink>
-    
+            <button className="nav-button" onClick={()=>handleNavigate("/menu")}>Order Now</button>
         </div>
     )
 }

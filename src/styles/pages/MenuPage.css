@@ -41,9 +41,11 @@
                 all: unset;
                 margin-left: 24px;
                 cursor: pointer;
+                transition:  0.3s;
             }
             #cartIcon:hover{
                 color: brown;
+                transition:  0.3s;
             }
             .searchBar{
                 input[type="text"]{
@@ -59,15 +61,12 @@
                     width: 90px;
                     height: 32px;
                     margin-left: 8px;
+                    color: black;
+                }
+                button:hover{
+                    transition:  0.3s;
                 }
             } 
-        }
-        .add-cart-notice{
-            position: fixed;
-            padding: 5px;
-            background-color:aquamarine;
-            border-radius: 10px;
-            z-index: 1000;
         }
         .items{
             margin-left: 20px;
@@ -83,9 +82,10 @@
     #itemDetail-popup{
         z-index: 1000; 
         position: absolute;
+        right: 0;
         align-items: center;
         background: rgba(0, 0, 0, 0.5);
-        width: 95%;
+        width: 100%;
         justify-content: center;
         display: flex; 
         
@@ -104,7 +104,6 @@
             flex-direction: column;
             align-items: center;
         }
-
 
         .title{
             font-size: 24px;

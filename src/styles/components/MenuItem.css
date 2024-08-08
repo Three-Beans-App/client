@@ -63,18 +63,18 @@
     }
     .addToCart{
         cursor: pointer;
+        transition:  0.3s;
     }
     .addToCart:hover{
         color: brown;
+        transition:  0.3s;
     }
     .update-button{
         cursor: pointer;
+        transition:  0.3s;
     }
     .update-button:hover{
         color: brown;
+        transition:  0.3s;
     }
-}
-
-@media screen and (max-width: 600px){
-  
 }

@@ -1,26 +1,38 @@
 footer{
-    /* border: 3px solid red; */
+    
     text-align: center;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
    .copyright{
     font-size: large;
     font-weight: bold;
+   
 
    }
+   .footer-btn{
+        display: flex;
+        justify-content: center;
 
-    .admin-btn{
-        width: 120px;
-        height: 60px;
-        border-radius: 10px;
-        background-color: white;
-        font-weight: bold;
-        color: black;
-        margin: 20px;
-    }
+        .admin-btn{
+            width: 120px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: white;
+            font-weight: bold;
+            color: black;
+            margin: 20px;
+            transition:  0.3s;
+        }
 
-    .admin-btn:hover{
-        background-color: gray;
-        font-weight: bold;
-        color: black;
+        .admin-btn:hover{
+            background-color: gray;
+            font-weight: bold;
+            color: black;
+            transition:  0.3s;
+        }
     }
 }
