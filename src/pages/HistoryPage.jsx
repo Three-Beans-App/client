@@ -2,6 +2,7 @@ import "../styles/pages/HistoryPage.css";
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext";
 import { useEffect } from "react";
 import  datetimeFormat from "../functions/datetimeFormat";
+import { toDollarValue } from "../functions/toDollarValue";
 
 export default function HistoryPage() {
     const { userOrderHistory } = useOrderData();
@@ -18,11 +19,12 @@ export default function HistoryPage() {
             <div className="historytitle">
                 <h2>Order History</h2>
             </div>
-            <div className="order-list">    
-                { userOrderHistory?.length === 0 && (
+            { userOrderHistory?.length === 0 && (
                     <span className="empty-text"> History is empty!</span>
                 )}
             
+            <div className="order-list">    
+                
                 {userOrderHistory.map((order) => (
                     <div className="order-container" key={order?.itemId}>
                         <div className="order-details-left">
@@ -42,7 +44,7 @@ export default function HistoryPage() {
                                         <div className="item-name-content">{item.name}</div>
                                         <div className="item-content">{item.quantity}</div>
                                         <div className="item-content">${item.price}</div>
-                                        <div className="item-content">${item.total}</div>
+                                        <div className="item-content">${toDollarValue(item.total)}</div>
                                     </div>
                                 ))}
                         </div>

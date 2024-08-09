@@ -87,15 +87,3 @@
     }
 }
 
-/* 
-@media screen and (max-width: 600px){
-    #signupContentContainer{
-        form{
-            display: flex;
-            flex-direction: column;
-            width: 150px;
-        
-
-    }
-    }
-} */
