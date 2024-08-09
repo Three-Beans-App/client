@@ -8,11 +8,17 @@
         background-color: rgb(255, 255, 255, 0.8);
         padding: 30px;
         border-radius: 20px;
+        flex-wrap: wrap;
+        width: auto;
     }
 
     form{
         display: flex;
         flex-direction: column;
+        width: 250px;
+        #birthday{
+            color:black
+        }  
     }
 
     label{
@@ -81,4 +87,15 @@
     }
 }
 
+/* 
+@media screen and (max-width: 600px){
+    #signupContentContainer{
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+        
 
+    }
+    }
+} */
