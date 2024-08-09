@@ -126,6 +126,7 @@
                     width: 130px;
                     height: 50px;
                     font-size: normal;
+                    text-decoration: none;
                 }
                 .confirm-order:hover{
                     background-color: lightgrey;
