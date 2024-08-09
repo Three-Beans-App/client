@@ -38,13 +38,19 @@ Password: 12345
 - Axios - Use for making HTTP request from frontend to backend API.
 - Meterial-UI Icons - use icon for cart, star, x - for close popup etc.
 
+### App Images
+
+- Logo - Generate by AI.
+- Background - Generate by AI.
+- Menu Images - Online images.
+
 ## Project Management
 
 For the project management we continue useing
 
-- Trello - We divide our project tasts, and keep tracking, moving, reviewing tickets as we go.
-- Discord - We communicate our project through discord, regular update teammates and ask for help if needed, post some screenshort, ask teammates advises and organize meeting and so on.
-- Zoom - We hold zoom meeting every week to talk about the project, and see how everyone doing.
+- Trello - We divide our project tasks, and kept tracking, moving, and reviewing tickets as we go.
+- Discord - We communicated about our project through discord, regularly updating teammates and asking for help if needed, post some screenshots, ask teammates advice and organized meetings and so on.
+- Zoom - We held zoom meetings every week to talk about the project, and see how everyone was going.
 
 ![trello-screenshort](/doc/trello-screenshort.png)
 
@@ -54,7 +60,7 @@ For the project management we continue useing
 
 # Control Flow
 
-We using feature branchs to develop our code, and merge the main branch.
+We used feature branchs to develop our code, and merge code back into the main branch using pull requests.
 
 ![git-screenshort](/doc/git-screenshort.png)
 
