@@ -1,5 +1,5 @@
 import "../styles/pages/SignUpPage.css"
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useUserData, useUserDispatch } from "../contexts/userContext"
 import { NavLink } from "react-router-dom";
 

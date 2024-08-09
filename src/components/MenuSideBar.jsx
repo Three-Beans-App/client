@@ -1,5 +1,5 @@
 import "../styles/components/MenuSideBar.css"
-
+import React from "react";
 
 export default function MenuSideBar({categories, onSelectedCategory}){
 

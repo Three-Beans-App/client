@@ -1,4 +1,5 @@
 import "../styles/components/MenuItem.css";
+import React from "react";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import Star from "./Star";

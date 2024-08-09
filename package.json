@@ -51,9 +51,9 @@
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
     "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "nodemon": "^3.1.4"
   },
   "proxy": "https://localhost:3001"
-
 }

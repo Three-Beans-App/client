@@ -1,6 +1,6 @@
 import "../styles/pages/HistoryPage.css";
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import  datetimeFormat from "../functions/datetimeFormat";
 import { toDollarValue } from "../functions/toDollarValue";
 

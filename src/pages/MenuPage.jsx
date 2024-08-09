@@ -1,7 +1,7 @@
 import "../styles/pages/MenuPage.css"
 import MenuSideBar from "../components/MenuSideBar"
 import MenuItem from "../components/MenuItem";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
