@@ -7,6 +7,11 @@
         font-size: 70px;
         cursor: pointer;
         color: white;
+        transition: 0.3s;
+    }
+    .icon:hover{
+        color: lightgrey;
+        transition: 0.3s;
     }
 
     .dropdown-items{
@@ -21,15 +26,23 @@
         width: 200px;   
         color: black;
        
+       
     }
 
-    .dropdown-items button{
+    button{
         padding: 10px;
         cursor: pointer;
         text-align: left;
         width: 100%;
         font-weight: bolder;
         color: black;
+        height: 70px;
+        font-size: larger;
+      
+       
         
+    }
+    button:hover{
+        background-color: lightgrey;
     }
 }

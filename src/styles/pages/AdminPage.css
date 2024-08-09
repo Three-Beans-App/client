@@ -13,11 +13,13 @@
         
         .nav-btn{
             width: 200px;
-            border-radius: 4px;
+            height: 70px;
+            border-radius: 5px;
             margin: 30px;
             color: black;
             background-color: lightgray;
             transition:  0.3s;
+            font-size: large;
         }
         .nav-btn:hover{
             background-color: gray;
