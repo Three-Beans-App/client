@@ -127,7 +127,7 @@ export default function ConfirmationPage(){
                 }
                 <div className="confirm-btn">
                     <div className="back">
-                        <button className="back-to-cart" onClick={()=>handleDirect("/cart")}>Continue Shopping</button>
+                        <button className="back-to-cart" onClick={()=>handleDirect("/cart")}>Back to cart</button>
                     </div>
                     <div className="confirm">
                         <button className="confirm-order" onClick={confirmAndCreateOrder}>Confirm Order</button>
