@@ -29,10 +29,12 @@
         background-color: lightgray;
         width: 150px;
         height: 50px;
+        color:black
     }
     button:hover{
         background-color: gray;
         transition:  0.3s;
+        font-weight: bold;
     }
     input{
         height: 30px;

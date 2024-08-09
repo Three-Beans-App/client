@@ -52,7 +52,7 @@ export default function LoginPage(){
                     </button>
                     <label>Or if you not a member:</label>
                     <div>
-                        <button  className="bnt" onClick={()=>handleNavigate("/signup")}>Sign Up Now</button>
+                        <button  onClick={()=>handleNavigate("/signup")}>Sign Up Now</button>
                     </div>
                     {error && 
                         <div className="error">{error}</div>
