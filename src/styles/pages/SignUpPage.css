@@ -40,24 +40,45 @@
     }
     input{
         height: 30px;
+        
+    }
+
+
+    .confirmation {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .confirmation h2 {
+        margin-bottom: 30px;
+        
+    
+    }
+    
+    .confirmation a {
+        color: rgb(78, 73, 73);
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 10px;
+        background-color: lightgrey;
+        border-radius: 10px;
+        color: black;
+        width: 120px;
+        height: 50px;
+        
+
+    }
+    .confirmation a:hover{
+        background-color: gray;
+    }
+    .error{
+        color:red;
+        margin-top: 20px;
     }
 }
 
 
-.confirmation {
-    text-align: center;
-}
-
-.confirmation h2 {
-    margin-bottom: 10px;
-}
-
-.confirmation a {
-    color: rgb(78, 73, 73);
-    text-decoration: none;
-    font-weight: bold;
-}
-.error{
-    color:red;
-    margin-top: 20px;
-}

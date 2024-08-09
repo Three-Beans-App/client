@@ -104,6 +104,7 @@
                 border: none;
                 display: flex;
                 justify-content: start;
+                cursor: pointer;
             }
             .back-to-cart:hover{
                 color: purple;
@@ -122,10 +123,12 @@
                     border-radius: 10px;
                     font-weight: bold;
                     transition:  0.3s;
+                    width: 130px;
+                    height: 50px;
+                    font-size: normal;
                 }
                 .confirm-order:hover{
                     background-color: lightgrey;
-                    font-weight: bold;
                     transition:  0.3s;
                 }
             }

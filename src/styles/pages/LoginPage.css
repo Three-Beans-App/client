@@ -29,7 +29,8 @@
         background-color: lightgray;
         width: 150px;
         height: 50px;
-        color:black
+        color:black;
+        font-weight: normal;
     }
     button:hover{
         background-color: gray;
