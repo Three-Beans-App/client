@@ -29,8 +29,10 @@ export default function SignUpPage(){
             <div id="signupContentBox">
                 {isLoggedIn ? (
                     <div className="confirmation">
-                    <h2>Welcome to Three Beans Cafe</h2>
-                    <NavLink to="/">Go to Home Page</NavLink>
+                        <h2>Welcome to Three Beans Cafe</h2>
+                        <div className="navlink-btn">
+                            <NavLink to="/">Go to Home Page</NavLink>
+                        </div>
                     </div>
                 ) : (
                     <form onSubmit={handleSignup}>
@@ -41,7 +43,7 @@ export default function SignUpPage(){
                         />
                     <label>Your Birthday:</label>
                     <input 
-                        type="date" name="birthday" id="birthday"
+                        type="date" name="birthday" id="birthday" 
                         value={birthday} onChange={(event)=> setBirthday(event.target.value)}
                         />
                     <label>Sign Up email: </label>
