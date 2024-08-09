@@ -8,6 +8,7 @@
         height: 10rem;
         width: 100%;
         
+        
         #navBox{
            
             display: flex;
@@ -20,6 +21,11 @@
                 font-size:x-large;
                 margin-right: 60px;
                 font-weight: bold;
+                transition: 0.3s;
+            }
+            .navLink:hover{
+                color: lightgrey;
+                transition: 0.3s;
             }
         }
         
