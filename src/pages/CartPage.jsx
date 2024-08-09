@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCartDispatch, useCartData } from "../contexts/cartContext";
 import { useNavigate } from "react-router-dom";
-
+import { toDollarValue } from "../functions/toDollarValue";
 
 
 
@@ -89,7 +89,7 @@ export default function CartPage(){
                             </select>
                         </div>
                         <div className="wrapper">
-                            <span className="item-total-price">$ {(item.item.price * item.quantity).toFixed(2)}</span>
+                            <span className="item-total-price">$ {toDollarValue(item.item.price * item.quantity)}</span>
                         </div>
                         <div className="wrapper">
                             <IconButton aria-label="close" className="remove-button" onClick={()=>handleRemoveItem(item.item.name)}>
