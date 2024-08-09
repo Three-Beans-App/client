@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "../styles/pages/ViewSalesPage.css"
 import { useOrderData, useOrderDispatch } from "../contexts/orderContext";
 

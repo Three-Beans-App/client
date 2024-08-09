@@ -1,3 +1,4 @@
+import React from "react";
 import { useUserData } from "../contexts/userContext";
 import "../styles/components/Footer.css"
 import { useNavigate } from 'react-router-dom';

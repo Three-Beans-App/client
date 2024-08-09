@@ -1,3 +1,4 @@
+import React from "react";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import { useFavouriteData } from '../contexts/favouriteContext';

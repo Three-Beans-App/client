@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Star from "./Star";
 import useOnClickOutsideClose from "../functions/OnClickOutsideClose";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useUserData } from "../contexts/userContext";
 
 

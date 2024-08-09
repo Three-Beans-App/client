@@ -3,7 +3,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuItem from "../components/MenuItem"
 import { useFavouriteData, useFavouriteDispatch } from "../contexts/favouriteContext"
 import { useCartDispatch } from "../contexts/cartContext";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "../components/Popup";
 import { useMenuItemDispatch } from "../contexts/menuItemContext";
 import { useNavigate } from "react-router-dom";

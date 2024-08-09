@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Template from "./pages/_TemplatePage";
 import HomePage from "./pages/HomePage";
